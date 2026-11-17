@@ -187,6 +187,41 @@
     updateParallax();
   }
 
+  // ---------- Carousel aktivitas bisnis ----------
+  const businessTrack = document.querySelector('[data-business-slider]');
+  if (businessTrack) {
+    const businessCards = [...businessTrack.querySelectorAll('.biz-card')];
+    const businessDots = [...document.querySelectorAll('.biz-pagination button')];
+    let businessScrollFrame = 0;
+
+    function updateBusinessPagination() {
+      const trackLeft = businessTrack.getBoundingClientRect().left;
+      let activeIndex = 0, nearest = Infinity;
+      businessCards.forEach((card, index) => {
+        const distance = Math.abs(card.getBoundingClientRect().left - trackLeft);
+        if (distance < nearest) { nearest = distance; activeIndex = index; }
+      });
+      businessDots.forEach((dot, index) => {
+        dot.setAttribute('aria-current', String(index === activeIndex));
+      });
+      businessScrollFrame = 0;
+    }
+
+    businessDots.forEach((dot, index) => dot.addEventListener('click', () => {
+      const trackLeft = businessTrack.getBoundingClientRect().left;
+      const cardLeft = businessCards[index].getBoundingClientRect().left;
+      businessTrack.scrollTo({
+        left: businessTrack.scrollLeft + cardLeft - trackLeft,
+        behavior: reduceMotion ? 'auto' : 'smooth',
+      });
+    }));
+    businessTrack.addEventListener('scroll', () => {
+      if (!businessScrollFrame) businessScrollFrame = requestAnimationFrame(updateBusinessPagination);
+    }, { passive: true });
+    window.addEventListener('resize', updateBusinessPagination);
+    updateBusinessPagination();
+  }
+
   // ---------- Carousel (tombol, drag, progress) ----------
   document.querySelectorAll('[data-carousel]').forEach((car) => {
     const section = car.closest('section');

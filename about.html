@@ -45,8 +45,8 @@
 
   <main>
     <!-- ============ 01 HERO ============ -->
-    <section class="page-hero" id="top">
-      <div class="page-hero-bg" style="--img:url('assets/about-hero.jpg')"></div>
+    <section class="page-hero editorial-hero" id="top">
+      <div class="page-hero-bg" style="--img:url('assets/about-hero.png')"></div>
       <div class="page-hero-overlay"></div>
       <div class="container page-hero-content">
         <p class="eyebrow eyebrow-light hero-anim page-hero-eyebrow" style="--d:.1s">
@@ -58,11 +58,31 @@
           <span class="line"><span class="hero-anim" style="--d:.3s">Tentang Kami</span></span>
         </h1>
         <p class="page-hero-lead hero-anim" style="--d:.55s">Fondasi Sains, Integritas Korporasi &amp; Kepemimpinan Ekosistem HDI.</p>
+        <div class="editorial-hero-actions hero-anim" style="--d:.8s">
+          <a href="#identitas" class="btn btn-light btn-arrow">Lihat profil kami <span class="arrow-circle" aria-hidden="true">→</span></a>
+        </div>
       </div>
+      <p class="hero-caption container hero-anim" style="--d:1s">
+        <span>PT High-Desert Indonesia</span>
+        <span>Identitas, legalitas, dan tata kelola perusahaan.</span>
+      </p>
     </section>
 
+    <!-- ============ NAVIGASI BAGIAN ============ -->
+    <nav class="subnav about-subnav" aria-label="Navigasi Tentang Kami">
+      <div class="container subnav-inner">
+        <a href="#identitas"><span>01</span>Identitas</a>
+        <a href="#sejarah"><span>02</span>Sejarah &amp; Rekam Jejak</a>
+        <a href="#tata-kelola"><span>03</span>Tata Kelola</a>
+        <a href="#visi"><span>04</span>Visi &amp; Misi</a>
+        <a href="#manajemen"><span>05</span>Manajemen</a>
+        <a href="#kantor"><span>06</span>Kantor</a>
+        <span class="subnav-indicator" aria-hidden="true"></span>
+      </div>
+    </nav>
+
     <!-- ============ INTRO / IDENTITAS ============ -->
-    <section class="section section-gray">
+    <section class="section section-gray" id="identitas">
       <div class="container intro-grid">
         <figure class="intro-photo reveal reveal-left">
           <div class="intro-photo-img" style="--img:url('assets/hdi-hive.jpg')"></div>
@@ -150,7 +170,7 @@
     </section>
 
     <!-- ============ GCG ============ -->
-    <section class="section section-gray section-gcg">
+    <section class="section section-gray section-gcg" id="tata-kelola">
       <div class="container">
         <div class="gcg-panel reveal">
           <div class="gcg-img-wrap">
