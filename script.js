@@ -10,7 +10,7 @@
 
   const textEntries = [];
   const attrEntries = [];
-  const ATTRS = ['aria-label', 'title', 'alt', 'data-title', 'data-desc', 'data-eyebrow', 'data-tags'];
+  const ATTRS = ['aria-label', 'title', 'alt', 'data-title', 'data-desc', 'data-eyebrow', 'data-tags', 'data-image-alt'];
   (function collect() {
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
       acceptNode: (n) => (n.parentElement && !n.parentElement.closest('script, style') && DICT[norm(n.nodeValue)]) ? 1 : 3,
@@ -185,6 +185,160 @@
       if (!pTick) { requestAnimationFrame(updateParallax); pTick = true; }
     }, { passive: true });
     updateParallax();
+  }
+
+  // ---------- Galeri gambar pilar kualitas ----------
+  const qGallery = document.querySelector('.q-pillars');
+  if (qGallery) {
+    const cards = [...qGallery.querySelectorAll('[data-q-pillar]')];
+    const frames = [...qGallery.querySelectorAll('.q-img-frame')];
+    const autoplayToggle = qGallery.querySelector('.q-autoplay-toggle');
+    if (cards.length && frames.length === 2) {
+      const imageCache = new Map();
+      function preloadImage(source) {
+        let image = imageCache.get(source);
+        if (!image) {
+          image = new Image();
+          image.src = source;
+          imageCache.set(source, image);
+        }
+        return image;
+      }
+
+      function preloadGalleryImages() {
+        cards.forEach((card) => preloadImage(card.dataset.image));
+      }
+
+      let activeIndex = Math.max(0, cards.findIndex((card) => card.classList.contains('is-active')));
+      let activeFrame = Math.max(0, frames.findIndex((frame) => frame.classList.contains('is-active')));
+      let requestId = 0;
+      let galleryVisible = false;
+      let pointerInside = false;
+      let userPaused = reduceMotion;
+      let autoPlayTimer = 0;
+
+      function updateAutoplayToggle() {
+        if (!autoplayToggle) return;
+        autoplayToggle.hidden = false;
+        autoplayToggle.setAttribute('aria-label', t(userPaused ? 'Lanjutkan tayangan otomatis' : 'Jeda tayangan otomatis'));
+        autoplayToggle.setAttribute('aria-pressed', String(userPaused));
+        autoplayToggle.querySelector('.q-play-icon').hidden = !userPaused;
+        autoplayToggle.querySelector('.q-pause-icon').hidden = userPaused;
+      }
+
+      updateAutoplayToggle();
+      autoplayToggle.addEventListener('click', () => {
+        userPaused = !userPaused;
+        updateAutoplayToggle();
+        if (userPaused) stopAutoPlay();
+        else startAutoPlay();
+      });
+      document.addEventListener('hd:lang', updateAutoplayToggle);
+
+      function selectPillar(index) {
+        if (index === activeIndex) {
+          requestId++;
+          return;
+        }
+        const card = cards[index];
+        const image = preloadImage(card.dataset.image);
+        const request = ++requestId;
+
+        function showImage() {
+          if (request !== requestId) return;
+          const nextFrameIndex = 1 - activeFrame;
+          const nextFrame = frames[nextFrameIndex];
+          const currentFrame = frames[activeFrame];
+          nextFrame.src = card.dataset.image;
+          nextFrame.alt = card.dataset.imageAlt;
+          nextFrame.removeAttribute('aria-hidden');
+          requestAnimationFrame(() => {
+            if (request !== requestId) return;
+            nextFrame.classList.add('is-active');
+            currentFrame.classList.remove('is-active');
+            currentFrame.setAttribute('aria-hidden', 'true');
+            activeFrame = nextFrameIndex;
+            activeIndex = index;
+            cards.forEach((item, itemIndex) => {
+              const isActive = itemIndex === index;
+              item.classList.toggle('is-active', isActive);
+              item.setAttribute('aria-pressed', String(isActive));
+            });
+          });
+        }
+
+        if (image.complete && image.naturalWidth) {
+          showImage();
+        } else if (image.complete) {
+          console.error('Gagal memuat gambar pilar kualitas:', card.dataset.image);
+        } else {
+          image.addEventListener('load', showImage, { once: true });
+          image.addEventListener('error', () => {
+            console.error('Gagal memuat gambar pilar kualitas:', card.dataset.image);
+          }, { once: true });
+        }
+      }
+
+      function stopAutoPlay() {
+        window.clearInterval(autoPlayTimer);
+        autoPlayTimer = 0;
+      }
+
+      function startAutoPlay() {
+        const focusPaused = qGallery.contains(document.activeElement) && document.activeElement !== autoplayToggle;
+        if (userPaused || !galleryVisible || pointerInside || document.hidden || autoPlayTimer || focusPaused) return;
+        autoPlayTimer = window.setInterval(() => {
+          selectPillar((activeIndex + 1) % cards.length);
+        }, 5000);
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stopAutoPlay();
+        else startAutoPlay();
+      });
+
+      qGallery.addEventListener('pointerenter', (event) => {
+        if (event.pointerType !== 'mouse') return;
+        pointerInside = true;
+        stopAutoPlay();
+      });
+      qGallery.addEventListener('pointerleave', (event) => {
+        if (event.pointerType !== 'mouse') return;
+        pointerInside = false;
+        startAutoPlay();
+      });
+      qGallery.addEventListener('focusin', stopAutoPlay);
+      qGallery.addEventListener('focusout', (event) => {
+        if (!qGallery.contains(event.relatedTarget)) startAutoPlay();
+      });
+      cards.forEach((card, index) => {
+        card.addEventListener('pointerenter', () => selectPillar(index));
+        card.addEventListener('focus', () => selectPillar(index));
+        card.addEventListener('click', () => selectPillar(index));
+        card.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            selectPillar(index);
+          }
+        });
+      });
+
+      if ('IntersectionObserver' in window) {
+        const galleryObserver = new IntersectionObserver((entries) => {
+          galleryVisible = entries.some((entry) => entry.isIntersecting);
+          if (galleryVisible) {
+            preloadGalleryImages();
+            startAutoPlay();
+          }
+          else stopAutoPlay();
+        }, { threshold: 0.15 });
+        galleryObserver.observe(qGallery);
+      } else {
+        galleryVisible = true;
+        preloadGalleryImages();
+        startAutoPlay();
+      }
+    }
   }
 
   // ---------- Carousel aktivitas bisnis ----------
