@@ -14,10 +14,14 @@ business-hero.jpg, import-products.jpg, div-honey.jpg, div-network.jpg,
 div-skincare.jpg, div-research.jpg, bskin.jpg, research-lab.jpg
 
 --- Halaman Quality & Regulatory (quality.html) ---
-quality-hero.jpg, quality-lab.jpg (dipakai juga di homepage), quality-standards.jpg
+quality-hero.jpg, quality-lab.jpg, quality-standards.jpg,
+quality-product-safety.png, quality-regulatory-compliance.png,
+quality-responsible-oversight.png, standard-cdob-vials.png,
+standard-cpotb-herbs.png, standard-iso-checklist.png,
+standard-halal-certification.png
 
 --- Halaman Group Network (network.html) ---
-network-hero.jpg, network-partner.jpg
+network-hero.jpg, network-partner.jpg, network-entities.png, network-partnership-handshake.png, hdi-hive-golden-hour.png (dipakai juga di homepage)
 
 --- Halaman Hubungi Kami (contact.html) ---
 office.jpg (dipakai juga di homepage)
