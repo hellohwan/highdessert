@@ -632,7 +632,7 @@ address { font-style: normal; }
 .home-contact-title em { display: block; }
 .home-contact-title em { color: #add0c4; font-weight: 400; }
 .home-contact-lead {
-  max-width: 720px;
+  max-width: 520px;
   color: rgba(255, 255, 255, .76);
   font-size: clamp(1rem, 1.3vw, 1.18rem);
   line-height: 1.65;
