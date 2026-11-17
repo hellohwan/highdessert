@@ -1,6 +1,7 @@
 Taruh foto di folder ini dengan nama berikut (jpg/png):
 hero.jpg, family.jpg, hands-moss.jpg, lab-scientist.jpg, honeycomb-dish.jpg,
 biz-honey.jpg, biz-warehouse.jpg, biz-skincare.jpg, biz-research.jpg,
+importation-card.png, distribution-network-card.png, product-development-card.png,
 research-banner.jpg, brandon-chia.png, alva-paloma.png (PNG transparan),
 quality-lab.jpg, office.jpg
 Selama file belum ada, gradient placeholder yang tampil.
