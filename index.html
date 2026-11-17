@@ -65,53 +65,63 @@
         </div>
         <p class="hero-note hero-anim" style="--d:1.05s">Nature-led. Science-driven. Quality-focused.</p>
       </div>
+      <a class="hero-scroll" href="#foundation" aria-label="Gulir ke bagian fondasi">
+        <span class="hero-scroll-label">Gulir ke bawah</span>
+        <span class="hero-scroll-icon" aria-hidden="true">↓</span>
+      </a>
     </section>
 
     <!-- ============ FONDASI ============ -->
-    <section class="section section-foundation">
+    <section class="section section-foundation" id="foundation">
       <div class="container">
         <div class="section-head reveal">
           <h2 class="h2">Fondasi yang kuat untuk wellness yang berkelanjutan.</h2>
           <p class="muted">PT High-Desert Indonesia merupakan bagian dari HDI Group, yang memiliki pengalaman panjang di industri kesehatan dan wellness.</p>
         </div>
 
-        <div class="bento">
-          <article class="card card-soft bento-a reveal">
-            <p class="eyebrow">Part of HDI Group</p>
-            <h3 class="h4">Terhubung. Terintegrasi.</h3>
-            <p class="muted small">Berada dalam ekosistem HDI Group yang menghubungkan produk, pengetahuan, dan jaringan bisnis untuk mendukung kesehatan dan wellness.</p>
-            <div class="card-media media-bottom" style="--img:url('assets/family.png')"></div>
-          </article>
-
-          <article class="card card-soft bento-b reveal" style="--d:.1s">
-            <p class="eyebrow">01 / Visi</p>
-            <h3 class="h4">Mendukung kualitas kehidupan yang lebih baik.</h3>
-            <div class="green-row">
-              <div class="green-img" style="--img:url('assets/hands-moss.png')"></div>
-              <p>Melalui ekosistem kesehatan dan wellness yang tepercaya dan berkelanjutan.</p>
+        <div class="foundation-cards">
+          <article class="foundation-card foundation-card-side reveal">
+            <div class="foundation-card-copy">
+              <p class="eyebrow">Part of HDI Group</p>
+              <h3 class="h4">Terhubung. Terintegrasi.</h3>
+              <p class="muted small">Berada dalam ekosistem HDI Group yang menghubungkan produk, pengetahuan, dan jaringan bisnis untuk mendukung kesehatan dan wellness.</p>
             </div>
+            <div class="foundation-card-image" style="--img:url('assets/family.png')"></div>
           </article>
 
-          <article class="card card-soft bento-c reveal" style="--d:.2s">
-            <h3 class="h5">Kualitas dalam setiap langkah.</h3>
-            <p class="muted small">Menjaga kualitas, keamanan, dan kepatuhan sesuai lingkup kegiatan perusahaan.</p>
+          <article class="foundation-card foundation-card-center reveal" style="--d:.1s">
+            <div class="foundation-card-copy">
+              <p class="eyebrow">02 / Visi</p>
+              <h3 class="h4">Mendukung kualitas kehidupan yang lebih baik.</h3>
+              <p class="small">Melalui ekosistem kesehatan dan wellness yang tepercaya dan berkelanjutan.</p>
+            </div>
+            <div class="foundation-card-image" style="--img:url('assets/hands-moss.png')"></div>
           </article>
 
-          <article class="card card-soft bento-d reveal" style="--d:.3s">
-            <p class="eyebrow">02 / Misi</p>
-            <h3 class="h4">Menghubungkan potensi, menghadirkan manfaat.</h3>
-            <div class="misi-row">
+          <article class="foundation-card foundation-card-side foundation-card-quality reveal" style="--d:.2s">
+            <div class="foundation-card-copy">
+              <p class="eyebrow">03 / Kualitas</p>
+              <h3 class="h4">Kualitas dalam setiap langkah.</h3>
+              <p class="muted small">Menjaga kualitas, keamanan, dan kepatuhan sesuai lingkup kegiatan perusahaan.</p>
+            </div>
+            <div class="foundation-card-image" style="--img:url('assets/lab-scientist.png')"></div>
+          </article>
+
+          <article class="foundation-card foundation-card-wide reveal" style="--d:.3s">
+            <div class="foundation-card-copy">
+              <p class="eyebrow">04 / Misi</p>
+              <h3 class="h4">Menghubungkan potensi, menghadirkan manfaat.</h3>
               <p class="muted small">Mengintegrasikan distribusi, pengembangan produk, dan riset dengan praktik yang bertanggung jawab.</p>
-              <div class="card-media misi-img" style="--img:url('assets/lab-scientist.png')"></div>
             </div>
+            <div class="foundation-card-image foundation-card-photo" style="--img:url('assets/quality-lab.png')"></div>
           </article>
 
-          <article class="card card-soft bento-wide reveal">
-            <div>
+          <article class="foundation-card foundation-card-wide reveal" style="--d:.4s">
+            <div class="foundation-card-copy">
               <h3 class="h4">Nature-led. Science-driven. Quality-focused.</h3>
-              <p class="muted small">Menghubungkan kebaikan alam dan ilmu pengetahuan<br />untuk mendukung kualitas kehidupan yang lebih baik.</p>
+              <p class="muted small">Menghubungkan kebaikan alam dan ilmu pengetahuan untuk mendukung kualitas kehidupan yang lebih baik.</p>
             </div>
-            <div class="circle-img" style="--img:url('assets/honeycomb-dish.png')"></div>
+            <div class="foundation-card-image" style="--img:url('assets/honeycomb-dish.png')"></div>
           </article>
         </div>
       </div>
@@ -126,7 +136,7 @@
           <p class="muted">Menghubungkan produk, pengetahuan, dan jaringan bisnis untuk mendukung kesehatan dan wellness.</p>
         </div>
 
-        <div class="biz-grid">
+        <div class="biz-grid" data-business-slider role="region" aria-roledescription="carousel" aria-label="Aktivitas bisnis" tabindex="0">
           <a href="business.html#importation" class="biz-card reveal" style="--d:0s">
             <div class="biz-img" style="--img:url('assets/honey.png')"></div>
             <div class="biz-body">
@@ -187,6 +197,12 @@
               </div>
             </div>
           </a>
+        </div>
+        <div class="biz-pagination" role="group" aria-label="Pilih aktivitas bisnis">
+          <button type="button" aria-label="Tampilkan aktivitas 1" aria-current="true"></button>
+          <button type="button" aria-label="Tampilkan aktivitas 2" aria-current="false"></button>
+          <button type="button" aria-label="Tampilkan aktivitas 3" aria-current="false"></button>
+          <button type="button" aria-label="Tampilkan aktivitas 4" aria-current="false"></button>
         </div>
       </div>
     </section>
