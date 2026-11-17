@@ -222,6 +222,41 @@
     updateBusinessPagination();
   }
 
+  // ---------- Carousel struktur manajemen ----------
+  const teamTrack = document.querySelector('[data-team-slider]');
+  if (teamTrack) {
+    const teamCards = [...teamTrack.querySelectorAll('.team-card')];
+    const teamDots = [...document.querySelectorAll('.team-pagination button')];
+    let teamScrollFrame = 0;
+
+    function updateTeamPagination() {
+      const trackLeft = teamTrack.getBoundingClientRect().left;
+      let activeIndex = 0, nearest = Infinity;
+      teamCards.forEach((card, index) => {
+        const distance = Math.abs(card.getBoundingClientRect().left - trackLeft);
+        if (distance < nearest) { nearest = distance; activeIndex = index; }
+      });
+      teamDots.forEach((dot, index) => {
+        dot.setAttribute('aria-current', String(index === activeIndex));
+      });
+      teamScrollFrame = 0;
+    }
+
+    teamDots.forEach((dot, index) => dot.addEventListener('click', () => {
+      const trackLeft = teamTrack.getBoundingClientRect().left;
+      const cardLeft = teamCards[index].getBoundingClientRect().left;
+      teamTrack.scrollTo({
+        left: teamTrack.scrollLeft + cardLeft - trackLeft,
+        behavior: reduceMotion ? 'auto' : 'smooth',
+      });
+    }));
+    teamTrack.addEventListener('scroll', () => {
+      if (!teamScrollFrame) teamScrollFrame = requestAnimationFrame(updateTeamPagination);
+    }, { passive: true });
+    window.addEventListener('resize', updateTeamPagination);
+    updateTeamPagination();
+  }
+
   // ---------- Carousel (tombol, drag, progress) ----------
   document.querySelectorAll('[data-carousel]').forEach((car) => {
     const section = car.closest('section');

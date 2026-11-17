@@ -1298,21 +1298,21 @@ html:has(.page-about) { scroll-padding-top: 150px; }
 /* ---------- Responsive business ---------- */
 @media (max-width: 960px) {
   html:has(.page-business) { scroll-padding-top: 130px; }
-  html:has(.page-about) { scroll-padding-top: 180px; }
+  html:has(.page-about) { scroll-padding-top: 130px; }
   .biz-hero-content { grid-template-columns: 1fr; gap: 28px; }
   .hero-green-card { justify-self: start; }
   .subnav-inner { display: flex; overflow-x: auto; gap: 24px; scrollbar-width: none; }
   .subnav-inner::-webkit-scrollbar { display: none; }
+  .about-subnav .subnav-inner {
+    display: flex !important;
+    grid-template-columns: none;
+    flex-wrap: nowrap;
+    overflow-x: auto !important;
+    gap: 24px;
+  }
+  .about-subnav a { flex: 0 0 auto; }
   .subnav a { flex: 0 0 auto; padding: 16px 0; font-size: .82rem; }
   .subnav a br { display: none; }
-  .about-subnav .subnav-inner {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0 12px;
-    overflow: visible;
-  }
-  .about-subnav a { flex: initial; padding: 14px 0; }
-  .about-subnav .subnav-indicator { display: none; }
   .import-grid, .bskin-grid, .research-head, .rd-grid { grid-template-columns: 1fr; }
   .research-head { gap: 16px; }
   .bskin-card, .bskin-img-wrap { min-height: 360px; }
@@ -1321,8 +1321,6 @@ html:has(.page-about) { scroll-padding-top: 150px; }
   .carousel { padding-left: 22px; scroll-padding-left: 22px; }
 }
 @media (max-width: 640px) {
-  html:has(.page-about) { scroll-padding-top: 220px; }
-  .about-subnav .subnav-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hero-caption { flex-direction: column; gap: 4px; }
   .div-card { width: 82vw; }
   .rd-list li { padding-bottom: 24px; margin-bottom: 24px; }
@@ -1937,8 +1935,46 @@ html:has(.page-contact) { scroll-padding-top: 90px; }
   .section-foundation .foundation-card-image { min-height: 190px; }
 }
 
-.biz-pagination { display: none; }
+.biz-pagination,
+.team-pagination { display: none; }
 @media (max-width: 960px) {
+  .team-grid.team-slider {
+    display: flex;
+    gap: 16px;
+    margin: 40px -22px 0;
+    padding: 0 max(22px, calc(100% - clamp(250px, 68vw, 460px) - 22px)) 8px 22px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 22px;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+  .team-grid.team-slider::-webkit-scrollbar { display: none; }
+  .team-grid.team-slider .team-card {
+    flex: 0 0 clamp(250px, 68vw, 460px);
+    width: auto;
+    scroll-snap-align: start;
+  }
+  .team-grid.team-slider .team-card.reveal { opacity: 1 !important; transform: none !important; }
+  .team-grid.team-slider:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+  .team-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .team-pagination button {
+    width: 8px;
+    height: 4px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: #d3d8de;
+    cursor: pointer;
+    transition: width .25s var(--ease), background-color .25s var(--ease);
+  }
+  .team-pagination button[aria-current="true"] { width: 28px; background: var(--ink); }
   .biz-grid[data-business-slider] {
     display: flex;
     grid-template-columns: none;
