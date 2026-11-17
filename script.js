@@ -88,9 +88,7 @@
 
   // ---------- Scroll reveal ----------
   const reveals = document.querySelectorAll('.reveal, .slide-in, .slide-up, .timeline, [data-carousel]');
-  const revealTargets = reduceMotion
-    ? [...reveals].filter((el) => el.classList.contains('reveal'))
-    : [...reveals];
+  const revealTargets = reduceMotion ? [] : [...reveals];
   if ('IntersectionObserver' in window && revealTargets.length) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -99,12 +97,14 @@
           el.classList.add('is-visible');
           // hapus delay stagger setelah muncul agar efek hover terasa instan
           el.addEventListener('transitionend', () => { el.style.transitionDelay = '0s'; el.style.setProperty('--d', '0s'); }, { once: true });
-        } else {
-          el.classList.remove('is-visible');
         }
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-    revealTargets.forEach((el) => io.observe(el));
+    revealTargets.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.bottom > 0 && rect.top < window.innerHeight - 40) el.classList.add('is-visible');
+      io.observe(el);
+    });
     reveals.forEach((el) => {
       if (!revealTargets.includes(el)) el.classList.add('is-visible');
     });

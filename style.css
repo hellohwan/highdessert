@@ -861,13 +861,11 @@ address { font-style: normal; }
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
   }
-  .reveal {
-    opacity: 0 !important;
-    transform: translateY(64px) scale(.96) !important;
-    transition: opacity 1.1s var(--ease-out), transform 1.1s var(--ease-out) !important;
-    transition-delay: var(--d, 0s) !important;
+  .reveal, .slide-in, .slide-up, .timeline, [data-carousel] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
-  .reveal.is-visible { opacity: 1 !important; transform: translateY(0) scale(1) !important; }
   .hero-anim { opacity: 1 !important; transform: none !important; }
 }
 
