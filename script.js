@@ -681,4 +681,62 @@
   // ---------- Tahun otomatis ----------
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
+
+  // ---------- Hero slider Beranda ----------
+  (function heroSlider() {
+    const hero = document.querySelector('[data-hero-slider]');
+    if (!hero) return;
+    const bgs = [...hero.querySelectorAll('.hero-slide-bg')];
+    const titles = [...hero.querySelectorAll('.hero-slide-title')];
+    const leads = [...hero.querySelectorAll('.hero-slide-lead')];
+    const dots = [...hero.querySelectorAll('.hero-dot')];
+    const current = hero.querySelector('[data-hero-current]');
+    const INTERVAL = 6000;
+    hero.style.setProperty('--hero-interval', INTERVAL + 'ms');
+    let idx = 0, timer = null, paused = false;
+
+    function go(n) {
+      const next = (n + bgs.length) % bgs.length;
+      if (next === idx) return;
+      const prev = idx; idx = next;
+      titles[prev].classList.add('is-leaving');
+      setTimeout(() => titles[prev].classList.remove('is-leaving'), 700);
+      [bgs, titles, leads, dots].forEach((list) => list.forEach((el, i) => el.classList.toggle('is-active', i === idx)));
+      titles.forEach((el, i) => el.setAttribute('aria-hidden', String(i !== idx)));
+      leads.forEach((el, i) => el.setAttribute('aria-hidden', String(i !== idx)));
+      dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === idx)));
+      current.textContent = String(idx + 1).padStart(2, '0');
+      // restart animasi progres titik
+      const bar = dots[idx].querySelector('span'); bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = '';
+      schedule();
+    }
+    function schedule() {
+      clearTimeout(timer);
+      if (!paused && !reduceMotion) timer = setTimeout(() => go(idx + 1), INTERVAL);
+    }
+    dots.forEach((d) => d.addEventListener('click', () => go(+d.dataset.go)));
+
+    // jeda saat kursor di atas hero atau tab tidak aktif
+    const setPaused = (v) => { paused = v; hero.classList.toggle('is-paused', v); schedule(); };
+    hero.addEventListener('mouseenter', () => setPaused(true));
+    hero.addEventListener('mouseleave', () => setPaused(false));
+    document.addEventListener('visibilitychange', () => setPaused(document.hidden));
+
+    // geser (swipe) di HP
+    let sx = null;
+    hero.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; }, { passive: true });
+    hero.addEventListener('touchend', (e) => {
+      if (sx === null) return;
+      const dx = e.changedTouches[0].clientX - sx; sx = null;
+      if (Math.abs(dx) > 50) go(idx + (dx < 0 ? 1 : -1));
+    });
+
+    // mulai setelah tirai transisi halaman terbuka
+    function start() { hero.classList.add('is-ready'); schedule(); }
+    const pt = document.querySelector('.page-transition');
+    if (!pt || reduceMotion || pt.classList.contains('pt-out')) { setTimeout(start, 50); return; }
+    const mo = new MutationObserver(() => { if (pt.classList.contains('pt-out')) { mo.disconnect(); setTimeout(start, 150); } });
+    mo.observe(pt, { attributes: true, attributeFilter: ['class'] });
+    setTimeout(start, 3000); // pengaman
+  })();
 })();

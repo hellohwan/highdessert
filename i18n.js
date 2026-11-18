@@ -1,5 +1,16 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Pilih slide": "Choose slide",
+"Tim HDI Group": "HDI Group team",
+"Peneliti bekerja di laboratorium": "Researcher working in a laboratory",
+"Madu dan sarang lebah alami": "Natural honey and honeycomb",
+"Importasi dan distribusi terintegrasi dalam jaringan HDI Group untuk menjangkau lebih banyak orang.": "Integrated importation and distribution within the HDI Group network to reach more people.",
+"Manfaat yang luas.": "Far-reaching benefits.",
+"Satu ekosistem.": "One ecosystem.",
+"Pengembangan produk dan riset ilmiah yang berpijak pada standar mutu serta kepatuhan regulasi.": "Product development and scientific research grounded in quality standards and regulatory compliance.",
+"Kepercayaan yang tumbuh.": "Trust that grows.",
+"Mutu yang dijaga.": "Quality we protect.",
+"Riset yang teliti.": "Thorough research.",
 "01 / Identitas": "01 / Identity",
 "Terdaftar": "Registered",
 "Lihat sejarah kami": "See our history",

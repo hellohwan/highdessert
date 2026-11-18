@@ -2510,3 +2510,74 @@ body:has(.editorial-hero) .site-header.is-scrolled {
 .subnav { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(255, 255, 255, .98); }
 .map-label, .pill-dark, .team-badge { backdrop-filter: none; -webkit-backdrop-filter: none; }
 .pill-dark { background: rgba(20, 20, 20, .9); }
+
+/* =========================================================
+   HERO SLIDER (Beranda) — 3 gambar dengan judul berganti
+   ========================================================= */
+.hero-slider .hero-slide-bg {
+  opacity: 0; transform: scale(1.12);
+  animation: none;
+  transition: opacity 1.2s var(--ease), transform 7s linear;
+}
+.hero-slider .hero-slide-bg.is-active { opacity: 1; transform: scale(1); }
+
+/* judul & lead bertumpuk; hanya yang aktif terlihat */
+.hero-slide-titles, .hero-slide-leads { display: grid; }
+.hero-slide-title, .hero-slide-lead { grid-area: 1 / 1; }
+.hero-slide-title .line > span {
+  transform: translateY(105%);
+  transition: transform .9s var(--ease-out);
+  transition-delay: calc(var(--li, 0) * .1s);
+}
+.hero-slide-title.is-active .line > span { transform: none; transition-delay: calc(.35s + var(--li, 0) * .12s); }
+.hero-slide-title.is-leaving .line > span { transform: translateY(-105%); transition-duration: .6s; }
+.hero-slide-lead {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+  pointer-events: none;
+}
+.hero-slide-lead.is-active { opacity: 1; transform: none; transition-delay: .7s; transition-duration: .8s; pointer-events: auto; }
+/* sebelum slider siap (menunggu tirai), semua judul tersembunyi */
+.hero-slider:not(.is-ready) .hero-slide-title .line > span { transform: translateY(105%); }
+.hero-slider:not(.is-ready) .hero-slide-lead { opacity: 0; }
+
+/* penghitung & titik */
+.hero-slider-ui {
+  position: absolute; z-index: 2; left: 0; right: 0; bottom: 24px;
+  width: min(var(--container), 100%); margin: 0 auto; padding: 0 32px;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.hero-counter {
+  position: absolute; left: 32px;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border: 1px solid rgba(255, 255, 255, .4); border-radius: 6px;
+  font-size: .82rem; color: rgba(255, 255, 255, .7); font-variant-numeric: tabular-nums;
+}
+.hero-counter strong { color: #fff; font-weight: 500; font-size: 1rem; }
+.hero-counter-dot { width: 5px; height: 5px; border-radius: 50%; background: #fff; margin-right: 4px; }
+.hero-dots { display: flex; gap: 8px; pointer-events: auto; }
+.hero-dot {
+  position: relative; width: 10px; height: 10px; padding: 0; border: 0; border-radius: 999px;
+  background: rgba(255, 255, 255, .45); cursor: pointer; overflow: hidden;
+  transition: width .5s var(--ease), background-color .3s var(--ease);
+}
+.hero-dot:hover { background: rgba(255, 255, 255, .75); }
+.hero-dot.is-active { width: 36px; background: rgba(255, 255, 255, .35); }
+.hero-dot span { position: absolute; inset: 0; background: #fff; transform: scaleX(0); transform-origin: left; }
+.hero-dot.is-active span { animation: heroDot var(--hero-interval, 6s) linear forwards; }
+.hero-slider.is-paused .hero-dot.is-active span { animation-play-state: paused; }
+@keyframes heroDot { to { transform: scaleX(1); } }
+.hero-dot:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+@media (max-width: 760px) {
+  .hero-slider-ui { padding: 0 22px; justify-content: flex-start; bottom: 28px; }
+  .hero-counter { position: static; margin-right: 14px; }
+  .hero-slider .hero-scroll-label { display: none; }
+  .hero-slider .hero-content { padding-bottom: 96px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-slider .hero-slide-bg { transition: opacity .3s linear; transform: none !important; }
+  .hero-slide-title .line > span { transition: none !important; }
+  .hero-dot.is-active span { animation: none; transform: scaleX(1); }
+}
