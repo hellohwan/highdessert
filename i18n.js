@@ -1,5 +1,13 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Kenali kami lebih jauh": "Get to know us",
+"Distribusi": "Reach",
+"Jangkauan": "Distribution",
+"Sains": "Science",
+"Berakar pada": "Rooted in",
+"berkomitmen pada kualitas & kepatuhan.": "committed to quality & compliance.",
+"Terhubung dalam jaringan HDI Group,": "Connected within the HDI Group network,",
+"Bertumbuh dengan tujuan. Bergerak dengan integritas.": "Growing with purpose. Moving with integrity.",
 "Terhubung dalam jaringan HDI Group. Berkomitmen pada kualitas & kepatuhan.": "Connected within the HDI Group network. Committed to quality & compliance.",
 "Kemitraan dalam jaringan HDI Group": "Partnership within the HDI Group network",
 "Satu grup. Peran yang saling melengkapi.": "One group. Complementary roles.",

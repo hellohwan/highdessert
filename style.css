@@ -3264,3 +3264,42 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
 .abx-card { min-height: 0; height: 100%; }
 .abx-journey-img { width: auto; height: 62%; max-width: none; right: -6%; }
 @media (max-width: 1080px) { .abx-grid { height: auto; } .abx-card { height: auto; min-height: 400px; } }
+
+/* =========================================================
+   ABOUT (Beranda) — 3 kartu rapi: tag & avatar, foto + angka, hijau + angka
+   ========================================================= */
+.aby-head { display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px; align-items: center; margin-bottom: 48px; }
+.aby-intro { max-width: 380px; font-size: .98rem; line-height: 1.6; color: var(--muted); }
+.aby-heading { font-size: clamp(2.2rem, 4.4vw, 4rem); font-weight: 400; line-height: 1.08; letter-spacing: -.035em; color: var(--ink); }
+.aby-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.aby-card { position: relative; overflow: hidden; isolation: isolate; display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 460px; padding: 30px; border-radius: 26px; color: inherit; text-decoration: none; transition: transform .45s var(--ease), box-shadow .45s var(--ease); }
+.aby-card:hover { transform: translateY(-4px); box-shadow: 0 28px 50px -34px rgba(0,0,0,.4); }
+.aby-card:focus-visible { outline: 3px solid var(--green); outline-offset: 4px; }
+.aby-light { background: #efefef; }
+.aby-tags { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; max-width: 340px; margin-left: auto; }
+.aby-tags span { padding: 9px 16px; border-radius: 999px; background: #dfecc7; font-size: .86rem; font-weight: 500; color: var(--ink); }
+.aby-avatars { display: flex; margin-bottom: 22px; }
+.aby-avatars img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; object-position: 50% 15%; border: 3px solid #efefef; background: #dfe3e0; margin-left: -12px; }
+.aby-avatars img:first-child { margin-left: 0; }
+.aby-quote { font-size: clamp(1.25rem, 1.8vw, 1.55rem); line-height: 1.35; color: var(--ink); }
+.aby-quote span { color: #8d939a; }
+.aby-photo { color: #fff; }
+.aby-bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.aby-photo::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.05) 45%, rgba(0,0,0,.45)); }
+.aby-card:hover .aby-bg { transform: scale(1.05); }
+.aby-green { background: var(--green-dark); color: #fff; }
+.aby-green::before { content: ""; position: absolute; z-index: -1; right: -25%; top: -15%; width: 90%; height: 130%; border: 70px solid rgba(255,255,255,.06); border-radius: 50%; transform: rotate(-25deg); }
+.aby-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.aby-title { font-size: clamp(1.7rem, 2.4vw, 2.2rem); font-weight: 400; line-height: 1.12; letter-spacing: -.02em; }
+.aby-arrow { flex: 0 0 auto; display: grid; place-items: center; width: 60px; height: 60px; border-radius: 50%; background: rgba(255,255,255,.18); font-size: 1.3rem; transition: transform .4s var(--ease), background-color .4s var(--ease); }
+.aby-card:hover .aby-arrow { transform: rotate(45deg); background: rgba(255,255,255,.3); }
+.aby-label { font-size: .95rem; margin-bottom: 6px; color: rgba(255,255,255,.9); }
+.aby-num { font-size: clamp(4rem, 7vw, 6.4rem); font-weight: 400; line-height: .95; letter-spacing: -.04em; }
+.aby-num span { color: rgba(255,255,255,.5); }
+.aby-foot { font-size: 1.05rem; color: rgba(255,255,255,.92); }
+.aby-green > div:nth-child(2) { margin-top: auto; margin-bottom: 26px; }
+@media (max-width: 960px) {
+  .aby-head { grid-template-columns: 1fr; gap: 16px; } .aby-head .aby-heading { order: -1; }
+  .aby-grid { grid-template-columns: 1fr; } .aby-card { min-height: 380px; }
+}
