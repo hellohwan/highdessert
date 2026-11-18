@@ -2670,3 +2670,50 @@ body:has(.editorial-hero) .site-header.is-scrolled {
   .fd-about { padding: 30px 24px; }
   .fd-card-copy { padding: 26px; }
 }
+
+/* =========================================================
+   HEADER KACA (gaya rh.design) — terang, buram kuat, tepi bawah lembut
+   ========================================================= */
+html body .site-header.is-scrolled {
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+  border-bottom-color: transparent !important;
+}
+/* halaman dengan subnav menempel: kaca tidak dipudarkan melewati subnav */
+body:has(.subnav) .site-header::before { inset: 0; -webkit-mask-image: none; mask-image: none; background: rgba(255, 255, 255, .72); }
+/* lapisan kaca dibuat di ::before supaya tepi bawahnya bisa dipudarkan */
+.site-header::before {
+  content: ""; position: absolute; inset: 0 0 -18px 0; z-index: -1;
+  background: rgba(255, 255, 255, .5);
+  -webkit-backdrop-filter: blur(22px) saturate(170%);
+  backdrop-filter: blur(22px) saturate(170%);
+  -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
+  opacity: 0; transition: opacity .45s var(--ease);
+  pointer-events: none;
+}
+.site-header.is-scrolled::before { opacity: 1; }
+.site-header { isolation: isolate; }
+
+/* warna isi header saat di atas kaca terang */
+.site-header.is-scrolled .main-nav a { color: rgba(29, 36, 51, .78); }
+.site-header.is-scrolled .main-nav a:hover { color: var(--ink); background: rgba(29, 36, 51, .06); }
+.site-header.is-scrolled .main-nav a.is-active { background: var(--ink); color: #fff; }
+.site-header.is-scrolled .lang-switch { background: rgba(29, 36, 51, .06); border-color: rgba(29, 36, 51, .1); }
+.site-header.is-scrolled .lang-switch button { color: rgba(29, 36, 51, .6); }
+.site-header.is-scrolled .lang-switch button:hover { color: var(--ink); }
+.site-header.is-scrolled .lang-switch button[aria-pressed="true"] { color: #fff; }
+.site-header.is-scrolled .lang-pill { background: var(--ink); }
+.site-header.is-scrolled .header-cta { background: var(--ink); color: #fff; }
+.site-header.is-scrolled .header-cta.is-current { background: var(--green); }
+.site-header.is-scrolled .nav-toggle { border-color: rgba(29, 36, 51, .2); }
+.site-header.is-scrolled .nav-toggle span { background: var(--ink); }
+/* menu HP terbuka tetap gelap supaya kontras dengan panel menunya */
+body.nav-open .site-header.is-scrolled::before { background: rgba(25, 29, 31, .9); }
+body.nav-open .site-header.is-scrolled .nav-toggle span { background: #fff; }
+body.nav-open .site-header.is-scrolled .main-nav a { color: rgba(255, 255, 255, .85); }
+body.nav-open .site-header.is-scrolled .lang-switch button { color: rgba(255, 255, 255, .75); }
+body.nav-open .site-header.is-scrolled .lang-switch button[aria-pressed="true"] { color: var(--ink); }
+body.nav-open .site-header.is-scrolled .lang-pill { background: #fff; }
+.brand-logo { transition: opacity .3s var(--ease); }
