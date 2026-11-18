@@ -3589,3 +3589,12 @@ main .hero h2, main .page-hero h2 { font-size: revert-layer; }
 @media (max-width: 960px) { #manajemen { position: relative; } #kantor { padding: 56px 0; } }
 
 #kantor { background: #fff; }
+/* Manajemen: setinggi layar, isi di tengah, supaya utuh terlihat sebelum ditutup */
+#manajemen { min-height: 100vh; min-height: 100svh; display: flex; align-items: center; padding: 96px 0 60px; }
+#manajemen > .container { width: 100%; }
+#manajemen .mgz-head { margin-bottom: 32px; }
+#manajemen .mgz-photo { aspect-ratio: 1 / .82; }
+@media (max-width: 960px) { #manajemen { min-height: 0; display: block; padding: 80px 0; } #manajemen .mgz-photo { aspect-ratio: 1 / 1; } }
+#manajemen { padding: 150px 0 48px; }
+#manajemen .mgz-photo { aspect-ratio: 1 / .72; }
+#manajemen .mgz-head { margin-bottom: 28px; }
