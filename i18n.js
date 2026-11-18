@@ -1,5 +1,6 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Terhubung dalam jaringan HDI Group. Berkomitmen pada kualitas & kepatuhan.": "Connected within the HDI Group network. Committed to quality & compliance.",
 "Kemitraan dalam jaringan HDI Group": "Partnership within the HDI Group network",
 "Satu grup. Peran yang saling melengkapi.": "One group. Complementary roles.",
 "— 01 / Peta Ekosistem": "— 01 / Ecosystem Map",
