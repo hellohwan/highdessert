@@ -3112,7 +3112,7 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
 .mgx-heading { font-size: clamp(1.9rem, 3.4vw, 2.9rem); font-weight: 400; line-height: 1.12; letter-spacing: -.025em; color: var(--ink); }
 .mgx-intro { padding-top: 52px; font-size: .98rem; line-height: 1.6; color: var(--ink-soft); }
 .mgx-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-.mgx-panel { position: relative; display: grid; border-radius: var(--radius-lg); background: #d9e3f2; min-height: 400px; }
+.mgx-panel { position: relative; display: grid; border-radius: var(--radius-lg); background: #e9eaec; min-height: 400px; }
 .mgx-info { grid-area: 1 / 1; display: flex; flex-direction: column; justify-content: space-between; padding: 24px;
   opacity: 0; transform: translateY(8px); transition: opacity .45s var(--ease), transform .45s var(--ease); pointer-events: none; }
 .mgx-info.is-active { opacity: 1; transform: none; pointer-events: auto; transition-delay: .1s; }
@@ -3136,3 +3136,10 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
 @media (max-width: 1080px) { .mgx-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 960px) { .mgx-head { grid-template-columns: 1fr; gap: 12px; } .mgx-intro { padding-top: 0; } }
 @media (max-width: 560px) { .mgx-grid { grid-template-columns: 1fr; } .mgx-panel { min-height: 260px; order: 1; } .mgx-card { min-height: 380px; } }
+/* Manajemen: 3 kartu foto dengan kotak kaca (sama seperti kartu Divisi) */
+.mgy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.mgy-card { flex: none; aspect-ratio: 3 / 3.6; background: #dfe2e0; }
+.mgy-card .dvx-img { object-position: 50% 12%; }
+.mgy-role { margin-top: 2px; font-size: .8rem; color: rgba(255,255,255,.85); }
+@media (max-width: 960px) { .mgy-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) { .mgy-grid { grid-template-columns: 1fr; } }
