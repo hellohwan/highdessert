@@ -1,5 +1,13 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Pipet dan tabung reaksi laboratorium": "Laboratory pipette and test tubes",
+"Daun teh segar dengan embun": "Fresh tea leaves with dew",
+"Keluarga bahagia di taman": "Happy family in a park",
+"Divisi": "Divisions",
+"Provinsi": "Provinces",
+"Jangkauan distribusi": "Distribution reach",
+"Bertumpu pada keahlian, riset ilmiah, dan komitmen jangka panjang dalam menghadirkan solusi kesehatan dan wellness yang tepercaya.": "Built on expertise, scientific research, and a long-term commitment to delivering trusted health and wellness solutions.",
+"Pengalaman, Riset, dan Inovasi untuk Kualitas Hidup yang Lebih Baik.": "Experience, Research, and Innovation for a Better Quality of Life.",
 "Pilih slide": "Choose slide",
 "Tim HDI Group": "HDI Group team",
 "Peneliti bekerja di laboratorium": "Researcher working in a laboratory",

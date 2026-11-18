@@ -134,7 +134,7 @@
   // ---------- 5. Animasi terikat scroll (gaya Poch) ----------
   // Nilainya dihitung dari posisi scroll setiap frame, jadi otomatis maju saat
   // scroll turun dan mundur saat scroll naik.
-  const DRIFT_SEL = '.foundation-cards, .biz-grid, .legacy-panel, .hq-grid, .std-grid, .reg-grid, .entity-grid, .team-grid, .audit-grid, .import-grid';
+  const DRIFT_SEL = '.fd-cards, .fd-stats, .foundation-cards, .biz-grid, .legacy-panel, .hq-grid, .std-grid, .reg-grid, .entity-grid, .team-grid, .audit-grid, .import-grid';
   const drifts = [...document.querySelectorAll(DRIFT_SEL)].filter((el) => !el.closest('.page-hero, .hero'));
   drifts.forEach((el, i) => { el.dataset.driftDir = i % 2 ? '1' : '-1'; el.classList.add('scrub-drift'); });
   imgs.forEach((el) => el.classList.add('scrub-grow'));
