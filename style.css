@@ -2841,7 +2841,7 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
 .vmx-sub { font-size: 1.02rem; line-height: 1.45; color: rgba(255, 255, 255, .85); max-width: 360px; }
 .vmx-btn {
   margin-top: 30px; display: inline-flex; align-items: baseline; gap: 10px;
-  padding: 12px 26px; border-radius: 999px; background: #fff; color: var(--ink); font-size: .85rem;
+  padding: 15px 30px; border-radius: 999px; background: #fff; color: var(--ink); font-size: .92rem; font-weight: 500;
   transition: transform .35s var(--ease);
 }
 .vmx-btn strong { font-size: 1.5rem; font-weight: 400; letter-spacing: -.02em; }
