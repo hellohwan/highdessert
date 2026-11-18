@@ -1,5 +1,6 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Pintu masuk HDI Hive Menteng, kantor pusat PT High-Desert Indonesia": "Entrance of HDI Hive Menteng, head office of PT High-Desert Indonesia",
 "NPWP Perseroan": "Company Tax ID (NPWP)",
 "Opini Audit WTP": "Unqualified (WTP) Audit Opinion",
 "Perintis Bio-Apiterapi sejak": "Pioneering Bio-Apitherapy since",

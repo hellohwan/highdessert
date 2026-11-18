@@ -2799,3 +2799,6 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
   .idn-features li { border-left: 0; padding: 0 0 28px; border-bottom: 1px solid var(--line); }
   .idn-features li:last-child { border-bottom: 0; padding-bottom: 0; }
 }
+/* foto pintu masuk HDI Hive: fokus ke papan nama di kanan */
+.idn-photo-main img { object-position: 87% 50%; }
+@media (max-width: 640px) { .idn-photo .pill-dark { font-size: .54rem; letter-spacing: .04em; padding: 5px 10px; } }
