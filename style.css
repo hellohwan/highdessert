@@ -3161,3 +3161,15 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
 .mgz-link:hover { color: var(--ink); }
 @media (max-width: 960px) { .mgz-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .mgz-grid { grid-template-columns: 1fr; } }
+/* kartu "Importasi" pindah ke kolom kanan, tidak menutupi video */
+.bsx-copy .bsx-float { position: relative; left: auto; bottom: auto; align-self: flex-start; margin-top: 30px; background: rgba(255,255,255,.12); box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; padding: 8px; }
+.bsx-copy .bsx-float-inner { padding: 14px 60px 14px 18px; }
+.bsx-copy .bsx-float-label { font-size: .85rem; margin-bottom: 4px; }
+.bsx-copy .bsx-float-value { font-size: clamp(1.6rem, 2.4vw, 2.1rem); }
+.bsx-copy .bsx-btn { margin-top: 24px; }
+/* tanpa kartu putih: info Importasi sebagai teks polos di atas latar gelap */
+.bsx-copy .bsx-float { background: none; padding: 18px 0 0; border-radius: 0; border-top: 1px solid rgba(255,255,255,.16); display: flex; align-items: center; gap: 16px; }
+.bsx-copy .bsx-float-inner { background: none; color: #fff; padding: 0; border-radius: 0; }
+.bsx-copy .bsx-float-label { color: rgba(255,255,255,.6); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+.bsx-copy .bsx-float-note { color: rgba(255,255,255,.6); }
+.bsx-copy .bsx-float-icon { position: static; order: -1; border: 0; width: 44px; height: 44px; flex: 0 0 auto; }
