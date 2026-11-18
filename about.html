@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="page-about">
+  <div class="page-transition" aria-hidden="true"><img src="assets/logo-white.svg" alt="" width="150" height="45" /></div>
 
   <!-- ============ HEADER ============ -->
   <header class="site-header">
@@ -101,7 +102,7 @@
 
         <div class="hq-grid">
           <figure class="hq-photo hq-photo-main reveal reveal-left">
-            <img src="assets/hdi-hive.jpg" alt="Gedung HDI Hive Menteng, kantor pusat PT High-Desert Indonesia" loading="lazy" />
+            <img class="parallax" data-parallax="50" src="assets/hdi-hive.jpg" alt="Gedung HDI Hive Menteng, kantor pusat PT High-Desert Indonesia" loading="lazy" />
             <figcaption class="pill-dark">Kantor Pusat • HDI Hive Menteng</figcaption>
           </figure>
 
@@ -407,5 +408,7 @@
 
   <script src="i18n.js" defer></script>
   <script src="script.js" defer></script>
+  <script src="assets/vendor/lenis.min.js" defer></script>
+  <script src="motion.js" defer></script>
 </body>
 </html>

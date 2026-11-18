@@ -2434,3 +2434,64 @@ body:has(.editorial-hero) .subnav { top: 64px; }
   width: 100%; height: 130%; margin: 0;
   object-fit: cover; display: block;
 }
+
+/* =========================================================
+   MOTION — smooth scroll, judul per kata, gambar reveal, transisi halaman
+   ========================================================= */
+/* Lenis */
+html.has-lenis { scroll-behavior: auto; }
+html.lenis, html.lenis body { height: auto; }
+.lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+.lenis [data-lenis-prevent] { overscroll-behavior: contain; }
+
+/* Judul muncul per kata */
+.is-split .split-w {
+  display: inline-block; overflow: hidden; vertical-align: top;
+  padding-bottom: .12em; margin-bottom: -.12em;
+}
+.is-split .split-w > span {
+  display: inline-block; transform: translateY(110%);
+  transition: transform 1s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 45ms);
+}
+.is-split.is-split-in .split-w > span { transform: none; }
+
+/* Gambar reveal (terbuka dari bawah) + zoom halus */
+.img-reveal { clip-path: inset(100% 0 0 0); transition: clip-path 1.3s cubic-bezier(.77, 0, .18, 1); }
+.img-reveal.is-revealed { clip-path: inset(0 0 0 0); }
+.img-reveal > :not(figcaption):not(.pill-dark) { scale: 1.18; transition: scale 1.9s var(--ease-out); }
+.img-reveal.is-revealed > :not(figcaption):not(.pill-dark) { scale: 1; }
+
+/* Parallax tambahan untuk foto Kantor Pusat */
+.hq-photo-main img.parallax { height: 116%; margin-top: -8%; }
+
+/* Transisi antar halaman */
+.page-transition {
+  position: fixed; inset: 0; z-index: 3000;
+  display: grid; place-items: center;
+  background: var(--navy);
+  transform: translateY(0);
+  transition: transform .9s cubic-bezier(.76, 0, .24, 1);
+  animation: ptFailsafe 0s 4s forwards; /* tanpa JS: tirai hilang sendiri */
+}
+.page-transition.pt-js { animation: none; }
+.page-transition img { width: 150px; height: auto; opacity: 1; transition: opacity .4s var(--ease), transform .9s cubic-bezier(.76, 0, .24, 1); }
+.page-transition.pt-out { transform: translateY(-100%); }
+.page-transition.pt-out img { opacity: 0; transform: translateY(40px); }
+.page-transition.pt-done { visibility: hidden; }
+.page-transition.pt-leave { transform: translateY(100%); transition: none; visibility: visible; }
+.page-transition.pt-leave img { opacity: 0; transform: none; transition: none; }
+.page-transition.pt-leave.pt-in { transform: translateY(0); transition: transform .8s cubic-bezier(.76, 0, .24, 1); }
+.page-transition.pt-leave.pt-in img { opacity: 1; transition: opacity .4s .35s var(--ease); }
+@keyframes ptFailsafe { to { visibility: hidden; } }
+
+/* Animasi hero & reveal menunggu tirai terbuka */
+body:has(> .page-transition:not(.pt-out)) .hero-anim,
+body:has(> .page-transition:not(.pt-out)) .page-hero-bg { animation-play-state: paused; }
+body:has(> .page-transition:not(.pt-done)) .reveal { transition-delay: calc(var(--d, 0s) + .5s); }
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition { display: none; }
+  .img-reveal { clip-path: none !important; }
+  .img-reveal > * { scale: 1 !important; }
+}
