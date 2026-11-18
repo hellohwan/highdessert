@@ -2802,3 +2802,85 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
 /* foto pintu masuk HDI Hive: fokus ke papan nama di kanan */
 .idn-photo-main img { object-position: 87% 50%; }
 @media (max-width: 640px) { .idn-photo .pill-dark { font-size: .54rem; letter-spacing: .04em; padding: 5px 10px; } }
+
+/* =========================================================
+   VISI & MISI — kartu gaya "pass" + popup sederhana
+   ========================================================= */
+.vmx-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.vmx-card {
+  position: relative; overflow: hidden; isolation: isolate; cursor: pointer;
+  min-height: 500px; border-radius: 22px; padding: 26px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; text-align: center;
+  transition: transform .5s var(--ease);
+}
+.vmx-card:hover { transform: translateY(-4px); }
+.vmx-card:focus-visible { outline: 3px solid var(--green); outline-offset: 4px; }
+.vmx-dark { background: #0d0d0d; }
+/* sapuan lengkung samar seperti contoh */
+.vmx-dark::before {
+  content: ""; position: absolute; z-index: -1; left: -10%; top: 8%; width: 70%; height: 110%;
+  border: 64px solid rgba(255, 255, 255, .07); border-radius: 46% 54% 40% 60%;
+  transform: rotate(-24deg);
+}
+.vmx-bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.vmx-photo::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(10, 14, 12, .35), rgba(10, 14, 12, .62)); }
+.vmx-card:hover .vmx-bg { transform: scale(1.05); }
+.vmx-tag {
+  position: absolute; top: 22px; left: 22px;
+  padding: 10px 24px; border-radius: 999px; background: #fff; color: var(--ink);
+  font-size: .82rem; font-weight: 500;
+}
+.vmx-center { max-width: 440px; display: flex; flex-direction: column; align-items: center; }
+.vmx-pill {
+  padding: 6px 16px; border-radius: 999px; font-size: .78rem;
+  background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .16);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.vmx-title { margin: 18px 0 14px; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 400; line-height: 1.12; letter-spacing: -.02em; }
+.vmx-sub { font-size: 1.02rem; line-height: 1.45; color: rgba(255, 255, 255, .85); max-width: 360px; }
+.vmx-btn {
+  margin-top: 30px; display: inline-flex; align-items: baseline; gap: 10px;
+  padding: 12px 26px; border-radius: 999px; background: #fff; color: var(--ink); font-size: .85rem;
+  transition: transform .35s var(--ease);
+}
+.vmx-btn strong { font-size: 1.5rem; font-weight: 400; letter-spacing: -.02em; }
+.vmx-card:hover .vmx-btn { transform: scale(1.04); }
+.vmx-arrow {
+  position: absolute; right: 22px; bottom: 22px;
+  display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%;
+  background: #fff; color: var(--ink); font-size: 1.2rem;
+  transition: transform .4s var(--ease);
+}
+.vmx-card:hover .vmx-arrow { transform: rotate(45deg); }
+
+/* Popup */
+.hd-modal {
+  width: min(560px, calc(100% - 32px)); max-height: calc(100vh - 64px);
+  padding: 40px 40px 36px; border: 0; border-radius: 22px;
+  background: #fff; color: var(--ink); box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .45);
+  opacity: 0; transform: translateY(16px) scale(.98);
+  transition: opacity .3s var(--ease), transform .35s var(--ease), overlay .3s allow-discrete, display .3s allow-discrete;
+}
+.hd-modal[open] { opacity: 1; transform: none; }
+@starting-style { .hd-modal[open] { opacity: 0; transform: translateY(16px) scale(.98); } }
+.hd-modal::backdrop { background: rgba(12, 16, 20, .55); backdrop-filter: blur(4px); }
+.hd-modal-close {
+  position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid var(--line); background: #fff; cursor: pointer; font-size: 1.4rem; line-height: 1; color: var(--ink);
+}
+.hd-modal-close:hover { background: var(--bg-tint); }
+.hd-modal .eyebrow { margin-bottom: 10px; }
+.hd-modal-title { font-size: clamp(1.4rem, 2.4vw, 1.8rem); font-weight: 500; line-height: 1.2; letter-spacing: -.015em; margin-bottom: 16px; padding-right: 30px; }
+.hd-modal-text { color: var(--ink-soft); line-height: 1.7; }
+.hd-modal-list { display: grid; gap: 18px; margin: 6px 0 0; padding: 0; list-style: none; }
+.hd-modal-list li { display: flex; gap: 16px; }
+.hd-modal-list span { flex: 0 0 24px; font-size: .8rem; font-weight: 600; color: var(--green); padding-top: 3px; }
+.hd-modal-list strong { display: block; font-weight: 600; margin-bottom: 4px; }
+.hd-modal-list p { font-size: .9rem; line-height: 1.6; color: var(--ink-soft); }
+
+@media (max-width: 860px) {
+  .vmx-grid { grid-template-columns: 1fr; }
+  .vmx-card { min-height: 440px; padding: 80px 22px 90px; }
+  .hd-modal { padding: 34px 24px 28px; }
+}

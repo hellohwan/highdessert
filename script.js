@@ -792,4 +792,19 @@
       new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) show(idx); else schedule(); }, { threshold: 0.35 }).observe(panel);
     } else { visible = true; show(0); }
   });
+
+  // ---------- Popup sederhana (kartu Visi & Misi) ----------
+  document.querySelectorAll('[data-modal-open]').forEach((card) => {
+    const dlg = document.getElementById(card.dataset.modalOpen);
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    const open = () => { dlg.showModal(); if (window.hdLenis) window.hdLenis.stop(); };
+    card.addEventListener('click', open);
+    card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+  });
+  document.querySelectorAll('dialog.hd-modal').forEach((dlg) => {
+    dlg.querySelectorAll('[data-modal-close]').forEach((b) => b.addEventListener('click', () => dlg.close()));
+    // klik di luar kotak popup → tutup
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', () => { if (window.hdLenis) window.hdLenis.start(); });
+  });
 })();

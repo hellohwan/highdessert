@@ -1,5 +1,15 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Tutup": "Close",
+"Tiga komitmen utama": "Three core commitments",
+"Lihat misi": "View missions",
+"Tiga komitmen yang menopang setiap lini sediaan perseroan.": "Three commitments behind every product line.",
+"Regulasi, Riset & Distribusi yang Terjaga": "Regulation, Research & Reliable Distribution",
+"3 Misi": "3 Missions",
+"Baca selengkapnya": "Read more",
+"Visi": "Vision",
+"Mutu tertinggi, keaslian ilmiah, dan pasokan yang berkelanjutan.": "Highest quality, scientific authenticity, and sustainable supply.",
+"Holding Bio-Apiterapi & Importasi Farmasi Terpercaya": "A Trusted Bio-Apitherapy & Pharmaceutical Import Holding",
 "Pintu masuk HDI Hive Menteng, kantor pusat PT High-Desert Indonesia": "Entrance of HDI Hive Menteng, head office of PT High-Desert Indonesia",
 "NPWP Perseroan": "Company Tax ID (NPWP)",
 "Opini Audit WTP": "Unqualified (WTP) Audit Opinion",
