@@ -1,5 +1,9 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"01 / Identitas": "01 / Identity",
+"Terdaftar": "Registered",
+"Lihat sejarah kami": "See our history",
+"Berakar pada Sains, Tumbuh dengan Integritas": "Rooted in Science, Grown with Integrity",
 ". Mengusung formulasi": ". Featuring the",
 "01 / Identitas & Kelahiran Entitas": "01 / Identity & Establishment",
 "01 / Komitmen Kualitas": "01 / Quality Commitment",

@@ -167,6 +167,15 @@
     counters.forEach((el) => { el.textContent = el.dataset.from || 0; cIO.observe(el); });
   }
 
+  // ---------- Video latar: putar hanya saat terlihat ----------
+  document.querySelectorAll('video[autoplay]').forEach((v) => {
+    if (reduceMotion) { v.removeAttribute('autoplay'); v.pause(); return; }
+    if (!('IntersectionObserver' in window)) return;
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { const p = v.play(); if (p) p.catch(() => {}); } else { v.pause(); }
+    }, { threshold: 0.15 }).observe(v);
+  });
+
   // ---------- Parallax halus pada gambar ----------
   const parallaxEls = document.querySelectorAll('.parallax');
   if (parallaxEls.length && !reduceMotion) {
@@ -177,7 +186,8 @@
         const r = el.parentElement.getBoundingClientRect();
         if (r.bottom < 0 || r.top > vh) return;
         const progress = (r.top + r.height / 2 - vh / 2) / vh; // -1 .. 1
-        el.style.transform = 'translate3d(0,' + (progress * -40).toFixed(1) + 'px,0)';
+        const amt = +(el.dataset.parallax || 40);
+        el.style.transform = 'translate3d(0,' + (progress * -amt).toFixed(1) + 'px,0)';
       });
       pTick = false;
     }
