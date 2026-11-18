@@ -3453,3 +3453,6 @@ main h2:not(.sr-only),
 main .page-hero ~ * h2:not(.sr-only) { font-size: clamp(2rem, 3.8vw, 3.3rem) !important; }
 /* heading hero tetap memakai ukuran hero */
 main .hero h2, main .page-hero h2 { font-size: revert-layer; }
+/* Entitas: section 80vh, kartu lebih besar */
+#entitas .enx-panel { min-height: 80vh; min-height: 80svh; padding-top: 80px; padding-bottom: 110px; }
+#entitas .enx-card { flex-basis: clamp(280px, 24vw, 360px); }
