@@ -1,5 +1,8 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"NPWP Perseroan": "Company Tax ID (NPWP)",
+"Opini Audit WTP": "Unqualified (WTP) Audit Opinion",
+"Perintis Bio-Apiterapi sejak": "Pioneering Bio-Apitherapy since",
 "Penandatanganan dokumen tata kelola perusahaan": "Signing corporate governance documents",
 "Good Corporate Governance (GCG)": "Good Corporate Governance (GCG)",
 "Pipet dan tabung reaksi laboratorium": "Laboratory pipette and test tubes",

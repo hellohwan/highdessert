@@ -96,7 +96,7 @@
 
   // ---------- 3. Gambar reveal + zoom halus ----------
   const IMG_SEL = [
-    '.hq-photo', '.intro-photo', '.rd-img-wrap', '.import-img-wrap', '.bskin-img-wrap',
+    '.hq-photo', '.idn-photo', '.intro-photo', '.rd-img-wrap', '.import-img-wrap', '.bskin-img-wrap',
     '.gcg-img-wrap', '.gv-photo', '.quality-img', '.q-pillar-img', '.research-img', '.div-img-wrap',
     '.std-card-media', '.home-contact-image', '.map-card', '.leader-photo', '.team-photo',
   ].join(',');
@@ -134,7 +134,7 @@
   // ---------- 5. Animasi terikat scroll (gaya Poch) ----------
   // Nilainya dihitung dari posisi scroll setiap frame, jadi otomatis maju saat
   // scroll turun dan mundur saat scroll naik.
-  const DRIFT_SEL = '.fd-cards, .fd-stats, .foundation-cards, .biz-grid, .legacy-panel, .hq-grid, .std-grid, .reg-grid, .entity-grid, .team-grid, .audit-grid, .import-grid';
+  const DRIFT_SEL = '.fd-cards, .fd-stats, .foundation-cards, .biz-grid, .legacy-panel, .hq-grid, .idn-photos, .std-grid, .reg-grid, .entity-grid, .team-grid, .audit-grid, .import-grid';
   const drifts = [...document.querySelectorAll(DRIFT_SEL)].filter((el) => !el.closest('.page-hero, .hero'));
   drifts.forEach((el, i) => { el.dataset.driftDir = i % 2 ? '1' : '-1'; el.classList.add('scrub-drift'); });
   imgs.forEach((el) => el.classList.add('scrub-grow'));

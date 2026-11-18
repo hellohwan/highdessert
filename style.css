@@ -2762,3 +2762,40 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
   .gv-panel { grid-template-columns: 1fr; gap: 40px; }
   .gv-photo { aspect-ratio: 4 / 3; order: -1; }
 }
+
+/* =========================================================
+   IDENTITAS (Tentang Kami) — dua foto bertingkat + 3 poin legalitas
+   ========================================================= */
+.idn-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 80px; }
+.idn-title { max-width: 16ch; margin-bottom: 0; }
+.idn-photos { display: grid; grid-template-columns: 1.6fr 1fr; gap: 16px; align-items: end; margin-top: 46px; }
+.idn-photo { position: relative; margin: 0; border-radius: var(--radius); overflow: hidden; background: #dfe3e8; }
+.idn-photo img { width: 100%; height: 100%; object-fit: cover; }
+.idn-photo-main { aspect-ratio: 1 / 1.1; }
+.idn-photo-main img { height: 116%; margin-top: -8%; }
+.idn-photo-side { aspect-ratio: 1 / 1.1; }
+.idn-right { display: flex; flex-direction: column; justify-content: space-between; gap: 32px; padding-top: 8px; }
+.idn-sub { font-size: clamp(1.5rem, 2.4vw, 2.1rem); font-weight: 400; line-height: 1.15; letter-spacing: -.02em; color: #4a4f57; margin-bottom: 18px; }
+.idn-text { font-size: .98rem; line-height: 1.65; max-width: 520px; }
+.idn-right .btn { align-self: flex-start; }
+
+.idn-features {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  margin: 96px auto 0; max-width: 1000px;
+}
+.idn-features li { padding: 6px 34px; text-align: center; border-left: 1px solid var(--line); }
+.idn-features li:first-child { border-left: 0; }
+.idn-icon {
+  display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
+  background: #2b3b37; color: #fff; margin-bottom: 18px;
+}
+.idn-icon svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.idn-features h3 { font-size: 1.2rem; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+.idn-features p { font-size: .88rem; line-height: 1.55; color: var(--muted); max-width: 260px; margin: 0 auto; }
+
+@media (max-width: 960px) {
+  .idn-grid { grid-template-columns: 1fr; gap: 36px; }
+  .idn-features { grid-template-columns: 1fr; margin-top: 56px; gap: 28px; }
+  .idn-features li { border-left: 0; padding: 0 0 28px; border-bottom: 1px solid var(--line); }
+  .idn-features li:last-child { border-bottom: 0; padding-bottom: 0; }
+}
