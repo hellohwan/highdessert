@@ -1,5 +1,6 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Cara Jaringan Bekerja": "How the Network Works",
 "Pintu masuk HDI Hive Menteng": "HDI Hive Menteng entrance",
 "dengan High-Desert": "with High-Desert",
 "terhubung": "connect",

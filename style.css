@@ -3456,3 +3456,28 @@ main .hero h2, main .page-hero h2 { font-size: revert-layer; }
 /* Entitas: section 80vh, kartu lebih besar */
 #entitas .enx-panel { min-height: 80vh; min-height: 80svh; padding-top: 80px; padding-bottom: 110px; }
 #entitas .enx-card { flex-basis: clamp(280px, 24vw, 360px); }
+
+/* Cara Jaringan Bekerja — gaya "Adventure": judul + foto kiri, daftar bergaris dengan item terbuka berfoto */
+.fly-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: start; }
+.fly-tag { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+.fly-tag span { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--green); color: #fff; font-size: .8rem; font-weight: 600; }
+.fly-tag em { font-style: normal; padding: 7px 16px; border-radius: 999px; background: #f1f2f3; font-size: .86rem; color: var(--ink); }
+.fly-heading { line-height: 1.08; letter-spacing: -.03em; font-weight: 500; color: var(--ink); }
+.fly-lead { margin-top: 18px; max-width: 460px; font-size: 1rem; line-height: 1.6; color: var(--muted); }
+.fly-photo { margin: 40px 0 0; aspect-ratio: 2.4 / 1; border-radius: var(--radius-lg); overflow: hidden; background: #e3e6e4; }
+.fly-photo img { width: 100%; height: 100%; object-fit: cover; }
+.fly-list { border-top: 1px solid var(--line); }
+.fly-item { border-bottom: 1px solid var(--line); }
+.fly-item summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 28px 0; cursor: pointer; list-style: none; font-size: clamp(1.1rem, 1.6vw, 1.4rem); font-weight: 500; color: var(--ink); }
+.fly-item summary::-webkit-details-marker { display: none; }
+.fly-item summary i { flex: 0 0 auto; display: grid; place-items: center; width: 52px; height: 52px; border: 1px solid #cfd2d6; border-radius: 50%; font-style: normal; transition: transform .35s var(--ease), background-color .35s var(--ease), color .35s var(--ease); }
+.fly-item summary:hover i { background: var(--ink); color: #fff; border-color: var(--ink); }
+.fly-item[open] summary { padding-bottom: 14px; }
+.fly-item[open] summary i { display: none; }
+.fly-body { display: grid; grid-template-columns: 1fr 220px; gap: 28px; align-items: start; padding-bottom: 32px; animation: qzIn .5s var(--ease) both; }
+.fly-body p { font-size: .95rem; line-height: 1.6; color: var(--muted); }
+.fly-body img { width: 100%; aspect-ratio: 1.35 / 1; object-fit: cover; border-radius: var(--radius-lg); }
+.fly-btn { margin-top: 24px; display: inline-flex; align-items: center; gap: 12px; padding: 6px 6px 6px 20px; border-radius: 999px; background: var(--green); color: #fff; font-weight: 500; font-size: .92rem; }
+.fly-btn span { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid #fff; transition: transform .35s var(--ease); }
+.fly-btn:hover span { transform: rotate(45deg); }
+@media (max-width: 960px) { .fly-grid { grid-template-columns: 1fr; gap: 40px; } .fly-body { grid-template-columns: 1fr; } }
