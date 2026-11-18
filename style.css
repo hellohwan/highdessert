@@ -3303,3 +3303,50 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
   .aby-head { grid-template-columns: 1fr; gap: 16px; } .aby-head .aby-heading { order: -1; }
   .aby-grid { grid-template-columns: 1fr; } .aby-card { min-height: 380px; }
 }
+
+/* =========================================================
+   KUALITAS (Beranda) — gaya "Our Story": tab pil kiri, 2 kartu foto, penutup
+   ========================================================= */
+.qz-wrap { display: grid; grid-template-columns: 210px 1fr; gap: 48px; }
+.qz-tabs { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding-top: 14px; }
+#quality .qz-tab { width: auto; padding: 8px 16px; border-radius: 999px; background: #f1f2f3; font-size: .86rem; line-height: 1.3; letter-spacing: 0; color: var(--ink-soft); }
+#quality .qz-tab::before { display: none; }
+#quality .qz-tab:hover { background: #e8eaec; color: var(--ink); }
+#quality .qz-tab.is-active { padding-left: 16px; background: #dfecc7; color: var(--ink); font-weight: 600; }
+.qz-heading { font-size: clamp(2.2rem, 4.6vw, 4.2rem); font-weight: 400; line-height: 1.06; letter-spacing: -.035em; color: var(--ink); max-width: 15ch; }
+.qz-labels { display: flex; justify-content: space-between; gap: 20px; margin: 46px 0 16px; font-size: 1.05rem; color: var(--ink); }
+.qz-grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: 12px; height: 460px; }
+.qz-big, .qz-side { position: relative; overflow: hidden; isolation: isolate; border-radius: 22px; background: #dfe3e6; }
+.qz-big .qz-img { z-index: -2; }
+.qz-big::after { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(15, 20, 18, .38); }
+.qz-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px; text-align: center; color: #fff; }
+.qz-copy { display: none; max-width: 520px; }
+.qz-copy.is-active { display: block; animation: qzIn .6s var(--ease) both; }
+@keyframes qzIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.qz-copy h3 { font-size: clamp(1.6rem, 2.8vw, 2.5rem); font-weight: 400; letter-spacing: -.01em; text-transform: uppercase; }
+.qz-copy p { margin-top: 12px; font-size: .95rem; line-height: 1.5; color: rgba(255,255,255,.9); }
+.qz-btn { margin-top: 26px; display: inline-flex; align-items: center; gap: 14px; padding: 6px 6px 6px 22px; border-radius: 999px;
+  background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: #fff; font-weight: 500; font-size: .92rem; }
+.qz-btn span { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; background: #dfecc7; color: var(--ink); transition: transform .35s var(--ease); }
+.qz-btn:hover span { transform: rotate(45deg); }
+.qz-side img { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; }
+.qz-chips-top { position: absolute; top: 20px; left: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+.qz-chips-top span { padding: 5px 12px; border: 1px solid rgba(255,255,255,.85); border-radius: 999px; font-size: .78rem; color: #fff; background: rgba(0,0,0,.12); }
+.qz-chips-bottom { position: absolute; right: 20px; bottom: 20px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.qz-chips-bottom span { padding: 9px 18px; border-radius: 999px; background: #dfecc7; font-size: .9rem; font-weight: 500; color: var(--green-dark); }
+.qz-foot { display: flex; align-items: center; justify-content: space-between; gap: 32px; margin-top: 34px; }
+.qz-foot-title { font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 400; letter-spacing: -.025em; color: var(--ink); }
+.qz-foot-text { margin-top: 8px; max-width: 560px; font-size: .95rem; line-height: 1.55; color: var(--muted); }
+.qz-more { flex: 0 0 auto; padding: 18px 36px; border-radius: 999px; background: var(--green-dark); color: #fff; font-weight: 600; letter-spacing: .02em; transition: transform .3s var(--ease), background-color .3s var(--ease); }
+.qz-more:hover { transform: translateY(-2px); background: var(--green); }
+@media (max-width: 960px) {
+  .qz-wrap { grid-template-columns: 1fr; gap: 20px; }
+  .qz-tabs { flex-direction: row; flex-wrap: wrap; order: 1; padding-top: 0; }
+  .qz-main { display: contents; }
+  .qz-heading { order: 0; } .qz-labels, .qz-grid, .qz-foot { order: 2; }
+  .qz-grid { grid-template-columns: 1fr; height: auto; } .qz-big { min-height: 400px; } .qz-side { min-height: 280px; }
+  .qz-labels { margin: 10px 0 0; font-size: .9rem; }
+  .qz-foot { flex-direction: column; align-items: flex-start; }
+}
+.qz-heading { max-width: 22ch; }
+.qz-copy h3 { line-height: 1.1; }

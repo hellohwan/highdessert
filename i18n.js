@@ -1,5 +1,13 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Pelajari lebih lanjut": "Learn more",
+"Kualitas, keamanan, dan kepatuhan menjadi bagian dari tanggung jawab kami pada setiap tahap kegiatan usaha. Bukan pernyataan sertifikasi seluruh produk.": "Quality, safety, and compliance are part of our responsibility at every stage of our business. Not a certification statement for all products.",
+"Quality & regulatory commitment.": "Quality & regulatory commitment.",
+"Kepatuhan.": "Compliance.",
+"Keamanan.": "Safety.",
+"Kualitas.": "Quality.",
+"Standar yang dijaga": "Standards we keep",
+"Selengkapnya": "Learn more",
 "Kenali kami lebih jauh": "Get to know us",
 "Distribusi": "Reach",
 "Jangkauan": "Distribution",
