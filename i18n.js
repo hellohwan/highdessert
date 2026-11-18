@@ -1,5 +1,6 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Lihat profil": "View profile",
 "Lihat detail": "See details",
 "Empat Divisi Inti yang Menopang Pertumbuhan HDI Group": "Four Core Divisions Supporting HDI Group's Growth",
 "Produk skincare B/SKIN": "B/SKIN skincare products",
