@@ -3565,3 +3565,7 @@ main .hero h2, main .page-hero h2 { font-size: revert-layer; }
 .fd-green::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(40,48,28,.55) 0%, rgba(40,48,28,.2) 35%, rgba(40,48,28,0) 55%); }
 .fd-green .eyebrow, .fd-green .fd-card-title { color: #fff; }
 .fd-green .fd-card-text { color: rgba(255,255,255,.88); }
+/* kartu Kualitas: foto pipet penuh, latar krem keabuan */
+.fd-ice { background: #d9d3c7; }
+.fd-ice .fd-card-img { width: 100%; height: 100%; top: 0; object-fit: cover; object-position: 50% 100%; -webkit-mask-image: none; mask-image: none; }
+.fd-ice::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(222,216,204,.8) 0%, rgba(222,216,204,.3) 32%, rgba(222,216,204,0) 52%); }
