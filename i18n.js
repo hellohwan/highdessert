@@ -1,5 +1,8 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Kemitraan dalam jaringan HDI Group": "Partnership within the HDI Group network",
+"Satu grup. Peran yang saling melengkapi.": "One group. Complementary roles.",
+"— 01 / Peta Ekosistem": "— 01 / Ecosystem Map",
 "Lihat profil": "View profile",
 "Lihat detail": "See details",
 "Empat Divisi Inti yang Menopang Pertumbuhan HDI Group": "Four Core Divisions Supporting HDI Group's Growth",

@@ -3173,3 +3173,31 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
 .bsx-copy .bsx-float-label { color: rgba(255,255,255,.6); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
 .bsx-copy .bsx-float-note { color: rgba(255,255,255,.6); }
 .bsx-copy .bsx-float-icon { position: static; order: -1; border: 0; width: 44px; height: 44px; flex: 0 0 auto; }
+
+/* =========================================================
+   EKOSISTEM (Jaringan) — foto kiri + judul & 4 kartu abu di kanan
+   ========================================================= */
+.ecx-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 72px; align-items: stretch; }
+.ecx-photo { margin: 0; border-radius: var(--radius-lg); overflow: hidden; background: #e5e7e6; min-height: 560px; }
+.ecx-photo img { width: 100%; height: 116%; margin-top: -8%; object-fit: cover; }
+.ecx-body { display: flex; flex-direction: column; }
+.ecx-kicker { font-style: italic; font-size: 1.05rem; color: var(--ink-soft); margin-bottom: 18px; }
+.ecx-heading { font-size: clamp(2rem, 3.8vw, 3.3rem); font-weight: 500; line-height: 1.08; letter-spacing: -.035em; color: var(--ink); }
+.ecx-lead { margin-top: 22px; max-width: 520px; font-size: .98rem; line-height: 1.6; color: var(--muted); padding-bottom: 14px; border-bottom: 1px solid var(--ink); }
+.ecx-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: auto; padding-top: 40px; }
+.ecx-card { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; min-height: 210px;
+  padding: 22px; border: 0; border-radius: var(--radius-lg); background: #f5f5f5; text-align: left; font: inherit; color: var(--ink); cursor: pointer;
+  transition: background-color .35s var(--ease), transform .35s var(--ease); }
+.ecx-card:hover { background: #eeeeee; transform: translateY(-3px); }
+.ecx-arrow { position: absolute; top: 18px; right: 18px; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #d6d8db; border-radius: 50%; font-size: 1rem; transition: transform .35s var(--ease), background-color .35s var(--ease), color .35s var(--ease); }
+.ecx-card:hover .ecx-arrow { transform: rotate(45deg); background: var(--ink); color: #fff; border-color: var(--ink); }
+.ecx-eb { font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.ecx-title { font-size: 1.15rem; font-weight: 500; line-height: 1.25; }
+.ecx-desc { font-size: .86rem; line-height: 1.55; color: var(--ink-soft); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.ecx-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.ecx-chip { padding: 5px 12px; border-radius: 999px; background: #eef1ef; font-size: .78rem; color: var(--ink-soft); }
+@media (max-width: 960px) {
+  .ecx-grid { grid-template-columns: 1fr; gap: 36px; }
+  .ecx-photo { min-height: 320px; }
+}
+@media (max-width: 560px) { .ecx-cards { grid-template-columns: 1fr; } .ecx-card { min-height: 170px; } }

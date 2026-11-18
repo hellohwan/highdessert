@@ -86,73 +86,70 @@
 
     <!-- ============ 01 PETA EKOSISTEM ============ -->
     <section class="section" id="ekosistem">
-      <div class="container">
-        <div class="research-head">
-          <div class="reveal">
-            <p class="eyebrow eyebrow-green">01 / Peta Ekosistem</p>
-            <h2 class="h2 h2-dark">Satu grup.<br />Peran yang saling melengkapi.</h2>
+      <div class="container ecx-grid">
+        <figure class="ecx-photo reveal reveal-left">
+          <img class="parallax" data-parallax="40" src="assets/network-partnership-handshake.webp" alt="Kemitraan dalam jaringan HDI Group" loading="lazy" />
+        </figure>
+        <div class="ecx-body reveal" style="--d:.1s">
+          <p class="ecx-kicker">— 01 / Peta Ekosistem</p>
+          <h2 class="ecx-heading">Satu grup. Peran yang saling melengkapi.</h2>
+          <p class="ecx-lead">Grup usaha di industri kesehatan dan wellness yang menaungi jaringan entitas, merek, dan kegiatan riset. Memiliki pengalaman panjang di industri ini.</p>
+          <div class="ecx-cards">
+          <button type="button" class="ecx-card" data-modal-open-btn="modal-ecx-0">
+            <span class="ecx-arrow" aria-hidden="true">↗</span>
+            <span class="ecx-eb">Entitas · Kantor pusat HDI Hive Menteng</span>
+            <span class="ecx-title">PT High-Desert Indonesia</span>
+            <span class="ecx-desc">Menjalankan importasi dan distribusi wholesale, distribusi dalam jaringan HDI Group, importasi skincare B/SKIN, serta pengembangan produk dan riset ilmiah.</span>
+          </button>
+          <button type="button" class="ecx-card" data-modal-open-btn="modal-ecx-1">
+            <span class="ecx-arrow" aria-hidden="true">↗</span>
+            <span class="ecx-eb">Entitas · Mitra distribusi grup</span>
+            <span class="ecx-title">PT Harmoni Dinamik Indonesia</span>
+            <span class="ecx-desc">Bagian dari jaringan HDI Group yang menerima pasokan produk melalui distribusi intra-grup dari PT High-Desert Indonesia.</span>
+          </button>
+          <button type="button" class="ecx-card" data-modal-open-btn="modal-ecx-2">
+            <span class="ecx-arrow" aria-hidden="true">↗</span>
+            <span class="ecx-eb">Merek</span>
+            <span class="ecx-title">B/SKIN</span>
+            <span class="ecx-desc">Lini produk skincare yang diimpor oleh PT High-Desert Indonesia dalam lingkup kegiatan usahanya.</span>
+          </button>
+          <button type="button" class="ecx-card" data-modal-open-btn="modal-ecx-3">
+            <span class="ecx-arrow" aria-hidden="true">↗</span>
+            <span class="ecx-eb">Kegiatan</span>
+            <span class="ecx-title">Product Development &amp; Research</span>
+            <span class="ecx-desc">Pengembangan produk, kegiatan penelitian, dan kolaborasi ilmiah yang berada di bawah PT High-Desert Indonesia.</span>
+          </button>
           </div>
-          <p class="muted reveal" style="--d:.1s">Arahkan kursor atau ketuk setiap titik untuk melihat peran masing-masing bagian dalam jaringan HDI Group.</p>
-        </div>
-
-        <div class="net-wrap">
-          <div class="net-map reveal" data-network>
-            <svg class="net-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-              <line data-link="hdi" x1="50" y1="50" x2="20" y2="24" />
-              <line data-link="harmoni" x1="50" y1="50" x2="80" y2="24" />
-              <line data-link="bskin" x1="50" y1="50" x2="20" y2="78" />
-              <line data-link="riset" x1="50" y1="50" x2="80" y2="78" />
-              <line class="net-flow" data-link="hdi harmoni" x1="20" y1="24" x2="80" y2="24" />
-              <line class="net-flow" data-link="hdi bskin" x1="20" y1="24" x2="20" y2="78" />
-              <line class="net-flow" data-link="hdi riset" x1="20" y1="24" x2="80" y2="78" />
-            </svg>
-
-            <button class="net-node net-center is-active" style="--x:50%; --y:50%" data-node="group"
-              data-eyebrow="Induk grup" data-title="HDI Group"
-              data-desc="Grup usaha di industri kesehatan dan wellness yang menaungi jaringan entitas, merek, dan kegiatan riset. Memiliki pengalaman panjang di industri ini."
-              data-tags="Holding|Kesehatan & wellness|Jaringan grup">
-              <span class="net-dot"></span><span class="net-label">HDI Group</span>
-            </button>
-            <button class="net-node" style="--x:20%; --y:24%" data-node="hdi"
-              data-eyebrow="Entitas · Kantor pusat HDI Hive Menteng" data-title="PT High-Desert Indonesia"
-              data-desc="Menjalankan importasi dan distribusi wholesale, distribusi dalam jaringan HDI Group, importasi skincare B/SKIN, serta pengembangan produk dan riset ilmiah."
-              data-tags="KBLI 46441|KBLI 46461|KBLI 46339|KBLI 72101">
-              <span class="net-dot"></span><span class="net-label">PT High-Desert Indonesia</span>
-            </button>
-            <button class="net-node" style="--x:80%; --y:24%" data-node="harmoni"
-              data-eyebrow="Entitas · Mitra distribusi grup" data-title="PT Harmoni Dinamik Indonesia"
-              data-desc="Bagian dari jaringan HDI Group yang menerima pasokan produk melalui distribusi intra-grup dari PT High-Desert Indonesia."
-              data-tags="Distribusi intra-grup|Pasokan produk">
-              <span class="net-dot"></span><span class="net-label">PT Harmoni Dinamik Indonesia</span>
-            </button>
-            <button class="net-node" style="--x:20%; --y:78%" data-node="bskin"
-              data-eyebrow="Merek" data-title="B/SKIN"
-              data-desc="Lini produk skincare yang diimpor oleh PT High-Desert Indonesia dalam lingkup kegiatan usahanya."
-              data-tags="Skincare|Importasi">
-              <span class="net-dot"></span><span class="net-label">B/SKIN</span>
-            </button>
-            <button class="net-node" style="--x:80%; --y:78%" data-node="riset"
-              data-eyebrow="Kegiatan" data-title="Product Development &amp; Research"
-              data-desc="Pengembangan produk, kegiatan penelitian, dan kolaborasi ilmiah yang berada di bawah PT High-Desert Indonesia."
-              data-tags="Pengembangan produk|Penelitian|Kolaborasi ilmiah">
-              <span class="net-dot"></span><span class="net-label">Riset &amp; Pengembangan</span>
-            </button>
-          </div>
-
-          <aside class="net-panel reveal" style="--d:.15s" aria-live="polite">
-            <div class="net-panel-inner">
-              <p class="eyebrow eyebrow-light" data-panel="eyebrow">Induk grup</p>
-              <h3 data-panel="title">HDI Group</h3>
-              <p class="net-panel-desc" data-panel="desc">Grup usaha di industri kesehatan dan wellness yang menaungi jaringan entitas, merek, dan kegiatan riset. Memiliki pengalaman panjang di industri ini.</p>
-              <ul class="net-tags" data-panel="tags"><li>Holding</li><li>Kesehatan &amp; wellness</li><li>Jaringan grup</li></ul>
-            </div>
-            <div class="net-legend">
-              <span><i class="lg-solid"></i>Hubungan grup</span>
-              <span><i class="lg-flow"></i>Alur kegiatan usaha</span>
-            </div>
-          </aside>
         </div>
       </div>
+      <dialog class="hd-modal" id="modal-ecx-0" aria-labelledby="modal-ecx-0-t">
+        <button type="button" class="hd-modal-close" data-modal-close aria-label="Tutup">×</button>
+        <p class="eyebrow eyebrow-green">Entitas · Kantor pusat HDI Hive Menteng</p>
+        <h3 class="hd-modal-title" id="modal-ecx-0-t">PT High-Desert Indonesia</h3>
+        <p class="hd-modal-text">Menjalankan importasi dan distribusi wholesale, distribusi dalam jaringan HDI Group, importasi skincare B/SKIN, serta pengembangan produk dan riset ilmiah.</p>
+        <p class="ecx-chips"><span class="ecx-chip">KBLI 46441</span><span class="ecx-chip">KBLI 46461</span><span class="ecx-chip">KBLI 46339</span><span class="ecx-chip">KBLI 72101</span></p>
+      </dialog>
+      <dialog class="hd-modal" id="modal-ecx-1" aria-labelledby="modal-ecx-1-t">
+        <button type="button" class="hd-modal-close" data-modal-close aria-label="Tutup">×</button>
+        <p class="eyebrow eyebrow-green">Entitas · Mitra distribusi grup</p>
+        <h3 class="hd-modal-title" id="modal-ecx-1-t">PT Harmoni Dinamik Indonesia</h3>
+        <p class="hd-modal-text">Bagian dari jaringan HDI Group yang menerima pasokan produk melalui distribusi intra-grup dari PT High-Desert Indonesia.</p>
+        <p class="ecx-chips"><span class="ecx-chip">Distribusi intra-grup</span><span class="ecx-chip">Pasokan produk</span></p>
+      </dialog>
+      <dialog class="hd-modal" id="modal-ecx-2" aria-labelledby="modal-ecx-2-t">
+        <button type="button" class="hd-modal-close" data-modal-close aria-label="Tutup">×</button>
+        <p class="eyebrow eyebrow-green">Merek</p>
+        <h3 class="hd-modal-title" id="modal-ecx-2-t">B/SKIN</h3>
+        <p class="hd-modal-text">Lini produk skincare yang diimpor oleh PT High-Desert Indonesia dalam lingkup kegiatan usahanya.</p>
+        <p class="ecx-chips"><span class="ecx-chip">Skincare</span><span class="ecx-chip">Importasi</span></p>
+      </dialog>
+      <dialog class="hd-modal" id="modal-ecx-3" aria-labelledby="modal-ecx-3-t">
+        <button type="button" class="hd-modal-close" data-modal-close aria-label="Tutup">×</button>
+        <p class="eyebrow eyebrow-green">Kegiatan</p>
+        <h3 class="hd-modal-title" id="modal-ecx-3-t">Product Development &amp; Research</h3>
+        <p class="hd-modal-text">Pengembangan produk, kegiatan penelitian, dan kolaborasi ilmiah yang berada di bawah PT High-Desert Indonesia.</p>
+        <p class="ecx-chips"><span class="ecx-chip">Pengembangan produk</span><span class="ecx-chip">Penelitian</span><span class="ecx-chip">Kolaborasi ilmiah</span></p>
+      </dialog>
     </section>
 
     <!-- ============ ANGKA ============ -->
