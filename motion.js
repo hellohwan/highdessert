@@ -194,7 +194,7 @@
 
   // ---------- Section menumpuk: section tinggi menempel di bagian BAWAHNYA ----------
   // supaya seluruh isinya terlihat dulu sebelum ditutup section berikutnya.
-  const stickies = [...document.querySelectorAll('#entitas, #standar, #manajemen, #form')];
+  const stickies = [...document.querySelectorAll('#entitas, #standar, #manajemen, #form, #quality')];
   function fitSticky() {
     stickies.forEach((el) => {
       if (getComputedStyle(el).position !== 'sticky') { el.style.top = ''; return; }

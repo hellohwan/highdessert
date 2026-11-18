@@ -3631,3 +3631,9 @@ main .hero h2, main .page-hero h2 { font-size: revert-layer; }
 #lokasi ~ section, body:has(#lokasi) .site-footer { position: relative; z-index: 2; }
 @media (max-width: 960px) { #form { position: relative; } }
 #lokasi .map-card iframe.lokasi-map { position: absolute; left: 0; top: -10%; width: 100%; height: 120%; }
+
+/* Beranda: section Kualitas menempel, "Mari terhubung" naik menutupinya */
+#quality { position: sticky; top: 0; z-index: 1; background: #fff; }
+#contact.cx-section { position: relative; z-index: 2; background: #fff; padding-top: 110px; box-shadow: 0 -30px 60px -30px rgba(0,0,0,.3); }
+body:has(#contact) .site-footer { position: relative; z-index: 2; }
+@media (max-width: 960px) { #quality { position: relative; } }
