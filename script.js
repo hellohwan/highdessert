@@ -830,4 +830,26 @@
       new IntersectionObserver(([e]) => { visible = e.isIntersecting; schedule(); }, { threshold: 0.3 }).observe(root);
     }
   });
+
+  // ---------- Slider Divisi: geser otomatis, berulang, bisa tombol & swipe ----------
+  document.querySelectorAll('[data-dvx]').forEach((vp) => {
+    const section = vp.closest('section');
+    const cards = [...vp.querySelectorAll('.dvx-card')];
+    let timer = null, hover = false, visible = false;
+    const step = () => (cards[1] ? cards[1].offsetLeft - cards[0].offsetLeft : vp.clientWidth);
+    function go(dir) {
+      const max = vp.scrollWidth - vp.clientWidth - 2;
+      if (dir > 0 && vp.scrollLeft >= max) vp.scrollTo({ left: 0, behavior: 'smooth' });
+      else if (dir < 0 && vp.scrollLeft <= 2) vp.scrollTo({ left: max + 2, behavior: 'smooth' });
+      else vp.scrollBy({ left: dir * step(), behavior: 'smooth' });
+      schedule();
+    }
+    function schedule() { clearTimeout(timer); if (visible && !hover) timer = setTimeout(() => go(1), 3500); }
+    section.querySelectorAll('[data-dvx-dir]').forEach((b) => b.addEventListener('click', () => go(+b.dataset.dvxDir)));
+    vp.addEventListener('mouseenter', () => { hover = true; schedule(); });
+    vp.addEventListener('mouseleave', () => { hover = false; schedule(); });
+    vp.addEventListener('touchstart', () => { hover = true; schedule(); }, { passive: true });
+    vp.addEventListener('touchend', () => { hover = false; schedule(); }, { passive: true });
+    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { visible = e.isIntersecting; schedule(); }, { threshold: 0.3 }).observe(vp);
+  });
 })();

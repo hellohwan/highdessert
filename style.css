@@ -2996,3 +2996,49 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
 /* kartu R&D: teks penjelasan lebih panjang */
 #research .qs-stat-label { font-size: .7rem; }
 #research .qs-stat-value { font-size: clamp(1.4rem, 2.2vw, 1.9rem); }
+
+/* =========================================================
+   DIVISI (Aktivitas Bisnis) — kartu foto tegak + slider otomatis
+   ========================================================= */
+.dvx-heading { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 400; line-height: 1.15; letter-spacing: -.02em; color: var(--ink); max-width: 24ch; }
+.dvx-viewport { margin-top: 36px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.dvx-viewport::-webkit-scrollbar { display: none; }
+.dvx-track { display: flex; gap: 16px; }
+.dvx-card {
+  position: relative; flex: 0 0 calc((100% - 32px) / 3.25); scroll-snap-align: start;
+  aspect-ratio: 3 / 4; border-radius: var(--radius-lg); overflow: hidden; isolation: isolate; color: #fff; cursor: default;
+}
+.dvx-img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.dvx-card::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, .35)); }
+.dvx-card:hover .dvx-img, .dvx-card:focus-within .dvx-img { transform: scale(1.05); }
+.dvx-box {
+  position: absolute; left: 14px; right: 14px; bottom: 14px;
+  padding: 16px 18px 18px; border-radius: 14px;
+  background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .22);
+  backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+.dvx-meta { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: rgba(255, 255, 255, .9); }
+.dvx-arrow { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #0d0d0d; color: #fff; font-size: .9rem; flex: 0 0 auto; transition: transform .4s var(--ease); }
+.dvx-card:hover .dvx-arrow { transform: rotate(45deg); }
+.dvx-title { margin-top: 10px; font-size: 1.15rem; font-weight: 400; line-height: 1.3; }
+.dvx-desc { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .5s var(--ease); }
+.dvx-desc p { overflow: hidden; font-size: .84rem; line-height: 1.55; color: rgba(255, 255, 255, .88); }
+.dvx-desc strong { color: #fff; }
+.dvx-card:hover .dvx-desc, .dvx-card:focus-within .dvx-desc { grid-template-rows: 1fr; }
+.dvx-card:hover .dvx-desc p, .dvx-card:focus-within .dvx-desc p { padding-top: 10px; }
+
+.dvx-foot { display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; margin-top: 28px; }
+.dvx-nav { display: flex; gap: 10px; flex: 0 0 auto; }
+.dvx-btn { width: 52px; height: 52px; border-radius: 50%; border: 0; background: #f0f0f0; color: var(--ink); font-size: 1.1rem; cursor: pointer; transition: transform .3s var(--ease), background-color .3s var(--ease); }
+.dvx-btn:hover { transform: translateY(-2px); background: #e4e4e4; }
+.dvx-btn-dark { background: #0d0d0d; color: #fff; }
+.dvx-btn-dark:hover { background: #262626; }
+.dvx-tagline { max-width: 540px; text-align: right; font-size: 1.05rem; line-height: 1.5; color: var(--ink); }
+
+@media (max-width: 960px) {
+  .dvx-card { flex-basis: 68%; }
+  .dvx-foot { flex-direction: column-reverse; }
+  .dvx-tagline { text-align: left; }
+  .dvx-desc { grid-template-rows: 1fr; }
+  .dvx-desc p { padding-top: 8px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+}
