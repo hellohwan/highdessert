@@ -3571,3 +3571,9 @@ main .hero h2, main .page-hero h2 { font-size: revert-layer; }
 .fd-ice::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(222,216,204,.8) 0%, rgba(222,216,204,.3) 32%, rgba(222,216,204,0) 52%); }
 /* Jaringan: section yang menumpuk tanpa sudut membulat */
 #entitas .enx-panel, #alur-kerja .flx-sheet { border-radius: 0 !important; }
+
+/* Kualitas: section Standar menempel, section FAQ naik menutupinya */
+#standar { position: sticky; top: 0; z-index: 1; background: #fff; }
+#keterbukaan { position: relative; z-index: 2; box-shadow: 0 -30px 60px -30px rgba(0,0,0,.25); }
+#keterbukaan ~ section, body:has(#keterbukaan) .site-footer { position: relative; z-index: 2; }
+@media (max-width: 960px) { #standar { position: relative; } }
