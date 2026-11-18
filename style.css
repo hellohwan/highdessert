@@ -3445,3 +3445,11 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
 /* section setelahnya juga menutupi panel yang menempel */
 #alur-kerja ~ section, body:has(#entitas) .site-footer { position: relative; z-index: 2; background-color: #fff; }
 body:has(#entitas) .site-footer { background-color: revert-layer; }
+
+/* =========================================================
+   Ukuran heading section diseragamkan di seluruh body content
+   ========================================================= */
+main h2:not(.sr-only),
+main .page-hero ~ * h2:not(.sr-only) { font-size: clamp(2rem, 3.8vw, 3.3rem) !important; }
+/* heading hero tetap memakai ukuran hero */
+main .hero h2, main .page-hero h2 { font-size: revert-layer; }
