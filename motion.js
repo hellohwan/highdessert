@@ -17,7 +17,7 @@
   if (window.Lenis) {
     const headerH = () => (document.querySelector('.site-header') || {}).offsetHeight || 72;
     lenis = new window.Lenis({
-      lerp: 0.09,
+      lerp: 0.14,
       wheelMultiplier: 1,
       autoRaf: true,
       anchors: { offset: -headerH() },
@@ -144,31 +144,52 @@
   let vh = window.innerHeight, vw = window.innerWidth;
   window.addEventListener('resize', () => { vh = window.innerHeight; vw = window.innerWidth; });
 
-  function scrubFrame() {
-    const mobile = vw <= 960;
-    // deretan kartu/gambar bergeser horizontal melintasi layar
-    drifts.forEach((el) => {
-      if (mobile) { el.style.translate = ''; return; }
-      const r = el.getBoundingClientRect();
-      if (r.bottom < -100 || r.top > vh + 100) return;
-      const p = clamp((vh - r.top) / (vh + r.height), 0, 1); // 0 = baru masuk, 1 = keluar atas
-      const amt = Math.min(90, vw * 0.06);
-      el.style.translate = ((0.5 - p) * 2 * amt * +el.dataset.driftDir).toFixed(1) + 'px 0';
+  // Hanya elemen yang dekat layar yang dihitung (diawasi IntersectionObserver),
+  // dan semua pembacaan posisi dilakukan dulu sebelum menulis style → tidak memicu layout berulang.
+  const active = new Set();
+  const nearIO = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { active.add(e.target); e.target.classList.add('is-near'); }
+      else { active.delete(e.target); e.target.classList.remove('is-near'); }
     });
-    // gambar membesar saat masuk layar (dan mengecil lagi saat discroll balik)
-    imgs.forEach((el) => {
-      const r = el.getBoundingClientRect();
-      if (r.bottom < -100 || r.top > vh + 100) return;
-      const q = easeOut(clamp((vh - r.top) / (vh * 0.75), 0, 1));
-      el.style.scale = (0.82 + 0.18 * q).toFixed(4);
-      el.style.opacity = (0.35 + 0.65 * q).toFixed(3);
-      el.style.setProperty('--zoom', (1.18 - 0.18 * q).toFixed(4));
+    requestFrame();
+  }, { rootMargin: '150px 0px' });
+  drifts.forEach((el) => nearIO.observe(el));
+  imgs.forEach((el) => nearIO.observe(el));
+
+  const last = new WeakMap();
+  function scrubFrame() {
+    ticking = false;
+    const mobile = vw <= 960;
+    const amt = Math.min(70, vw * 0.05);
+    const reads = [];
+    active.forEach((el) => reads.push([el, el.getBoundingClientRect()]));
+    reads.forEach(([el, r]) => {
+      let v;
+      if (el.classList.contains('scrub-drift')) {
+        if (mobile) { v = ''; }
+        else {
+          const p = clamp((vh - r.top) / (vh + r.height), 0, 1);
+          v = Math.round((0.5 - p) * 2 * amt * +el.dataset.driftDir) + 'px 0';
+        }
+        if (last.get(el) !== v) { el.style.translate = v; last.set(el, v); }
+      } else {
+        const q = easeOut(clamp((vh - r.top) / (vh * 0.75), 0, 1));
+        v = (Math.round(q * 100) / 100);
+        if (last.get(el) === v) return;
+        last.set(el, v);
+        el.style.scale = (0.86 + 0.14 * v).toFixed(3);
+        el.style.opacity = (0.4 + 0.6 * v).toFixed(2);
+        el.style.setProperty('--zoom', (1.12 - 0.12 * v).toFixed(3));
+      }
     });
   }
-  if (lenis) lenis.on('scroll', scrubFrame);
-  else window.addEventListener('scroll', () => requestAnimationFrame(scrubFrame), { passive: true });
-  window.addEventListener('resize', scrubFrame);
-  scrubFrame();
+  let ticking = false;
+  function requestFrame() { if (!ticking) { ticking = true; requestAnimationFrame(scrubFrame); } }
+  if (lenis) lenis.on('scroll', requestFrame);
+  else window.addEventListener('scroll', requestFrame, { passive: true });
+  window.addEventListener('resize', requestFrame);
+  requestFrame();
 
   // ---------- 4. Transisi antar halaman ----------
   let firstVisit = true;

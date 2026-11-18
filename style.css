@@ -2458,10 +2458,11 @@ html.lenis, html.lenis body { height: auto; }
 .is-split.no-anim .split-w > span { transition: none; }
 
 /* Gambar membesar mengikuti scroll (nilai scale/opacity/--zoom diatur motion.js) */
-.scrub-grow { transform-origin: 50% 50%; will-change: scale, opacity; }
+.scrub-grow { transform-origin: 50% 50%; }
+.scrub-grow.is-near { will-change: scale, opacity; }
 .scrub-grow > :not(figcaption):not(.pill-dark) { scale: var(--zoom, 1); }
 /* Deretan kartu bergeser horizontal mengikuti scroll */
-.scrub-drift { will-change: translate; }
+.scrub-drift.is-near { will-change: translate; }
 
 /* Parallax tambahan untuk foto Kantor Pusat */
 .hq-photo-main img.parallax { height: 116%; margin-top: -8%; }
@@ -2498,3 +2499,14 @@ body:has(> .page-transition:not(.pt-done)) .reveal { transition-delay: calc(var(
 }
 /* hover tetap instan walaupun elemen punya delay stagger */
 .reveal.is-visible:hover, .slide-up.is-visible:hover, .slide-in.is-visible:hover { transition-delay: 0s; }
+
+/* Performa scroll: blur kaca di header/subnav sangat berat saat konten di bawahnya bergerak.
+   Setelah discroll, ganti dengan latar padat yang tampilannya hampir sama. */
+.site-header.is-scrolled,
+body:has(.editorial-hero) .site-header.is-scrolled {
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+  background: rgba(30, 32, 34, .96);
+}
+.subnav { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(255, 255, 255, .98); }
+.map-label, .pill-dark, .team-badge { backdrop-filter: none; -webkit-backdrop-filter: none; }
+.pill-dark { background: rgba(20, 20, 20, .9); }
