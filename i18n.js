@@ -1,5 +1,9 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Pintu masuk HDI Hive Menteng": "HDI Hive Menteng entrance",
+"dengan High-Desert": "with High-Desert",
+"terhubung": "connect",
+"Mari": "Let's",
 "Pelajari lebih lanjut": "Learn more",
 "Kualitas, keamanan, dan kepatuhan menjadi bagian dari tanggung jawab kami pada setiap tahap kegiatan usaha. Bukan pernyataan sertifikasi seluruh produk.": "Quality, safety, and compliance are part of our responsibility at every stage of our business. Not a certification statement for all products.",
 "Quality & regulatory commitment.": "Quality & regulatory commitment.",

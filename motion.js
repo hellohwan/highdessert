@@ -43,7 +43,7 @@
   // supaya pergantian bahasa (i18n.js) tetap bekerja.
   const SPLIT_SEL = 'main h2, .bskin-title';
   const headings = [...document.querySelectorAll(SPLIT_SEL)]
-    .filter((el) => !el.closest('.page-hero, .hero') && el.textContent.trim());
+    .filter((el) => !el.closest('.page-hero, .hero') && !el.querySelector('svg, img') && el.textContent.trim());
 
   function splitWords(el) {
     const originals = [...el.childNodes];

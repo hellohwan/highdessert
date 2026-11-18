@@ -3350,3 +3350,23 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
 }
 .qz-heading { max-width: 22ch; }
 .qz-copy h3 { line-height: 1.1; }
+
+/* =========================================================
+   KONTAK (Beranda) — judul dengan ikon, teks + tombol, foto lebar
+   ========================================================= */
+.cx-head { display: grid; grid-template-columns: 1.4fr 1fr auto; gap: 48px; align-items: center; }
+.cx-title { font-size: clamp(2.2rem, 4.2vw, 3.8rem); font-weight: 400; line-height: 1.08; letter-spacing: -.035em; color: var(--ink); }
+.cx-icon { display: inline-grid; place-items: center; width: 1.05em; height: 1.05em; vertical-align: -.12em; border-radius: 50%; background: var(--green); color: #fff; box-shadow: 0 10px 22px -10px rgba(50,104,72,.7); }
+.cx-icon svg { width: .5em; height: .5em; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.cx-lead { font-size: .95rem; line-height: 1.6; color: var(--ink-soft); max-width: 380px; }
+.cx-btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 24px; border-radius: 999px; background: #0d0d0d; color: #fff; font-size: .92rem; white-space: nowrap; transition: transform .3s var(--ease), background-color .3s var(--ease); }
+.cx-btn:hover { transform: translateY(-2px); background: var(--green-dark); }
+.cx-photo { margin: 48px 0 0; height: clamp(320px, 38vw, 520px); border-radius: var(--radius-lg); overflow: hidden; background: #dfe3e0; }
+.cx-photo img { width: 100%; height: 120%; margin-top: -10%; object-fit: cover; object-position: 70% 50%; }
+@media (max-width: 960px) { .cx-head { grid-template-columns: 1fr; gap: 18px; } .cx-btn { justify-self: start; } .cx-photo { margin-top: 32px; } }
+.cx-photo { position: relative; }
+.cx-photo img { position: absolute; left: 0; top: -10%; margin: 0; height: 120%; }
+/* foto gedung full width (tepi ke tepi layar) */
+.cx-photo { width: 100vw; margin-left: calc(50% - 50vw); border-radius: 0; height: clamp(360px, 46vw, 640px); }
+.cx-photo img { object-position: 50% 55%; }
+.cx-photo { height: clamp(240px, 30vw, 350px); }
