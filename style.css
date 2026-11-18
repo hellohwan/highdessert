@@ -3104,3 +3104,35 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
   .tlx-btn { opacity: 1; transform: none; pointer-events: auto; }
   .tlx-col.is-active::after { width: 100%; }
 }
+
+/* =========================================================
+   MANAJEMEN — panel info + 3 kartu foto (gaya "Meet Our Experts")
+   ========================================================= */
+.mgx-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: start; margin-bottom: 40px; }
+.mgx-heading { font-size: clamp(1.9rem, 3.4vw, 2.9rem); font-weight: 400; line-height: 1.12; letter-spacing: -.025em; color: var(--ink); }
+.mgx-intro { padding-top: 52px; font-size: .98rem; line-height: 1.6; color: var(--ink-soft); }
+.mgx-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.mgx-panel { position: relative; display: grid; border-radius: var(--radius-lg); background: #d9e3f2; min-height: 400px; }
+.mgx-info { grid-area: 1 / 1; display: flex; flex-direction: column; justify-content: space-between; padding: 24px;
+  opacity: 0; transform: translateY(8px); transition: opacity .45s var(--ease), transform .45s var(--ease); pointer-events: none; }
+.mgx-info.is-active { opacity: 1; transform: none; pointer-events: auto; transition-delay: .1s; }
+.mgx-badge { font-size: .72rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 10px; }
+.mgx-role { font-size: clamp(1.3rem, 1.9vw, 1.7rem); font-weight: 400; line-height: 1.2; color: var(--ink); }
+.mgx-desc { font-size: .84rem; line-height: 1.55; color: var(--ink-soft); }
+.mgx-desc strong { display: block; font-size: 1rem; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.mgx-card { position: relative; padding: 0; border: 0; cursor: pointer; border-radius: var(--radius-lg); overflow: hidden;
+  min-height: 400px; background: linear-gradient(180deg, #e9ecef, #cfd6d2); font: inherit; text-align: left; }
+.mgx-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; transition: transform 1s var(--ease); }
+.mgx-card:hover img { transform: scale(1.04); }
+.mgx-card::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 0 var(--ink); transition: box-shadow .3s var(--ease); }
+.mgx-card.is-active::after { box-shadow: inset 0 0 0 3px var(--ink); }
+.mgx-label { position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 12px 14px; border-radius: 12px; color: #fff;
+  background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.25); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.mgx-label strong { display: block; font-size: .95rem; font-weight: 500; text-shadow: 0 1px 6px rgba(0,0,0,.35); }
+.mgx-label small { display: block; font-size: .72rem; opacity: .92; text-shadow: 0 1px 6px rgba(0,0,0,.35); }
+.mgx-arrow { flex: 0 0 auto; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: #fff; color: var(--ink); transition: transform .35s var(--ease); }
+.mgx-card:hover .mgx-arrow, .mgx-card.is-active .mgx-arrow { transform: rotate(45deg); }
+@media (max-width: 1080px) { .mgx-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 960px) { .mgx-head { grid-template-columns: 1fr; gap: 12px; } .mgx-intro { padding-top: 0; } }
+@media (max-width: 560px) { .mgx-grid { grid-template-columns: 1fr; } .mgx-panel { min-height: 260px; order: 1; } .mgx-card { min-height: 380px; } }

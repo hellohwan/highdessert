@@ -874,4 +874,18 @@
     vp.addEventListener('touchend', () => { hover = false; schedule(); }, { passive: true });
     if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { visible = e.isIntersecting; schedule(); }, { threshold: 0.3 }).observe(vp);
   });
+
+  // ---------- Manajemen: klik kartu → panel info berganti; bergiliran otomatis ----------
+  document.querySelectorAll('[data-mgx-root]').forEach((root) => {
+    const cards = [...root.querySelectorAll('.mgx-card')], infos = [...root.querySelectorAll('.mgx-info')];
+    let idx = 0, timer = null, hover = false, visible = false;
+    const set = (n) => { idx = (n + cards.length) % cards.length;
+      cards.forEach((c, i) => { c.classList.toggle('is-active', i === idx); c.setAttribute('aria-pressed', String(i === idx)); });
+      infos.forEach((x, i) => x.classList.toggle('is-active', i === idx)); schedule(); };
+    function schedule() { clearTimeout(timer); if (visible && !hover) timer = setTimeout(() => set(idx + 1), 5000); }
+    cards.forEach((c, i) => { c.addEventListener('click', () => set(i)); c.addEventListener('mouseenter', () => set(i)); });
+    root.addEventListener('mouseenter', () => { hover = true; schedule(); });
+    root.addEventListener('mouseleave', () => { hover = false; schedule(); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { visible = e.isIntersecting; schedule(); }, { threshold: 0.3 }).observe(root);
+  });
 })();
