@@ -1,5 +1,12 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Pengawasan yang bertanggung jawab untuk pemenuhan persyaratan regulasi produk.": "Responsible oversight to meet product regulatory requirements.",
+"03 / Pengawasan": "03 / Oversight",
+"Koordinasi yang tertib.": "Orderly coordination.",
+"Kepatuhan regulasi.": "Regulatory compliance.",
+"Kualitas • Keamanan • Kepatuhan": "Quality • Safety • Compliance",
+"Lihat regulasi": "View regulations",
+"Kualitas & keamanan produk, dijaga di setiap tahap.": "Product quality & safety, safeguarded at every stage.",
 "Berkoordinasi dengan otoritas yang berwenang.": "Coordinating with the competent authorities.",
 "Instansi terkait": "Related authorities",
 "Cara Jaringan Bekerja": "How the Network Works",
