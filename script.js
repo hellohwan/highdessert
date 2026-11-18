@@ -712,30 +712,47 @@
     }
     function schedule() {
       clearTimeout(timer);
-      if (!paused && !reduceMotion) timer = setTimeout(() => go(idx + 1), INTERVAL);
+      if (!paused) timer = setTimeout(() => go(idx + 1), INTERVAL);
     }
     dots.forEach((d) => d.addEventListener('click', () => go(+d.dataset.go)));
 
-    // jeda saat kursor di atas hero atau tab tidak aktif
+    // autoplay selalu jalan; hanya berhenti saat tab browser tidak aktif atau sedang di-drag
     const setPaused = (v) => { paused = v; hero.classList.toggle('is-paused', v); schedule(); };
-    hero.addEventListener('mouseenter', () => setPaused(true));
-    hero.addEventListener('mouseleave', () => setPaused(false));
     document.addEventListener('visibilitychange', () => setPaused(document.hidden));
 
-    // geser (swipe) di HP
-    let sx = null;
-    hero.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; }, { passive: true });
-    hero.addEventListener('touchend', (e) => {
-      if (sx === null) return;
-      const dx = e.changedTouches[0].clientX - sx; sx = null;
-      if (Math.abs(dx) > 50) go(idx + (dx < 0 ? 1 : -1));
+    // drag (mouse) & swipe (sentuh) untuk pindah slide
+    let sx = null, sy = null, dragging = false, pid = null;
+    hero.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0 || e.target.closest('a, button, input')) return;
+      sx = e.clientX; sy = e.clientY; dragging = false; pid = e.pointerId;
     });
+    hero.addEventListener('pointermove', (e) => {
+      if (sx === null || e.pointerId !== pid) return;
+      const dx = e.clientX - sx, dy = e.clientY - sy;
+      if (!dragging && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) {
+        dragging = true; hero.classList.add('is-dragging'); hero.setPointerCapture(pid); setPaused(true);
+      }
+      if (dragging) hero.style.setProperty('--drag', Math.max(-1, Math.min(1, dx / 400)));
+    });
+    const end = (e) => {
+      if (sx === null) return;
+      const dx = e.clientX - sx;
+      if (dragging) {
+        hero.classList.remove('is-dragging'); hero.style.removeProperty('--drag');
+        paused = false; hero.classList.remove('is-paused');
+        if (Math.abs(dx) > 60) go(idx + (dx < 0 ? 1 : -1)); else schedule();
+      }
+      sx = null; dragging = false;
+    };
+    hero.addEventListener('pointerup', end);
+    hero.addEventListener('pointercancel', end);
+    hero.addEventListener('dragstart', (e) => e.preventDefault());
 
     // mulai setelah tirai transisi halaman terbuka
     function start() { hero.classList.add('is-ready'); schedule(); }
     const pt = document.querySelector('.page-transition');
-    if (!pt || reduceMotion || pt.classList.contains('pt-out')) { setTimeout(start, 50); return; }
-    const mo = new MutationObserver(() => { if (pt.classList.contains('pt-out')) { mo.disconnect(); setTimeout(start, 150); } });
+    if (!pt || pt.classList.contains('pt-out') || pt.classList.contains('pt-done')) { setTimeout(start, 50); return; }
+    const mo = new MutationObserver(() => { if (pt.classList.contains('pt-out') || pt.classList.contains('pt-done')) { mo.disconnect(); setTimeout(start, 150); } });
     mo.observe(pt, { attributes: true, attributeFilter: ['class'] });
     setTimeout(start, 3000); // pengaman
   })();
