@@ -77,30 +77,22 @@
     return { originals, count: i };
   }
 
-  function restore(el, state) {
-    if (!state || el.dataset.splitDone) return;
-    el.dataset.splitDone = '1';
-    el.textContent = '';
-    state.originals.forEach((n) => el.appendChild(n));
-    el.classList.remove('is-split', 'is-split-in');
-  }
-
+  // Pecahan kata dipertahankan supaya animasinya bisa diputar ulang.
+  // Saat bahasa diganti, i18n.js memperbarui node teks aslinya → kita pecah ulang dari situ.
   const splitState = new Map();
-  headings.forEach((el) => {
-    // tinggi baris dipertahankan supaya tidak "melompat" saat dipecah
+  headings.forEach((el) => splitState.set(el, splitWords(el)));
+
+  function resplit(el) {
+    const old = splitState.get(el);
+    const wasIn = el.classList.contains('is-split-in');
+    el.textContent = '';
+    old.originals.forEach((n) => el.appendChild(n));
+    el.classList.remove('is-split', 'is-split-in');
     splitState.set(el, splitWords(el));
-  });
-
-  function playHeading(el) {
-    const state = splitState.get(el);
-    if (!state || el.classList.contains('is-split-in')) return;
-    el.classList.add('is-split-in');
-    const total = 1000 + state.count * 45 + 300;
-    setTimeout(() => restore(el, state), total);
+    if (wasIn) el.classList.add('is-split-in', 'no-anim');
+    requestAnimationFrame(() => el.classList.remove('no-anim'));
   }
-
-  // kalau bahasa diganti di tengah animasi, langsung kembalikan teks asli
-  document.addEventListener('hd:lang', () => splitState.forEach((s, el) => restore(el, s)));
+  document.addEventListener('hd:lang', () => splitState.forEach((s, el) => resplit(el)));
 
   // ---------- 3. Gambar reveal + zoom halus ----------
   const IMG_SEL = [
@@ -114,26 +106,69 @@
   // ---------- Pemicu saat terlihat (dimulai setelah tirai terbuka) ----------
   function startObservers() {
     if (!('IntersectionObserver' in window)) {
-      headings.forEach(playHeading);
+      headings.forEach((el) => el.classList.add('is-split-in'));
       imgs.forEach((el) => el.classList.add('is-revealed'));
       return;
     }
-    // gambar yang ter-clip tidak terdeteksi IntersectionObserver di Chrome,
-    // jadi yang diamati adalah elemen induknya (tidak ter-clip)
+    // Gambar yang ter-clip tidak terdeteksi IntersectionObserver di Chrome,
+    // jadi yang diamati adalah elemen induknya (tidak ter-clip).
     const watch = new Map();
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        (watch.get(e.target) || []).forEach((el) => {
-          if (splitState.has(el)) playHeading(el); else el.classList.add('is-revealed');
-        });
-        io.unobserve(e.target);
-      });
+    const show = (el) => el.classList.add(splitState.has(el) ? 'is-split-in' : 'is-revealed');
+    const hide = (el) => el.classList.remove('is-split-in', 'is-revealed');
+    // masuk layar → putar animasi
+    const inIO = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) (watch.get(e.target) || []).forEach(show); });
     }, { threshold: 0, rootMargin: '0px 0px -12% 0px' });
-    const add = (key, el) => { if (!watch.has(key)) { watch.set(key, []); io.observe(key); } watch.get(key).push(el); };
+    // keluar penuh dari layar (ke atas / ke bawah) → reset, supaya diputar ulang saat kembali
+    const outIO = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (!e.isIntersecting) (watch.get(e.target) || []).forEach(hide); });
+    }, { threshold: 0, rootMargin: '0px' });
+    const add = (key, el) => {
+      if (!watch.has(key)) { watch.set(key, []); inIO.observe(key); outIO.observe(key); }
+      watch.get(key).push(el);
+    };
     headings.forEach((el) => add(el, el));
     imgs.forEach((el) => add(el.parentElement || el, el));
   }
+
+  // ---------- 5. Animasi terikat scroll (gaya Poch) ----------
+  // Nilainya dihitung dari posisi scroll setiap frame, jadi otomatis maju saat
+  // scroll turun dan mundur saat scroll naik.
+  const DRIFT_SEL = '.foundation-cards, .biz-grid, .legacy-panel, .hq-grid, .std-grid, .reg-grid, .entity-grid, .team-grid, .audit-grid, .import-grid';
+  const drifts = [...document.querySelectorAll(DRIFT_SEL)].filter((el) => !el.closest('.page-hero, .hero'));
+  drifts.forEach((el, i) => { el.dataset.driftDir = i % 2 ? '1' : '-1'; el.classList.add('scrub-drift'); });
+  imgs.forEach((el) => el.classList.add('scrub-grow'));
+
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+  let vh = window.innerHeight, vw = window.innerWidth;
+  window.addEventListener('resize', () => { vh = window.innerHeight; vw = window.innerWidth; });
+
+  function scrubFrame() {
+    const mobile = vw <= 960;
+    // deretan kartu/gambar bergeser horizontal melintasi layar
+    drifts.forEach((el) => {
+      if (mobile) { el.style.translate = ''; return; }
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > vh + 100) return;
+      const p = clamp((vh - r.top) / (vh + r.height), 0, 1); // 0 = baru masuk, 1 = keluar atas
+      const amt = Math.min(90, vw * 0.06);
+      el.style.translate = ((0.5 - p) * 2 * amt * +el.dataset.driftDir).toFixed(1) + 'px 0';
+    });
+    // gambar membesar saat masuk layar (dan mengecil lagi saat discroll balik)
+    imgs.forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > vh + 100) return;
+      const q = easeOut(clamp((vh - r.top) / (vh * 0.75), 0, 1));
+      el.style.scale = (0.82 + 0.18 * q).toFixed(4);
+      el.style.opacity = (0.35 + 0.65 * q).toFixed(3);
+      el.style.setProperty('--zoom', (1.18 - 0.18 * q).toFixed(4));
+    });
+  }
+  if (lenis) lenis.on('scroll', scrubFrame);
+  else window.addEventListener('scroll', () => requestAnimationFrame(scrubFrame), { passive: true });
+  window.addEventListener('resize', scrubFrame);
+  scrubFrame();
 
   // ---------- 4. Transisi antar halaman ----------
   let firstVisit = true;

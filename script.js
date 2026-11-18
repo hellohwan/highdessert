@@ -92,18 +92,22 @@
   if ('IntersectionObserver' in window && revealTargets.length) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        const el = entry.target;
-        if (entry.isIntersecting) {
-          el.classList.add('is-visible');
-          // hapus delay stagger setelah muncul agar efek hover terasa instan
-          el.addEventListener('transitionend', () => { el.style.transitionDelay = '0s'; el.style.setProperty('--d', '0s'); }, { once: true });
-        }
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    // Animasi dua arah: elemen yang sudah keluar penuh dari layar (ke atas atau ke bawah)
+    // disembunyikan lagi, supaya animasinya diputar ulang saat discroll kembali.
+    const outIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const el = entry.target;
+        if (!entry.isIntersecting && !el.matches('.timeline, [data-carousel]')) el.classList.remove('is-visible');
+      });
+    }, { threshold: 0, rootMargin: '0px' });
     revealTargets.forEach((el) => {
       const rect = el.getBoundingClientRect();
       if (rect.bottom > 0 && rect.top < window.innerHeight - 40) el.classList.add('is-visible');
       io.observe(el);
+      outIO.observe(el);
     });
     reveals.forEach((el) => {
       if (!revealTargets.includes(el)) el.classList.add('is-visible');

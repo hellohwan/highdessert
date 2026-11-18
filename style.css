@@ -2455,12 +2455,13 @@ html.lenis, html.lenis body { height: auto; }
   transition-delay: calc(var(--i, 0) * 45ms);
 }
 .is-split.is-split-in .split-w > span { transform: none; }
+.is-split.no-anim .split-w > span { transition: none; }
 
-/* Gambar reveal (terbuka dari bawah) + zoom halus */
-.img-reveal { clip-path: inset(100% 0 0 0); transition: clip-path 1.3s cubic-bezier(.77, 0, .18, 1); }
-.img-reveal.is-revealed { clip-path: inset(0 0 0 0); }
-.img-reveal > :not(figcaption):not(.pill-dark) { scale: 1.18; transition: scale 1.9s var(--ease-out); }
-.img-reveal.is-revealed > :not(figcaption):not(.pill-dark) { scale: 1; }
+/* Gambar membesar mengikuti scroll (nilai scale/opacity/--zoom diatur motion.js) */
+.scrub-grow { transform-origin: 50% 50%; will-change: scale, opacity; }
+.scrub-grow > :not(figcaption):not(.pill-dark) { scale: var(--zoom, 1); }
+/* Deretan kartu bergeser horizontal mengikuti scroll */
+.scrub-drift { will-change: translate; }
 
 /* Parallax tambahan untuk foto Kantor Pusat */
 .hq-photo-main img.parallax { height: 116%; margin-top: -8%; }
@@ -2492,6 +2493,8 @@ body:has(> .page-transition:not(.pt-done)) .reveal { transition-delay: calc(var(
 
 @media (prefers-reduced-motion: reduce) {
   .page-transition { display: none; }
-  .img-reveal { clip-path: none !important; }
-  .img-reveal > * { scale: 1 !important; }
+  .scrub-grow, .scrub-drift { scale: none !important; translate: none !important; opacity: 1 !important; }
+  .scrub-grow > * { scale: 1 !important; }
 }
+/* hover tetap instan walaupun elemen punya delay stagger */
+.reveal.is-visible:hover, .slide-up.is-visible:hover, .slide-in.is-visible:hover { transition-delay: 0s; }
