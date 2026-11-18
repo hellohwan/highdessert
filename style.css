@@ -2884,3 +2884,68 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
   .vmx-card { min-height: 440px; padding: 80px 22px 90px; }
   .hd-modal { padding: 34px 24px 28px; }
 }
+
+/* =========================================================
+   KUALITAS (Beranda) — daftar besar di kiri + panel berganti di kanan
+   ========================================================= */
+.qs-grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; }
+.qs-tabs { display: flex; flex-direction: column; gap: 14px; }
+.qs-tab {
+  position: relative; display: block; width: 100%; padding: 0 0 0 0; border: 0; background: none; cursor: pointer;
+  text-align: left; font: inherit; font-size: clamp(2rem, 3.8vw, 3.5rem); font-weight: 400; line-height: 1.05; letter-spacing: -.03em;
+  color: #c7cacf; transition: color .5s var(--ease), padding-left .6s var(--ease);
+}
+.qs-tab::before {
+  content: ""; position: absolute; left: 0; top: .55em; width: 0; height: 2px; background: var(--ink);
+  transition: width .6s var(--ease);
+}
+.qs-tab:hover { color: #9da2a9; }
+.qs-tab.is-active { color: var(--ink); padding-left: 84px; }
+.qs-tab.is-active::before { width: 64px; }
+.qs-tab:focus-visible { outline: 2px solid var(--green); outline-offset: 6px; border-radius: 6px; }
+
+.qs-right { max-width: 520px; }
+.qs-pill {
+  display: inline-flex; align-items: center; gap: 10px; margin-bottom: 22px;
+  padding: 9px 18px; border: 1px solid var(--line); border-radius: 999px; font-size: .8rem; color: var(--ink);
+}
+.qs-pill span { width: 7px; height: 7px; border-radius: 50%; background: var(--ink); }
+.qs-media { display: grid; grid-template-columns: 1.55fr 1fr; gap: 16px; align-items: start; }
+.qs-photo { position: relative; aspect-ratio: 1 / 1.05; border-radius: var(--radius); overflow: hidden; background: #e8ebef; }
+.qs-img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transform: scale(1.06); transition: opacity .7s var(--ease), transform 1.2s var(--ease);
+}
+.qs-img.is-active { opacity: 1; transform: none; }
+.qs-stat {
+  position: relative; overflow: hidden; padding: 22px 18px; border-radius: var(--radius);
+  background: #0d0d0d; color: #fff; text-align: center;
+}
+.qs-stat::before {
+  content: ""; position: absolute; right: -30%; top: -40%; width: 90%; height: 160%;
+  border: 26px solid rgba(255, 255, 255, .07); border-radius: 50%;
+}
+.qs-stat-value { position: relative; white-space: nowrap; font-size: clamp(1rem, 1.5vw, 1.3rem); font-weight: 500; letter-spacing: -.01em; margin-bottom: 8px; }
+.qs-stat-label { position: relative; font-size: .74rem; line-height: 1.4; color: rgba(255, 255, 255, .72); }
+.qs-texts { display: grid; margin-top: 34px; }
+.qs-text {
+  grid-area: 1 / 1; font-size: 1.05rem; line-height: 1.55; color: var(--ink);
+  opacity: 0; transform: translateY(10px); transition: opacity .5s var(--ease), transform .5s var(--ease);
+}
+.qs-text::before { content: "“"; }
+.qs-text::after { content: "”"; }
+.qs-text.is-active { opacity: 1; transform: none; transition-delay: .15s; }
+.qs-foot { display: flex; align-items: center; gap: 14px; margin-top: 26px; }
+.qs-foot-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: #ececec; color: var(--ink-soft); }
+.qs-foot-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.qs-foot-link { font-size: .92rem; font-weight: 500; color: var(--ink); }
+.qs-foot-link:hover { color: var(--green); }
+.qs-foot-note { font-size: .76rem; color: var(--muted); margin-top: 2px; }
+
+@media (max-width: 960px) {
+  .qs-grid { grid-template-columns: 1fr; gap: 40px; }
+  .qs-tab { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+  .qs-tab.is-active { padding-left: 52px; }
+  .qs-tab.is-active::before { width: 36px; }
+  .qs-right { max-width: none; }
+}

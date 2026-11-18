@@ -272,32 +272,43 @@
     </section>
 
     <!-- ============ QUALITY ============ -->
-    <section class="section" id="quality">
-      <div class="container">
-        <div class="section-head reveal">
-          <h2 class="h2">Kepercayaan dimulai dari standar yang dijaga.</h2>
-          <p class="muted">Kualitas, keamanan, dan kepatuhan menjadi bagian dari tanggung jawab kami pada setiap tahap kegiatan usaha.</p>
-          <a href="quality.html" class="text-link">Quality &amp; regulatory commitment <span aria-hidden="true">→</span></a>
-        </div>
-
-        <div class="quality-grid">
-          <div class="quality-img reveal" style="--img:url('assets/quality-lab.webp')"></div>
-          <ul class="quality-list">
-            <li class="reveal" style="--d:.1s">
-              <h3 class="h5">Kualitas &amp; keamanan produk</h3>
-              <p class="muted small">Pengawasan kualitas serta pemenuhan persyaratan produk sesuai kategori dan lingkup kegiatan perusahaan.</p>
-            </li>
-            <li class="reveal" style="--d:.2s">
-              <h3 class="h5">Kepatuhan regulasi</h3>
-              <p class="muted small">Koordinasi dengan instansi terkait, termasuk BPOM dan BPJPH, sesuai kebutuhan dan ketentuan yang berlaku.</p>
-            </li>
-            <li class="reveal" style="--d:.3s">
-              <h3 class="h5">Pengawasan yang bertanggung jawab</h3>
-              <p class="muted small">Mendukung proses evaluasi dan kelengkapan dokumen untuk pemenuhan persyaratan regulasi produk.</p>
-            </li>
+    <section class="section qs-section" id="quality" data-qs-root>
+      <div class="container qs-grid">
+        <div class="qs-left reveal">
+          <h2 class="sr-only">Kepercayaan dimulai dari standar yang dijaga.</h2>
+          <ul class="qs-tabs" role="tablist" aria-label="Komitmen kualitas">
+            <li><button type="button" class="qs-tab is-active" data-qs="0" aria-selected="true">Kualitas &amp; keamanan produk</button></li>
+            <li><button type="button" class="qs-tab" data-qs="1" aria-selected="false">Kepatuhan regulasi</button></li>
+            <li><button type="button" class="qs-tab" data-qs="2" aria-selected="false">Pengawasan yang bertanggung jawab</button></li>
           </ul>
         </div>
-        <p class="quality-note reveal"><strong>BPOM / BPJPH</strong> <span>Koordinasi regulasi sesuai lingkup usaha • bukan pernyataan sertifikasi seluruh produk.</span></p>
+
+        <div class="qs-right reveal" style="--d:.12s">
+          <p class="qs-pill"><span aria-hidden="true"></span>Kepercayaan dimulai dari standar yang dijaga</p>
+          <div class="qs-media">
+            <div class="qs-photo">
+              <img class="qs-img is-active" data-qs-panel="0" src="assets/quality-product-safety.webp" alt="Pemeriksaan kualitas produk" loading="lazy" />
+              <img class="qs-img" data-qs-panel="1" src="assets/quality-regulatory-compliance.webp" alt="Dokumen kepatuhan regulasi" loading="lazy" />
+              <img class="qs-img" data-qs-panel="2" src="assets/quality-responsible-oversight.webp" alt="Pengawasan proses produk" loading="lazy" />
+            </div>
+            <div class="qs-stat">
+              <p class="qs-stat-value">BPOM · BPJPH</p>
+              <p class="qs-stat-label">Koordinasi regulasi sesuai lingkup usaha</p>
+            </div>
+          </div>
+          <div class="qs-texts">
+              <p class="qs-text is-active" data-qs-panel="0">Pengawasan kualitas serta pemenuhan persyaratan produk sesuai kategori dan lingkup kegiatan perusahaan.</p>
+              <p class="qs-text" data-qs-panel="1">Koordinasi dengan instansi terkait, termasuk BPOM dan BPJPH, sesuai kebutuhan dan ketentuan yang berlaku.</p>
+              <p class="qs-text" data-qs-panel="2">Mendukung proses evaluasi dan kelengkapan dokumen untuk pemenuhan persyaratan regulasi produk.</p>
+          </div>
+          <div class="qs-foot">
+            <span class="qs-foot-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6l7-3z" /><path d="M9 12l2 2 4-4" /></svg></span>
+            <div>
+              <a href="quality.html" class="qs-foot-link">Quality &amp; regulatory commitment <span aria-hidden="true">→</span></a>
+              <p class="qs-foot-note">Bukan pernyataan sertifikasi seluruh produk.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 

@@ -1,5 +1,12 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Pengawasan proses produk": "Product process oversight",
+"Dokumen kepatuhan regulasi": "Regulatory compliance documents",
+"Pemeriksaan kualitas produk": "Product quality inspection",
+"Komitmen kualitas": "Quality commitment",
+"Bukan pernyataan sertifikasi seluruh produk.": "Not a certification statement for all products.",
+"Koordinasi regulasi sesuai lingkup usaha": "Regulatory coordination within business scope",
+"Kepercayaan dimulai dari standar yang dijaga": "Trust begins with the standards we keep",
 "Tutup": "Close",
 "Tiga komitmen utama": "Three core commitments",
 "Lihat misi": "View missions",

@@ -807,4 +807,27 @@
     dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
     dlg.addEventListener('close', () => { if (window.hdLenis) window.hdLenis.start(); });
   });
+
+  // ---------- Kualitas Beranda: topik besar berganti otomatis ----------
+  document.querySelectorAll('[data-qs-root]').forEach((root) => {
+    const tabs = [...root.querySelectorAll('.qs-tab')];
+    const panels = [...root.querySelectorAll('[data-qs-panel]')];
+    let idx = 0, timer = null, visible = false, hover = false;
+    function show(n) {
+      idx = (n + tabs.length) % tabs.length;
+      tabs.forEach((t, i) => { t.classList.toggle('is-active', i === idx); t.setAttribute('aria-selected', String(i === idx)); });
+      panels.forEach((p) => p.classList.toggle('is-active', +p.dataset.qsPanel === idx));
+      schedule();
+    }
+    function schedule() { clearTimeout(timer); if (visible && !hover) timer = setTimeout(() => show(idx + 1), 4500); }
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => show(i));
+      t.addEventListener('mouseenter', () => show(i));
+    });
+    root.addEventListener('mouseenter', () => { hover = true; schedule(); });
+    root.addEventListener('mouseleave', () => { hover = false; schedule(); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; schedule(); }, { threshold: 0.3 }).observe(root);
+    }
+  });
 })();
