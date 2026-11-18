@@ -3578,30 +3578,14 @@ main .hero h2, main .page-hero h2 { font-size: revert-layer; }
 #keterbukaan ~ section, body:has(#keterbukaan) .site-footer { position: relative; z-index: 2; }
 @media (max-width: 960px) { #standar { position: relative; } }
 
-/* Kantor: latar foto gedung HDI Hive */
-#kantor { position: relative; isolation: isolate; overflow: hidden; color: #fff; background: #1d2320; }
-.kantor-bg { position: absolute; inset: 0; z-index: -1; }
-.kantor-bg img { width: 100%; height: 120%; margin-top: -10%; object-fit: cover; }
-.kantor-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14,18,16,.85) 0%, rgba(14,18,16,.6) 45%, rgba(14,18,16,.25) 100%); }
-#kantor .pill-outline { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.35); color: #fff; }
-#kantor h2, #kantor .h2 { color: #fff; }
-#kantor .muted, #kantor .office-text, #kantor address { color: rgba(255,255,255,.85); }
-#kantor .address-card, #kantor .map-card { color: var(--ink); }
-#kantor .address-card address, #kantor .map-card address, #kantor .map-label strong { color: var(--ink-soft); }
-#kantor .map-label strong { color: var(--ink); }
-#kantor .address-card { background: rgba(255,255,255,.92); }
 
-/* Kantor: menumpuk di atas section sebelumnya, latar foto blur + parallax, tinggi proporsional */
+/* Kantor: menumpuk di atas section sebelumnya, tinggi proporsional */
 #manajemen { position: sticky; top: 0; z-index: 1; }
 #kantor { z-index: 2; margin-top: 0; border-radius: 0; padding: 72px 0; box-shadow: 0 -30px 60px -30px rgba(0,0,0,.35); }
 #kantor .office-grid { align-items: center; }
-.kantor-bg img { filter: blur(14px) saturate(1.1); transform: scale(1.12); }
-.kantor-bg::after { background: linear-gradient(90deg, rgba(14,18,16,.78) 0%, rgba(14,18,16,.55) 50%, rgba(14,18,16,.4) 100%); }
 #kantor .h2-xl { margin: 14px 0 16px; }
 #kantor .map-card { min-height: 360px; }
 #kantor ~ section, body:has(#kantor) .site-footer { position: relative; z-index: 2; }
 @media (max-width: 960px) { #manajemen { position: relative; } #kantor { padding: 56px 0; } }
-#kantor .office-grid { grid-template-columns: 1.15fr 1fr; }
-/* blur lebih ringan supaya gedung tetap terlihat */
-.kantor-bg img { filter: blur(2px) saturate(1.05); transform: scale(1.03); }
-.kantor-bg::after { background: linear-gradient(90deg, rgba(14,18,16,.75) 0%, rgba(14,18,16,.45) 50%, rgba(14,18,16,.2) 100%); }
+
+#kantor { background: #fff; }
