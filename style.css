@@ -2993,3 +2993,6 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
   .bsx-copy { padding: 26px 18px 22px; }
   .bsx-foot { margin-top: 32px; }
 }
+/* kartu R&D: teks penjelasan lebih panjang */
+#research .qs-stat-label { font-size: .7rem; }
+#research .qs-stat-value { font-size: clamp(1.4rem, 2.2vw, 1.9rem); }
