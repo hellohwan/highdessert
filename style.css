@@ -3624,3 +3624,10 @@ main .hero h2, main .page-hero h2 { font-size: revert-layer; }
 /* Manajemen: foto persegi (1:1); grid sedikit dipersempit supaya proporsional */
 #manajemen .mgz-photo { height: auto; aspect-ratio: 1 / 1; }
 #manajemen .mgz-grid { max-width: 1040px; margin: 0 auto; }
+
+/* Kontak: section Form menempel, Lokasi Kantor naik menutupi + latar bergerak parallax */
+#form { position: sticky; top: 0; z-index: 1; background: #fff; }
+#lokasi { position: relative; z-index: 2; box-shadow: 0 -30px 60px -30px rgba(0,0,0,.3); }
+#lokasi ~ section, body:has(#lokasi) .site-footer { position: relative; z-index: 2; }
+@media (max-width: 960px) { #form { position: relative; } }
+#lokasi .map-card iframe.lokasi-map { position: absolute; left: 0; top: -10%; width: 100%; height: 120%; }
