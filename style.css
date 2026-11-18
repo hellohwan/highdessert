@@ -3577,3 +3577,16 @@ main .hero h2, main .page-hero h2 { font-size: revert-layer; }
 #keterbukaan { position: relative; z-index: 2; box-shadow: 0 -30px 60px -30px rgba(0,0,0,.25); }
 #keterbukaan ~ section, body:has(#keterbukaan) .site-footer { position: relative; z-index: 2; }
 @media (max-width: 960px) { #standar { position: relative; } }
+
+/* Kantor: latar foto gedung HDI Hive */
+#kantor { position: relative; isolation: isolate; overflow: hidden; color: #fff; background: #1d2320; }
+.kantor-bg { position: absolute; inset: 0; z-index: -1; }
+.kantor-bg img { width: 100%; height: 120%; margin-top: -10%; object-fit: cover; }
+.kantor-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14,18,16,.85) 0%, rgba(14,18,16,.6) 45%, rgba(14,18,16,.25) 100%); }
+#kantor .pill-outline { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.35); color: #fff; }
+#kantor h2, #kantor .h2 { color: #fff; }
+#kantor .muted, #kantor .office-text, #kantor address { color: rgba(255,255,255,.85); }
+#kantor .address-card, #kantor .map-card { color: var(--ink); }
+#kantor .address-card address, #kantor .map-card address, #kantor .map-label strong { color: var(--ink-soft); }
+#kantor .map-label strong { color: var(--ink); }
+#kantor .address-card { background: rgba(255,255,255,.92); }
