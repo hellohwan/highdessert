@@ -191,6 +191,20 @@
   window.addEventListener('resize', requestFrame);
   requestFrame();
 
+
+  // ---------- Section menumpuk: section tinggi menempel di bagian BAWAHNYA ----------
+  // supaya seluruh isinya terlihat dulu sebelum ditutup section berikutnya.
+  const stickies = [...document.querySelectorAll('#entitas, #standar, #manajemen')];
+  function fitSticky() {
+    stickies.forEach((el) => {
+      if (getComputedStyle(el).position !== 'sticky') { el.style.top = ''; return; }
+      el.style.top = Math.min(0, window.innerHeight - el.offsetHeight) + 'px';
+    });
+  }
+  fitSticky();
+  window.addEventListener('resize', fitSticky);
+  window.addEventListener('load', fitSticky);
+
   // ---------- 4. Transisi antar halaman ----------
   let firstVisit = true;
   try { firstVisit = !sessionStorage.getItem('hd-visited'); sessionStorage.setItem('hd-visited', '1'); } catch (e) {}
