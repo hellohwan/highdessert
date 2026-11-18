@@ -764,4 +764,32 @@
     mo.observe(pt, { attributes: true, attributeFilter: ['class'] });
     setTimeout(start, 3000); // pengaman
   })();
+
+  // ---------- Daftar Tata Kelola (accordion bergantian otomatis) ----------
+  document.querySelectorAll('[data-gv]').forEach((panel) => {
+    const items = [...panel.querySelectorAll('.gv-item')];
+    const INTERVAL = 5000;
+    panel.style.setProperty('--gv-interval', INTERVAL + 'ms');
+    let idx = 0, timer = null, visible = false, hover = false;
+    function show(n) {
+      idx = (n + items.length) % items.length;
+      items.forEach((it, i) => {
+        it.classList.toggle('is-active', i === idx);
+        it.querySelector('.gv-head').setAttribute('aria-expanded', String(i === idx));
+        const bar = it.querySelector('.gv-bar span'); bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = '';
+      });
+      schedule();
+    }
+    function schedule() {
+      clearTimeout(timer);
+      panel.classList.toggle('is-paused', !visible || hover);
+      if (visible && !hover) timer = setTimeout(() => show(idx + 1), INTERVAL);
+    }
+    items.forEach((it, i) => it.querySelector('.gv-head').addEventListener('click', () => show(i)));
+    panel.addEventListener('mouseenter', () => { hover = true; schedule(); });
+    panel.addEventListener('mouseleave', () => { hover = false; schedule(); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible) show(idx); else schedule(); }, { threshold: 0.35 }).observe(panel);
+    } else { visible = true; show(0); }
+  });
 })();

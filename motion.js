@@ -97,7 +97,7 @@
   // ---------- 3. Gambar reveal + zoom halus ----------
   const IMG_SEL = [
     '.hq-photo', '.intro-photo', '.rd-img-wrap', '.import-img-wrap', '.bskin-img-wrap',
-    '.gcg-img-wrap', '.quality-img', '.q-pillar-img', '.research-img', '.div-img-wrap',
+    '.gcg-img-wrap', '.gv-photo', '.quality-img', '.q-pillar-img', '.research-img', '.div-img-wrap',
     '.std-card-media', '.home-contact-image', '.map-card', '.leader-photo', '.team-photo',
   ].join(',');
   const imgs = [...document.querySelectorAll(IMG_SEL)].filter((el) => !el.closest('.page-hero, .hero'));

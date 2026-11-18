@@ -1,5 +1,7 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Penandatanganan dokumen tata kelola perusahaan": "Signing corporate governance documents",
+"Good Corporate Governance (GCG)": "Good Corporate Governance (GCG)",
 "Pipet dan tabung reaksi laboratorium": "Laboratory pipette and test tubes",
 "Daun teh segar dengan embun": "Fresh tea leaves with dew",
 "Keluarga bahagia di taman": "Happy family in a park",

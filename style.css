@@ -2721,3 +2721,44 @@ body.nav-open .site-header.is-scrolled .lang-pill { background: #fff; }
 html body .subnav { background: #fff !important; top: 63px; box-shadow: 0 1px 0 var(--line); }
 html body .site-header.is-scrolled { height: 64px; --header-h: 64px; }
 body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255, 255, 255, .82); }
+
+/* =========================================================
+   TATA KELOLA (Tentang Kami) — daftar bernomor + foto, gaya terang
+   ========================================================= */
+.section-gcg { background: #fff; padding-top: 40px; }
+.gv-panel { display: grid; grid-template-columns: 1fr 1.08fr; gap: 72px; align-items: center; }
+.gv-badge { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 26px; }
+.gv-badge-num {
+  display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+  background: var(--ink); color: #fff; font-size: .74rem; font-weight: 600;
+}
+.gv-badge-label { padding: 5px 14px; border: 1px solid var(--ink); border-radius: 999px; font-size: .78rem; color: var(--ink); }
+.gv-heading { font-size: clamp(2rem, 3.6vw, 3.1rem); font-weight: 400; line-height: 1.12; letter-spacing: -.025em; color: var(--ink); }
+.gv-lead { margin: 18px 0 30px; color: var(--muted); font-size: .95rem; }
+.gv-list { border-top: 0; }
+.gv-item { position: relative; border-bottom: 1px solid var(--line); }
+.gv-head {
+  display: flex; align-items: baseline; gap: 22px; width: 100%;
+  padding: 20px 0; border: 0; background: none; cursor: pointer; text-align: left; font: inherit;
+}
+.gv-num { flex: 0 0 auto; font-size: .78rem; color: var(--muted); font-variant-numeric: tabular-nums; transition: color .4s var(--ease); }
+.gv-title { font-size: clamp(1.1rem, 1.6vw, 1.35rem); color: #9aa0a9; letter-spacing: -.01em; transition: color .4s var(--ease); }
+.gv-head:hover .gv-title { color: var(--ink-soft); }
+.gv-item.is-active .gv-num, .gv-item.is-active .gv-title { color: var(--ink); }
+.gv-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .55s var(--ease); }
+.gv-body > p { overflow: hidden; padding-left: 38px; color: var(--ink-soft); font-size: .9rem; line-height: 1.6; max-width: 440px; }
+.gv-item.is-active .gv-body { grid-template-rows: 1fr; }
+.gv-item.is-active .gv-body > p { padding-bottom: 22px; }
+.gv-bar { position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; overflow: hidden; }
+.gv-bar span { display: block; height: 100%; background: var(--ink); transform: scaleX(0); transform-origin: left; }
+.gv-item.is-active .gv-bar span { animation: gvBar var(--gv-interval, 5s) linear forwards; }
+.gv-panel.is-paused .gv-item.is-active .gv-bar span { animation-play-state: paused; }
+@keyframes gvBar { to { transform: scaleX(1); } }
+.gv-foot { margin-top: 28px; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.gv-photo { margin: 0; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 1 / 1.05; background: #e9e5e0; }
+.gv-photo img { width: 100%; height: 116%; margin-top: -8%; object-fit: cover; }
+
+@media (max-width: 960px) {
+  .gv-panel { grid-template-columns: 1fr; gap: 40px; }
+  .gv-photo { aspect-ratio: 4 / 3; order: -1; }
+}
