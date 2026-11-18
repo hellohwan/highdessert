@@ -167,13 +167,26 @@
     counters.forEach((el) => { el.textContent = el.dataset.from || 0; cIO.observe(el); });
   }
 
-  // ---------- Video latar: putar hanya saat terlihat ----------
+  // ---------- Video latar: autoplay (muted), putar hanya saat terlihat ----------
   document.querySelectorAll('video[autoplay]').forEach((v) => {
-    if (reduceMotion) { v.removeAttribute('autoplay'); v.pause(); return; }
-    if (!('IntersectionObserver' in window)) return;
-    new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { const p = v.play(); if (p) p.catch(() => {}); } else { v.pause(); }
-    }, { threshold: 0.15 }).observe(v);
+    v.muted = true; v.playsInline = true; // wajib untuk autoplay di Safari/iOS
+    let visible = true;
+    const tryPlay = () => { if (!visible) return; const p = v.play(); if (p) p.catch(() => armGesture()); };
+    // Fallback: kalau browser memblokir autoplay (mis. Low Power Mode), putar saat interaksi pertama
+    let armed = false;
+    function armGesture() {
+      if (armed) return; armed = true;
+      const go = () => { ['click', 'touchstart', 'keydown'].forEach((t) => window.removeEventListener(t, go)); armed = false; tryPlay(); };
+      ['click', 'touchstart', 'keydown'].forEach((t) => window.addEventListener(t, go, { passive: true }));
+    }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(([e]) => {
+        visible = e.isIntersecting;
+        if (visible) tryPlay(); else v.pause();
+      }, { threshold: 0.15 }).observe(v);
+    } else {
+      tryPlay();
+    }
   });
 
   // ---------- Parallax halus pada gambar ----------
