@@ -705,7 +705,7 @@
       titles.forEach((el, i) => el.setAttribute('aria-hidden', String(i !== idx)));
       leads.forEach((el, i) => el.setAttribute('aria-hidden', String(i !== idx)));
       dots.forEach((d, i) => d.setAttribute('aria-selected', String(i === idx)));
-      current.textContent = String(idx + 1).padStart(2, '0');
+      if (current) current.textContent = String(idx + 1).padStart(2, '0');
       // restart animasi progres titik
       const bar = dots[idx].querySelector('span'); bar.style.animation = 'none'; void bar.offsetWidth; bar.style.animation = '';
       schedule();
