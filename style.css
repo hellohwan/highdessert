@@ -3618,3 +3618,6 @@ main .hero h2, main .page-hero h2 { font-size: revert-layer; }
 #manajemen { padding-bottom: 72px; }
 #manajemen .mgz-photo { height: clamp(140px, calc(100vh - 570px), 400px); }
 @media (max-width: 960px) { #manajemen { padding-bottom: 80px; } }
+#manajemen { padding-bottom: 120px; }
+#manajemen .mgz-photo { height: clamp(130px, calc(100vh - 620px), 380px); }
+@media (max-width: 960px) { #manajemen { padding-bottom: 100px; } }
