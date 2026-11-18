@@ -3614,3 +3614,7 @@ main .hero h2, main .page-hero h2 { font-size: revert-layer; }
 #manajemen .mgz-head { margin-bottom: 20px; }
 #manajemen .mgz-photo { height: clamp(150px, calc(100vh - 530px), 420px); }
 #manajemen .mgz-photo { background: #cfcbc6; } #manajemen .mgz-photo img { object-position: 50% 20%; }
+/* Manajemen: ruang bawah sebelum section berikutnya */
+#manajemen { padding-bottom: 72px; }
+#manajemen .mgz-photo { height: clamp(140px, calc(100vh - 570px), 400px); }
+@media (max-width: 960px) { #manajemen { padding-bottom: 80px; } }
