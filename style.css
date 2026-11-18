@@ -3598,3 +3598,18 @@ main .hero h2, main .page-hero h2 { font-size: revert-layer; }
 #manajemen { padding: 150px 0 48px; }
 #manajemen .mgz-photo { aspect-ratio: 1 / .72; }
 #manajemen .mgz-head { margin-bottom: 28px; }
+/* Manajemen: muat di layar pendek (laptop 100% zoom) — ruang untuk header + subnav, foto ikut tinggi layar */
+#manajemen { padding: 168px 0 40px; }
+#manajemen .mgz-head { margin-bottom: 24px; }
+#manajemen .mgz-pill { margin-bottom: 12px; }
+#manajemen .mgz-sub { margin-top: 8px; }
+#manajemen .mgz-photo { aspect-ratio: auto; height: clamp(180px, calc(100vh - 560px), 420px); }
+#manajemen .mgz-row { margin-top: 14px; }
+#manajemen .mgz-role { margin-top: 8px; }
+#manajemen .mgz-link { margin-top: 8px; }
+@media (max-width: 960px) { #manajemen .mgz-photo { height: auto; aspect-ratio: 1 / 1; } #manajemen { padding: 80px 0; } }
+#manajemen { display: block; min-height: 0; padding: 104px 0 40px; scroll-margin-top: 0; }
+#manajemen .mgz-photo { height: clamp(170px, calc(100vh - 470px), 420px); }
+#manajemen { padding: 164px 0 32px; }
+#manajemen .mgz-head { margin-bottom: 20px; }
+#manajemen .mgz-photo { height: clamp(150px, calc(100vh - 530px), 420px); }
