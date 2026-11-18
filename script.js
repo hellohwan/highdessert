@@ -793,6 +793,28 @@
     } else { visible = true; show(0); }
   });
 
+
+  // ---------- Sejarah: kolom aktif melebar (hover / fokus / otomatis), detail di popup ----------
+  document.querySelectorAll('.tlx-row').forEach((row) => {
+    const cols = [...row.querySelectorAll('.tlx-col')];
+    let idx = cols.findIndex((c) => c.classList.contains('is-active')), timer = null, hover = false, visible = false;
+    const set = (n) => { idx = (n + cols.length) % cols.length; cols.forEach((c, i) => c.classList.toggle('is-active', i === idx)); schedule(); };
+    function schedule() { clearTimeout(timer); if (visible && !hover && window.innerWidth > 960) timer = setTimeout(() => set(idx + 1), 5000); }
+    cols.forEach((c, i) => {
+      c.addEventListener('mouseenter', () => set(i));
+      c.addEventListener('focusin', () => set(i));
+      c.addEventListener('click', (e) => { if (!e.target.closest('.tlx-btn')) set(i); });
+    });
+    row.addEventListener('mouseenter', () => { hover = true; schedule(); });
+    row.addEventListener('mouseleave', () => { hover = false; schedule(); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { visible = e.isIntersecting; schedule(); }, { threshold: 0.3 }).observe(row);
+  });
+  document.querySelectorAll('[data-modal-open-btn]').forEach((btn) => {
+    const dlg = document.getElementById(btn.dataset.modalOpenBtn);
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    btn.addEventListener('click', (e) => { e.stopPropagation(); dlg.showModal(); if (window.hdLenis) window.hdLenis.stop(); });
+  });
+
   // ---------- Popup sederhana (kartu Visi & Misi) ----------
   document.querySelectorAll('[data-modal-open]').forEach((card) => {
     const dlg = document.getElementById(card.dataset.modalOpen);
