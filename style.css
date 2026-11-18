@@ -2949,3 +2949,47 @@ body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255
   .qs-tab.is-active::before { width: 36px; }
   .qs-right { max-width: none; }
 }
+
+/* =========================================================
+   B/SKIN (Aktivitas Bisnis) — panel gelap, video + kartu melayang
+   ========================================================= */
+.bsx-panel {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: stretch;
+  padding: 14px; border-radius: 22px; background: #0d0d0d; color: #fff;
+}
+.bsx-panel::before {
+  content: ""; position: absolute; z-index: -1; right: -8%; top: -20%; width: 46%; height: 150%;
+  border: 90px solid rgba(255, 255, 255, .05); border-radius: 48% 52% 40% 60%; transform: rotate(18deg);
+}
+.bsx-media { position: relative; min-height: 520px; border-radius: 16px; overflow: hidden; background: #1c1d1f; }
+.bsx-video { position: absolute; left: 0; top: -10%; width: 100%; height: 120%; object-fit: cover; }
+.bsx-float {
+  position: absolute; left: 20%; bottom: 20%; z-index: 1;
+  padding: 12px; border-radius: 20px;
+  background: rgba(255, 255, 255, .55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 24px 50px -24px rgba(0, 0, 0, .5);
+}
+.bsx-float-inner { padding: 18px 64px 18px 22px; border-radius: 14px; background: #fff; color: var(--ink); }
+.bsx-float-label { font-size: 1.05rem; font-weight: 500; margin-bottom: 8px; }
+.bsx-float-value { font-size: clamp(2.2rem, 3.6vw, 3rem); font-weight: 500; line-height: 1; letter-spacing: -.03em; }
+.bsx-float-note { margin-top: 8px; font-size: .82rem; color: var(--muted); }
+.bsx-float-icon {
+  position: absolute; top: 4px; right: 4px; display: grid; place-items: center;
+  width: 46px; height: 46px; border-radius: 50%; background: var(--green); color: #fff; border: 4px solid rgba(255, 255, 255, .7);
+}
+.bsx-float-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.bsx-copy { display: flex; flex-direction: column; justify-content: center; padding: 40px 48px 34px 0; }
+.bsx-title { margin: 18px 0 16px; font-size: clamp(3rem, 6vw, 5.2rem); font-weight: 400; line-height: .95; letter-spacing: -.04em; }
+.bsx-text { max-width: 420px; font-size: 1rem; line-height: 1.6; color: rgba(255, 255, 255, .85); }
+.bsx-btn { align-self: flex-start; margin-top: 30px; padding: 13px 28px; }
+.bsx-foot { margin-top: 56px; margin-bottom: 0; color: rgba(255, 255, 255, .55); }
+
+@media (max-width: 960px) {
+  .bsx-panel { grid-template-columns: 1fr; gap: 10px; }
+  .bsx-media { min-height: 420px; }
+  .bsx-float { left: 14px; bottom: 14px; }
+  .bsx-float-inner { padding: 14px 54px 14px 18px; }
+  .bsx-copy { padding: 26px 18px 22px; }
+  .bsx-foot { margin-top: 32px; }
+}

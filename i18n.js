@@ -1,5 +1,7 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Produk skincare B/SKIN": "B/SKIN skincare products",
+"Kegiatan usaha": "Business activity",
 "Pengawasan proses produk": "Product process oversight",
 "Dokumen kepatuhan regulasi": "Regulatory compliance documents",
 "Pemeriksaan kualitas produk": "Product quality inspection",
