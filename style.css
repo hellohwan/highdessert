@@ -2717,3 +2717,7 @@ body.nav-open .site-header.is-scrolled .lang-switch button { color: rgba(255, 25
 body.nav-open .site-header.is-scrolled .lang-switch button[aria-pressed="true"] { color: var(--ink); }
 body.nav-open .site-header.is-scrolled .lang-pill { background: #fff; }
 .brand-logo { transition: opacity .3s var(--ease); }
+/* subnav menempel rapat di bawah header kaca: tanpa celah, latar padat */
+html body .subnav { background: #fff !important; top: 63px; box-shadow: 0 1px 0 var(--line); }
+html body .site-header.is-scrolled { height: 64px; --header-h: 64px; }
+body:has(.subnav) .site-header::before { inset: 0 0 -1px 0; background: rgba(255, 255, 255, .82); }
