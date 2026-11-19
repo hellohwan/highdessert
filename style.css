@@ -3673,3 +3673,12 @@ body:has(#contact) .site-footer { position: relative; z-index: 2; }
 .biz-pagination { gap: 14px; }
 .hero-dot span { pointer-events: none; }
 @media (max-width: 960px) { .biz-pagination { gap: 16px !important; } .biz-pagination button { min-width: 8px; } }
+
+/* Label section seragam: bulatan nomor gelap + pil bergaris (gaya GCG) */
+.gv-badge { display: inline-flex; align-items: center; gap: 6px; margin: 0 0 22px; font-size: inherit; letter-spacing: 0; text-transform: none; }
+.gv-badge-label { white-space: nowrap; }
+.gv-badge-light .gv-badge-num { background: #fff; color: var(--ink); }
+.gv-badge-light .gv-badge-label { border-color: rgba(255,255,255,.7); color: #fff; }
+.mgz-head .gv-badge, .text-center .gv-badge { justify-content: center; }
+@media (max-width: 560px) { .gv-badge-label { white-space: normal; } }
+.gv-badge { width: max-content; max-width: 100%; align-self: flex-start; } .mgz-head .gv-badge { margin-left: auto; margin-right: auto; align-self: center; }

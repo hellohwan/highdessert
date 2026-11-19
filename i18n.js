@@ -1,5 +1,14 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Entitas dalam Jaringan": "Entities in the Network",
+"Peta Ekosistem": "Ecosystem Map",
+"Verifikasi & Keterbukaan": "Verification & Transparency",
+"Alur Pengawasan": "Oversight Flow",
+"Pusat Operasional & Aset": "Operational Center & Assets",
+"Kepemimpinan Terpilih": "Leadership",
+"Pilar Strategis Perseroan": "Strategic Pillars",
+"Sejarah & Rekam Jejak": "History & Track Record",
+"Identitas": "Identity",
 "Pengawasan yang bertanggung jawab untuk pemenuhan persyaratan regulasi produk.": "Responsible oversight to meet product regulatory requirements.",
 "03 / Pengawasan": "03 / Oversight",
 "Koordinasi yang tertib.": "Orderly coordination.",
