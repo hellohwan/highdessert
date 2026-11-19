@@ -3654,3 +3654,22 @@ body:has(#contact) .site-footer { position: relative; z-index: 2; }
 .hero-slide-lead.is-active { transition-delay: 0s; }
 /* reveal di layar pertama (page-hero) tidak disembunyikan */
 .page-hero .reveal, .hero .reveal { opacity: 1 !important; transform: none !important; }
+
+/* =========================================================
+   Aksesibilitas: kontras warna & ukuran area sentuh
+   ========================================================= */
+.footer-col .footer-h { font-size: .78rem; font-weight: 500; color: #5d6574; margin-bottom: 18px; }
+.site-footer address, .footer-bottom, .footer-bottom p, .footer-bottom a, .footer-col h4 { color: #5d6574; }
+.eyebrow-green { color: #2f6647; }
+.lang-switch button { color: #fff; }
+.site-header.is-scrolled .lang-switch button { color: #4a5160; }
+.site-header.is-scrolled .lang-switch button[aria-pressed="true"] { color: #fff; }
+.topic-no { color: #2f6647; }
+.topic-card:hover .topic-no, .topic-card.is-selected .topic-no { color: #fff; }
+/* titik slider & paginasi: area sentuh minimal 24px tanpa mengubah tampilan */
+.hero-dot, .biz-pagination button { position: relative; }
+.hero-dot::after, .biz-pagination button::after { content: ""; position: absolute; left: 50%; top: 50%; width: 28px; height: 28px; transform: translate(-50%, -50%); }
+.hero-dots { gap: 14px; }
+.biz-pagination { gap: 14px; }
+.hero-dot span { pointer-events: none; }
+@media (max-width: 960px) { .biz-pagination { gap: 16px !important; } .biz-pagination button { min-width: 8px; } }
