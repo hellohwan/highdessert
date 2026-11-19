@@ -211,10 +211,10 @@
 
   function enter() {
     if (!overlay) { startObservers(); return; }
-    const hold = firstVisit ? 700 : 150; // kunjungan pertama: tampilkan logo sebentar (loader)
+    const hold = 0; // tanpa loader: konten langsung tampil (lebih cepat untuk LCP)
     setTimeout(() => {
       overlay.classList.add('pt-out');
-      setTimeout(startObservers, 250);
+      startObservers();
       setTimeout(() => overlay.classList.add('pt-done'), EASE_MS);
     }, hold);
   }

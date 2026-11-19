@@ -3637,3 +3637,8 @@ main .hero h2, main .page-hero h2 { font-size: revert-layer; }
 #contact.cx-section { position: relative; z-index: 2; background: #fff; padding-top: 110px; box-shadow: 0 -30px 60px -30px rgba(0,0,0,.3); }
 body:has(#contact) .site-footer { position: relative; z-index: 2; }
 @media (max-width: 960px) { #quality { position: relative; } }
+
+/* Performa: hero Beranda versi ringan di HP */
+@media (max-width: 760px) { .hero-slider .hero-slide-bg:first-child { --img: url('assets/hero-mobile.webp') !important; } }
+/* Tirai transisi tidak menutupi halaman saat pertama dibuka (hanya saat pindah halaman) */
+.page-transition:not(.pt-leave) { display: none; }
