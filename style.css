@@ -3720,3 +3720,6 @@ html:not(.play-intro) .page-hero .reveal, html:not(.play-intro) .hero .reveal { 
 .aby-arrow, .vmx-arrow, .dvx-arrow, .enx-arrow { background: rgba(255,255,255,.2); color: #fff; border: 0; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
 .ecx-arrow, .tpx-arrow { background: #efefef; border: 0; color: var(--ink); }
 .ecx-card:hover .ecx-arrow { background: var(--ink); color: #fff; }
+/* Kualitas Beranda: catatan kecil di bawah kartu (menggantikan blok penutup) */
+.qz-note { margin-top: 18px; font-size: .8rem; color: #5d6574; }
+.qz-note strong { margin-right: 10px; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: #2f6647; }
