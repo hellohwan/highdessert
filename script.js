@@ -710,7 +710,7 @@
     const leads = [...hero.querySelectorAll('.hero-slide-lead')];
     const dots = [...hero.querySelectorAll('.hero-dot')];
     const current = hero.querySelector('[data-hero-current]');
-    const INTERVAL = 6000;
+    const INTERVAL = 4000;
     hero.style.setProperty('--hero-interval', INTERVAL + 'ms');
     let idx = 0, timer = null, paused = false;
 

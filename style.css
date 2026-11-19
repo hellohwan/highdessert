@@ -3644,16 +3644,17 @@ body:has(#contact) .site-footer { position: relative; z-index: 2; }
    Performa (Speed Index): konten layar pertama langsung tampil utuh,
    tanpa menunggu JavaScript atau animasi masuk.
    ========================================================= */
-.hero .hero-anim, .page-hero .hero-anim { opacity: 1; transform: none; animation: none; }
-.hero-title .hero-anim, .page-hero .hero-title .hero-anim { transform: none; }
-.hero-bg, .page-hero-bg { animation: none !important; transform: none; }
-.hero-slider:not(.is-ready) .hero-slide-title.is-active .line > span { transform: none; }
-.hero-slider:not(.is-ready) .hero-slide-lead.is-active { opacity: 1; transform: none; }
-.hero-slider .hero-slide-bg.is-active:first-child { transition: none; transform: none; }
-.hero-slide-title.is-active .line > span { transition-delay: 0s; }
-.hero-slide-lead.is-active { transition-delay: 0s; }
-/* reveal di layar pertama (page-hero) tidak disembunyikan */
-.page-hero .reveal, .hero .reveal { opacity: 1 !important; transform: none !important; }
+html:not(.play-intro) .hero .hero-anim, html:not(.play-intro) .page-hero .hero-anim { opacity: 1; transform: none; animation: none; }
+html:not(.play-intro) .hero-title .hero-anim, html:not(.play-intro) .page-hero .hero-title .hero-anim { transform: none; }
+html:not(.play-intro) .hero-bg, html:not(.play-intro) .page-hero-bg { animation: none !important; transform: none; }
+html:not(.play-intro) .hero-slider:not(.is-ready) .hero-slide-title.is-active .line > span { transform: none; }
+html:not(.play-intro) .hero-slider:not(.is-ready) .hero-slide-lead.is-active { opacity: 1; transform: none; }
+html:not(.play-intro) .hero-slider .hero-slide-bg.is-active:first-child { transition: none; transform: none; }
+html:not(.play-intro) .hero-slide-title.is-active .line > span { transition-delay: 0s; }
+html:not(.play-intro) .hero-slide-lead.is-active { transition-delay: 0s; }
+html:not(.play-intro) .page-hero .reveal, html:not(.play-intro) .hero .reveal { opacity: 1 !important; transform: none !important; }
+/* Saat datang dari halaman lain di website (bukan buka pertama kali): animasi hero diputar */
+.play-intro .hero-slider .hero-slide-bg.is-active:first-child { animation: kenburns 9s var(--ease) forwards; }
 
 /* =========================================================
    Aksesibilitas: kontras warna & ukuran area sentuh
