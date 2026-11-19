@@ -1,5 +1,16 @@
 // PT High-Desert Indonesia — interaksi homepage
 (function () {
+  // ---------- Lazy background: gambar latar dimuat saat mendekati layar ----------
+  (function lazyBg() {
+    const els = [...document.querySelectorAll('[data-bg]:not(.hero-slide-bg)')];
+    const load = (el) => { el.style.setProperty('--img', "url('" + el.dataset.bg + "')"); el.removeAttribute('data-bg'); };
+    if (!('IntersectionObserver' in window)) { els.forEach(load); return; }
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { load(e.target); io.unobserve(e.target); } }), { rootMargin: '600px 0px' });
+    els.forEach((el) => io.observe(el));
+    // slide hero ke-2 & ke-3 dimuat setelah halaman selesai
+    window.addEventListener('load', () => setTimeout(() => document.querySelectorAll('.hero-slide-bg[data-bg]').forEach(load), 1200));
+  })();
+
   // ---------- Bahasa (ID / EN) ----------
   const DICT = window.HD_I18N_EN || {};
   const norm = (v) => v.replace(/\s+/g, ' ').trim();
@@ -707,6 +718,7 @@
       const next = (n + bgs.length) % bgs.length;
       if (next === idx) return;
       const prev = idx; idx = next;
+      if (bgs[idx].dataset.bg) { bgs[idx].style.setProperty('--img', "url('" + bgs[idx].dataset.bg + "')"); bgs[idx].removeAttribute('data-bg'); }
       titles[prev].classList.add('is-leaving');
       setTimeout(() => titles[prev].classList.remove('is-leaving'), 700);
       [bgs, titles, leads, dots].forEach((list) => list.forEach((el, i) => el.classList.toggle('is-active', i === idx)));
