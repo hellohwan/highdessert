@@ -85,7 +85,7 @@
       header.classList.toggle('is-scrolled', scrolled);
       // logo berwarna di atas header kaca terang, logo putih di atas hero
       const logo = header.querySelector('.brand-logo');
-      if (logo) logo.src = scrolled && !document.body.classList.contains('nav-open') ? 'assets/logo-color.svg' : 'assets/logo-white.svg';
+      if (logo) logo.src = scrolled && !document.body.classList.contains('nav-open') ? 'assets/logo-color.webp' : 'assets/logo-white.webp';
     }
     toTop.classList.toggle('is-visible', y > window.innerHeight * 0.6);
     ring.style.strokeDashoffset = RING_LEN * (1 - progress);
@@ -139,7 +139,7 @@
     const open = document.body.classList.toggle('nav-open');
     toggle.setAttribute('aria-expanded', open);
     const logo = header.querySelector('.brand-logo');
-    if (logo) logo.src = header.classList.contains('is-scrolled') && !open ? 'assets/logo-color.svg' : 'assets/logo-white.svg';
+    if (logo) logo.src = header.classList.contains('is-scrolled') && !open ? 'assets/logo-color.webp' : 'assets/logo-white.webp';
   });
   document.querySelectorAll('.main-nav a').forEach((a) => {
     a.addEventListener('click', () => {
