@@ -2487,10 +2487,7 @@ html.lenis, html.lenis body { height: auto; }
 .page-transition.pt-leave.pt-in img { opacity: 1; transition: opacity .4s .35s var(--ease); }
 @keyframes ptFailsafe { to { visibility: hidden; } }
 
-/* Animasi hero & reveal menunggu tirai terbuka */
-body:has(> .page-transition:not(.pt-out)) .hero-anim,
-body:has(> .page-transition:not(.pt-out)) .page-hero-bg { animation-play-state: paused; }
-body:has(> .page-transition:not(.pt-done)) .reveal { transition-delay: calc(var(--d, 0s) + .5s); }
+
 
 @media (prefers-reduced-motion: reduce) {
   .page-transition { display: none; }
@@ -3642,3 +3639,18 @@ body:has(#contact) .site-footer { position: relative; z-index: 2; }
 @media (max-width: 760px) { .hero-slider .hero-slide-bg:first-child { --img: url('assets/hero-mobile.webp') !important; } }
 /* Tirai transisi tidak menutupi halaman saat pertama dibuka (hanya saat pindah halaman) */
 .page-transition:not(.pt-leave) { display: none; }
+
+/* =========================================================
+   Performa (Speed Index): konten layar pertama langsung tampil utuh,
+   tanpa menunggu JavaScript atau animasi masuk.
+   ========================================================= */
+.hero .hero-anim, .page-hero .hero-anim { opacity: 1; transform: none; animation: none; }
+.hero-title .hero-anim, .page-hero .hero-title .hero-anim { transform: none; }
+.hero-bg, .page-hero-bg { animation: none !important; transform: none; }
+.hero-slider:not(.is-ready) .hero-slide-title.is-active .line > span { transform: none; }
+.hero-slider:not(.is-ready) .hero-slide-lead.is-active { opacity: 1; transform: none; }
+.hero-slider .hero-slide-bg.is-active:first-child { transition: none; transform: none; }
+.hero-slide-title.is-active .line > span { transition-delay: 0s; }
+.hero-slide-lead.is-active { transition-delay: 0s; }
+/* reveal di layar pertama (page-hero) tidak disembunyikan */
+.page-hero .reveal, .hero .reveal { opacity: 1 !important; transform: none !important; }
