@@ -3683,3 +3683,7 @@ html:not(.play-intro) .page-hero .reveal, html:not(.play-intro) .hero .reveal { 
 .mgz-head .gv-badge, .text-center .gv-badge { justify-content: center; }
 @media (max-width: 560px) { .gv-badge-label { white-space: normal; } }
 .gv-badge { width: max-content; max-width: 100%; align-self: flex-start; } .mgz-head .gv-badge { margin-left: auto; margin-right: auto; align-self: center; }
+/* About Beranda: judul di kiri, deskripsi di kanan */
+.aby-head { grid-template-columns: 1.6fr 1fr; align-items: end; }
+.aby-intro { justify-self: end; }
+@media (max-width: 960px) { .aby-head { grid-template-columns: 1fr; } .aby-intro { justify-self: start; } }
