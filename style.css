@@ -3687,3 +3687,36 @@ html:not(.play-intro) .page-hero .reveal, html:not(.play-intro) .hero .reveal { 
 .aby-head { grid-template-columns: 1.6fr 1fr; align-items: end; }
 .aby-intro { justify-self: end; }
 @media (max-width: 960px) { .aby-head { grid-template-columns: 1fr; } .aby-intro { justify-self: start; } }
+
+/* =========================================================
+   TOMBOL SERAGAM di seluruh website
+   1) Utama   : pil + lingkaran panah  (btn-light di latar gelap, btn-dark di latar terang)
+   2) Sekunder: pil kaca / bergaris tanpa panah (btn-glass, btn-outline)
+   3) Ikon    : lingkaran panah tembus pandang
+   ========================================================= */
+.btn { padding: 12px 24px; font-size: .92rem; font-weight: 500; letter-spacing: 0; text-transform: none; line-height: 1.2; }
+.btn-arrow { gap: 14px; padding: 7px 7px 7px 22px; }
+.btn-arrow .arrow-circle { width: 36px; height: 36px; flex: 0 0 auto; font-size: 1rem; }
+.btn-light { background: #fff; color: var(--ink); border-color: #fff; }
+.btn-light .arrow-circle { background: var(--ink); color: #fff; }
+.btn-dark { background: var(--ink); color: #fff; border-color: var(--ink); }
+.btn-dark .arrow-circle { background: #fff; color: var(--ink); }
+.btn-dark:hover { background: #2b3446; box-shadow: 0 10px 24px -12px rgba(0,0,0,.45); }
+.btn-glass { padding: 12px 24px; }
+.btn-arrow:hover .arrow-circle { transform: translateX(3px); }
+/* bersihkan gaya lama tombol khusus agar ikut model utama */
+.qz-more, .cx-btn, .fly-btn, .bsx-btn, .rgx-btn, .qz-btn, .vmx-btn { padding: 7px 7px 7px 22px; border-radius: 999px; font-size: .92rem; font-weight: 500; letter-spacing: 0; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.qz-more, .cx-btn, .fly-btn { background: var(--ink); color: #fff; }
+.bsx-btn, .rgx-btn, .qz-btn, .vmx-btn { background: #fff; color: var(--ink); border: 0; }
+.qz-btn span, .fly-btn span, .vmx-btn strong { all: unset; }
+.qz-btn .arrow-circle, .fly-btn .arrow-circle { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; }
+.qz-btn .arrow-circle, .vmx-btn .arrow-circle, .bsx-btn .arrow-circle, .rgx-btn .arrow-circle { background: var(--ink); color: #fff; }
+.qz-more .arrow-circle, .cx-btn .arrow-circle, .fly-btn .arrow-circle { background: #fff; color: var(--ink); }
+.tpx-btn { padding: 10px 20px; font-size: .85rem; letter-spacing: 0; text-transform: none; }
+.btn-submit { padding: 7px 7px 7px 24px; }
+.btn-submit .arrow-circle { width: 36px; height: 36px; }
+
+/* ikon lingkaran panah seragam: tembus pandang */
+.aby-arrow, .vmx-arrow, .dvx-arrow, .enx-arrow { background: rgba(255,255,255,.2); color: #fff; border: 0; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.ecx-arrow, .tpx-arrow { background: #efefef; border: 0; color: var(--ink); }
+.ecx-card:hover .ecx-arrow { background: var(--ink); color: #fff; }
