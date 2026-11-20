@@ -432,6 +432,8 @@ window.HD_I18N_EN = {
 "Setiap kategori produk memiliki ketentuan yang berbeda. Kami berkoordinasi dengan instansi terkait sesuai kebutuhan dan lingkup kegiatan usaha.": "Each product category has different requirements. We coordinate with relevant agencies according to need and our scope of business.",
 "Setiap pilar beroperasi secara independen namun terkoneksi mulus dalam satu rantai nilai untuk memastikan integritas produk dari riset formulasi hingga tangan konsumen.": "Each pillar operates independently yet connects seamlessly in one value chain to ensure product integrity from formulation research to the consumer.",
 "Siapa saja yang terhubung": "Who is connected",
+"Profesional HDI Group memegang tablet": "HDI Group professional holding a tablet",
+"Skincare · Importasi": "Skincare · Importation",
 "Riset ilmiah yang berpijak pada standar mutu serta kepatuhan regulasi.": "Scientific research grounded in quality standards and regulatory compliance.",
 "Riset yang menjadi": "Research that forms the",
 "dasar": "foundation",

@@ -3902,3 +3902,67 @@ body:has(#research) .site-footer { position: relative; z-index: 2; }
 .topic-card:hover, .topic-card.is-selected { background: #0d0d0d; border-color: #0d0d0d; color: #fff; box-shadow: 0 28px 50px -30px rgba(0, 0, 0, .5); }
 .topic-card:hover .muted, .topic-card.is-selected .muted { color: rgba(255, 255, 255, .72); }
 .topic-card:hover .topic-no, .topic-card.is-selected .topic-no { color: rgba(255, 255, 255, .85); }
+
+/* =========================================================
+   JARINGAN 01 — Peta Ekosistem: foto di tengah, kartu mengambang di sekelilingnya
+   ========================================================= */
+.ecw-stage { position: relative; min-height: 900px; padding: 48px; border-radius: 32px; overflow: hidden; isolation: isolate;
+  background: radial-gradient(90% 70% at 50% 30%, #f7f8f9 0%, #eceef1 55%, #e3e6ea 100%); }
+.ecw-photo { position: absolute; z-index: 0; left: 50%; top: 24px; bottom: 0; width: min(66%, 860px); margin: 0; transform: translateX(-50%);
+  -webkit-mask-image: linear-gradient(180deg, #000 80%, transparent 100%); mask-image: linear-gradient(180deg, #000 80%, transparent 100%); }
+.ecw-photo.reveal { transform: translateX(-50%) translateY(64px) scale(.96); }
+.ecw-photo.reveal.is-visible { transform: translateX(-50%); }
+.ecw-photo img { width: 100%; height: 100%; object-fit: contain; object-position: 50% 100%; filter: drop-shadow(0 30px 40px rgba(20, 24, 30, .12)); }
+.ecw-cards { position: absolute; inset: 48px; z-index: 2; pointer-events: none; }
+.ecw-card { position: absolute; width: 280px; display: flex; flex-direction: column; gap: 10px; padding: 20px 20px 22px; border: 0; border-radius: 18px;
+  font: inherit; text-align: left; cursor: pointer; pointer-events: auto;
+  box-shadow: 0 30px 60px -36px rgba(20, 24, 30, .45); transition: box-shadow .45s var(--ease); }
+.ecw-card.reveal.is-visible { animation: ecwFloat 6s ease-in-out var(--f, 0s) infinite alternate; }
+@keyframes ecwFloat { from { translate: 0 0; } to { translate: 0 -10px; } }
+.ecw-card:hover { box-shadow: 0 40px 70px -34px rgba(20, 24, 30, .55); }
+.ecw-card:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+.ecw-light { background: rgba(255, 255, 255, .86); color: var(--ink); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.ecw-dark { background: #1b1f25; color: #fff; }
+.ecw-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; }
+.ecw-title { font-size: 1.45rem; font-weight: 400; line-height: 1.02; letter-spacing: -.03em; }
+.ecw-arrow { flex: 0 0 auto; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; font-size: .85rem; transition: transform .4s var(--ease); }
+.ecw-light .ecw-arrow { background: var(--ink); color: #fff; }
+.ecw-dark .ecw-arrow { background: rgba(255,255,255,.14); color: #fff; }
+.ecw-card:hover .ecw-arrow { transform: rotate(45deg); }
+.ecw-eb { margin-top: 8px; padding-top: 12px; border-top: 1px solid rgba(29, 36, 51, .12); font-size: .64rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+.ecw-dark .ecw-eb { border-top-color: rgba(255,255,255,.14); color: rgba(255,255,255,.55); }
+.ecw-desc { font-size: .8rem; line-height: 1.5; color: #7a8291; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.ecw-dark .ecw-desc { color: rgba(255,255,255,.72); }
+.ecw-chip { align-self: flex-start; margin-top: 6px; padding: 5px 12px; border-radius: 999px; background: rgba(255,255,255,.12); font-size: .7rem; color: rgba(255,255,255,.85); }
+.ecw-pos-1 { right: 9%; top: 0; }
+.ecw-pos-2 { left: 3%; bottom: 0; }
+.ecw-pos-3 { right: 0; top: 34%; }
+.ecw-pos-4 { right: 8%; bottom: 0; }
+.ecw-head { position: absolute; z-index: 3; left: 48px; top: 48px; width: calc(50% - min(18%, 235px) - 64px); }
+.ecw-head .ecw-heading { font-size: clamp(2rem, 3.2vw, 2.9rem) !important; }
+.ecw-head .gv-badge { margin-bottom: 18px; }
+.ecw-heading { font-weight: 500; line-height: 1.02; letter-spacing: -.035em; color: var(--ink); }
+.ecw-heading .ecw-mute, .ecw-heading .ecw-mute span { color: #9aa0a8; }
+.ecw-lead { margin-top: 18px; max-width: 440px; font-size: .9rem; line-height: 1.6; color: var(--ink-soft); }
+
+@media (max-width: 1240px) {
+  .ecw-card { width: 250px; }
+  .ecw-title { font-size: 1.3rem; }
+  .ecw-pos-1 { right: 4%; } .ecw-pos-4 { right: 3%; } .ecw-pos-2 { left: 0; }
+}
+@media (max-width: 1080px) {
+  .ecw-stage { min-height: 0; padding: 32px 22px 26px; display: flex; flex-direction: column; gap: 22px; }
+  .ecw-head, .ecw-photo, .ecw-cards, .ecw-card { position: static; }
+  .ecw-head { order: 1; width: auto; max-width: 600px; }
+  .ecw-photo, .ecw-photo.reveal, .ecw-photo.reveal.is-visible { order: 3; width: calc(100% + 44px); margin: 0 -22px -22px; transform: none; aspect-ratio: 1.09; }
+  .ecw-cards { order: 4; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .ecw-card { width: auto; }
+  .ecw-desc { -webkit-line-clamp: unset; display: block; }
+  .ecw-card.reveal.is-visible { animation: none; }
+}
+@media (max-width: 600px) {
+  .ecw-cards { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ecw-card.reveal.is-visible { animation: none; }
+}
