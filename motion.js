@@ -13,8 +13,13 @@
   }
 
   // ---------- 1. Smooth scroll ----------
+  // Lenis baru dinyalakan saat pengunjung pertama kali scroll dengan mouse/keyboard.
+  // Di HP/tablet (layar sentuh) tidak dipakai: scroll bawaan sudah halus, dan loop animasinya
+  // hanya membebani prosesor saat halaman dimuat.
   let lenis = null;
-  if (window.Lenis) {
+  const touchOnly = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  function initLenis() {
+    if (lenis || !window.Lenis) return;
     const headerH = () => (document.querySelector('.site-header') || {}).offsetHeight || 72;
     lenis = new window.Lenis({
       lerp: 0.14,
@@ -36,6 +41,18 @@
     new MutationObserver(() => {
       document.body.classList.contains('nav-open') ? lenis.stop() : lenis.start();
     }).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    if (document.querySelector('dialog[open]')) lenis.stop();
+  }
+  if (!touchOnly) {
+    const SCROLL_KEYS = ['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', ' ', 'Home', 'End'];
+    const kick = (e) => {
+      if (e.type === 'keydown' && !SCROLL_KEYS.includes(e.key)) return;
+      window.removeEventListener('wheel', kick);
+      window.removeEventListener('keydown', kick);
+      initLenis();
+    };
+    window.addEventListener('wheel', kick, { passive: true });
+    window.addEventListener('keydown', kick);
   }
 
   // ---------- 2. Judul muncul per kata ----------
@@ -186,8 +203,8 @@
   }
   let ticking = false;
   function requestFrame() { if (!ticking) { ticking = true; requestAnimationFrame(scrubFrame); } }
-  if (lenis) lenis.on('scroll', requestFrame);
-  else window.addEventListener('scroll', requestFrame, { passive: true });
+  // Lenis juga menggeser window, jadi event scroll bawaan tetap jalan dengan atau tanpa Lenis
+  window.addEventListener('scroll', requestFrame, { passive: true });
   window.addEventListener('resize', requestFrame);
   requestFrame();
 
