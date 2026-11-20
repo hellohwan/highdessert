@@ -3830,3 +3830,44 @@ html:not(.play-intro) .page-hero .reveal, html:not(.play-intro) .hero .reveal { 
   .rdx-panel.is-active .rdx-figure { animation: none; }
   .rdx-figure img { transition: none; }
 }
+
+/* =========================================================
+   AKTIVITAS BISNIS — B/SKIN & R&D full width, efek tumpuk saat scroll
+   B/SKIN menempel (sticky), panel R&D naik menutupinya.
+   ========================================================= */
+#bskin, #research { padding: 0; }
+#bskin .container, #research .container { max-width: none; padding: 0; }
+#bskin { margin-top: 110px; }
+#bskin .bsx-panel { border-radius: 32px 32px 0 0; padding: 18px max(18px, calc((100vw - var(--container)) / 2 + 32px)) 18px; transform: none; opacity: 1; }
+#research { position: relative; z-index: 2; }
+#research .rdx-stage { border-radius: 32px 32px 0 0; min-height: max(720px, 100vh); min-height: max(720px, 100svh);
+  padding-left: max(56px, calc((100vw - var(--container)) / 2 + 32px)); padding-right: max(56px, calc((100vw - var(--container)) / 2 + 32px));
+  box-shadow: 0 -30px 60px -30px rgba(0, 0, 0, .45); }
+/* posisi foto & catatan mengikuti lebar konten (bukan lebar layar penuh) */
+#research .rdx-panels { left: max(0px, calc((100vw - var(--container)) / 2 + 32px - 56px)); right: max(0px, calc((100vw - var(--container)) / 2 + 32px - 56px)); }
+#research .rdx-nav { left: max(44px, calc((100vw - var(--container)) / 2 + 20px)); }
+#research .rdx-foot { right: max(56px, calc((100vw - var(--container)) / 2 + 32px)); }
+/* footer di atas panel yang menempel */
+body:has(#research) .site-footer { position: relative; z-index: 2; }
+
+@media (min-width: 961px) and (min-height: 700px) {
+  #bskin { position: sticky; top: 0; z-index: 1; }
+  /* panel setinggi layar; konten turun di bawah header + subnav */
+  #bskin .bsx-panel { min-height: 100vh; min-height: 100svh; padding-top: calc(var(--header-h, 64px) + 104px); padding-bottom: 72px; }
+  #bskin .bsx-media { min-height: 0; }
+  #research .rdx-stage { padding-top: calc(var(--header-h, 64px) + 120px); padding-bottom: 72px; }
+  #research .rdx-stage { min-height: max(860px, 100vh); min-height: max(860px, 100svh); }
+  #research .rdx-panels { top: calc(var(--header-h, 64px) + 96px); bottom: 24px; }
+  #research .rdx-figure { top: 4%; }
+  #research .rdx-note-1 { top: 14%; } #research .rdx-note-2 { top: 40%; } #research .rdx-note-3 { top: 58%; }
+}
+@media (max-width: 1080px) {
+  #research .rdx-stage { min-height: 0; padding: 40px 24px 32px; }
+  #research .rdx-panels { left: auto; right: auto; }
+}
+@media (max-width: 960px) {
+  #bskin { margin-top: 80px; }
+  #bskin .bsx-panel { border-radius: 24px 24px 0 0; padding: 12px 12px 40px; }
+  #research { margin-top: -24px; }
+  #research .rdx-stage { border-radius: 24px 24px 0 0; }
+}
