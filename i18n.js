@@ -1,5 +1,10 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Halaman tidak ditemukan": "Page not found",
+"Halaman yang Anda cari mungkin sudah dipindahkan atau alamatnya salah ketik.": "The page you're looking for may have moved, or the address was mistyped.",
+"Kembali ke Beranda": "Back to Home",
+"Ups!": "Oops!",
+"404 — Halaman tidak ditemukan": "404 — Page not found",
 "Entitas dalam Jaringan": "Entities in the Network",
 "Peta Ekosistem": "Ecosystem Map",
 "Verifikasi & Keterbukaan": "Verification & Transparency",
