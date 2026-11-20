@@ -1,0 +1,11 @@
+{
+  "name": "highdessert",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.24.2"
+  }
+}
