@@ -1,5 +1,12 @@
 // PT High-Desert Indonesia — interaksi homepage
+
 (function () {
+  // ganti logo putih/berwarna (src + srcset sekaligus)
+  function setLogo(logo, color) {
+    const c = color ? 'color' : 'white';
+    logo.src = 'assets/logo-' + c + '.webp';
+    if (logo.srcset) logo.srcset = 'assets/logo-' + c + '-320.webp 320w, assets/logo-' + c + '.webp 400w';
+  }
   // ---------- Lazy background: gambar latar dimuat saat mendekati layar ----------
   (function lazyBg() {
     const els = [...document.querySelectorAll('[data-bg]:not(.hero-slide-bg)')];
@@ -85,7 +92,7 @@
       header.classList.toggle('is-scrolled', scrolled);
       // logo berwarna di atas header kaca terang, logo putih di atas hero
       const logo = header.querySelector('.brand-logo');
-      if (logo) logo.src = scrolled && !document.body.classList.contains('nav-open') ? 'assets/logo-color.webp' : 'assets/logo-white.webp';
+      if (logo) setLogo(logo, scrolled && !document.body.classList.contains('nav-open'));
     }
     toTop.classList.toggle('is-visible', y > window.innerHeight * 0.6);
     ring.style.strokeDashoffset = RING_LEN * (1 - progress);
@@ -139,7 +146,7 @@
     const open = document.body.classList.toggle('nav-open');
     toggle.setAttribute('aria-expanded', open);
     const logo = header.querySelector('.brand-logo');
-    if (logo) logo.src = header.classList.contains('is-scrolled') && !open ? 'assets/logo-color.webp' : 'assets/logo-white.webp';
+    if (logo) setLogo(logo, header.classList.contains('is-scrolled') && !open);
   });
   document.querySelectorAll('.main-nav a').forEach((a) => {
     a.addEventListener('click', () => {
