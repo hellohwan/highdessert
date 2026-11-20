@@ -3723,3 +3723,31 @@ html:not(.play-intro) .page-hero .reveal, html:not(.play-intro) .hero .reveal { 
 /* Kualitas Beranda: catatan kecil di bawah kartu (menggantikan blok penutup) */
 .qz-note { margin-top: 18px; font-size: .8rem; color: #5d6574; }
 .qz-note strong { margin-right: 10px; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: #2f6647; }
+
+/* =========================================================
+   ENTITAS — slider (tombol, titik, geser otomatis, drag)
+   ========================================================= */
+.enx-slider { min-width: 0; }
+#entitas .enx-track { cursor: grab; }
+#entitas .enx-track.is-dragging { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+#entitas .enx-track.is-dragging .enx-card { pointer-events: none; }
+#entitas .enx-track:focus-visible { outline: 2px solid #fff; outline-offset: 6px; border-radius: 22px; }
+#entitas .enx-card:focus-visible { outline: 3px solid #fff; outline-offset: -3px; }
+.enx-controls { display: flex; align-items: center; gap: 10px; margin-top: 28px; padding-right: 56px; }
+.enx-nav { display: grid; place-items: center; width: 48px; height: 48px; padding: 0; border: 1px solid rgba(255,255,255,.35); border-radius: 50%; background: rgba(255,255,255,.06); color: #fff; font: inherit; font-size: 1.1rem; cursor: pointer; transition: background-color .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease); }
+.enx-nav:hover { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.6); }
+.enx-nav:active { transform: scale(.94); }
+.enx-nav:focus-visible, .enx-dots button:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.enx-dots { display: flex; align-items: center; gap: 4px; margin: 0 6px; }
+/* area klik 24px, titik yang terlihat lebih kecil */
+.enx-dots button { position: relative; width: 24px; height: 24px; padding: 0; border: 0; background: none; cursor: pointer; }
+.enx-dots button::before { content: ""; position: absolute; left: 50%; top: 50%; width: 8px; height: 8px; border-radius: 999px; background: rgba(255,255,255,.4); transform: translate(-50%, -50%); transition: width .35s var(--ease), background-color .35s var(--ease); }
+.enx-dots button:hover::before { background: rgba(255,255,255,.75); }
+.enx-dots button[aria-current="true"] { width: 40px; }
+.enx-dots button[aria-current="true"]::before { width: 32px; background: #fff; }
+.enx-play { margin-left: 4px; width: 44px; height: 44px; }
+.enx-play svg[hidden] { display: none; }
+.enx-play[hidden] { display: none; }
+@media (max-width: 960px) {
+  .enx-controls { padding-right: 24px; margin-top: 22px; }
+}

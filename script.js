@@ -429,6 +429,118 @@
     updateBusinessPagination();
   }
 
+  // ---------- Slider entitas (halaman Jaringan) ----------
+  const enxSlider = document.querySelector('[data-enx-slider]');
+  if (enxSlider) {
+    const track = enxSlider.querySelector('.enx-track');
+    const cards = [...track.querySelectorAll('.enx-card')];
+    const dotsWrap = enxSlider.querySelector('.enx-dots');
+    const playBtn = enxSlider.querySelector('[data-enx-play]');
+    const status = enxSlider.querySelector('[data-enx-status]');
+    const INTERVAL = 4500;
+    let stops = [], dots = [], current = 0, timer = 0, frame = 0;
+    let userPaused = reduceMotion, hovered = false, focused = false, inView = false;
+
+    const cardName = (c) => c.querySelector('strong').textContent.trim();
+    // posisi scroll yang bisa dicapai (kartu terakhir bisa berbagi posisi akhir)
+    function buildStops() {
+      const max = track.scrollWidth - track.clientWidth;
+      const base = track.getBoundingClientRect().left - track.scrollLeft;
+      const list = [];
+      cards.forEach((c) => {
+        const x = Math.min(Math.round(c.getBoundingClientRect().left - base), max);
+        if (!list.length || x - list[list.length - 1].x > 4) list.push({ x, card: c });
+      });
+      stops = list;
+      dotsWrap.innerHTML = '';
+      dots = stops.map((s, i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-controls', 'enx-track');
+        b.addEventListener('click', () => goTo(i, true));
+        dotsWrap.appendChild(b);
+        return b;
+      });
+      labelDots();
+      // kalau semua kartu muat di layar, kontrol tidak perlu
+      enxSlider.classList.toggle('is-static', stops.length < 2);
+      enxSlider.querySelector('.enx-controls').hidden = stops.length < 2;
+      sync();
+    }
+    function labelDots() {
+      dots.forEach((b, i) => b.setAttribute('aria-label', t('Geser ke') + ' ' + cardName(stops[i].card) + ' (' + (i + 1) + '/' + stops.length + ')'));
+    }
+    function sync() {
+      const x = track.scrollLeft, max = track.scrollWidth - track.clientWidth;
+      let idx = 0, best = Infinity;
+      stops.forEach((s, i) => { const d = Math.abs(s.x - x); if (d < best) { best = d; idx = i; } });
+      if (x >= max - 2) idx = stops.length - 1;
+      current = idx;
+      dots.forEach((b, i) => b.setAttribute('aria-current', String(i === idx)));
+      frame = 0;
+    }
+    function goTo(i, announce) {
+      if (!stops.length) return;
+      current = (i + stops.length) % stops.length;
+      track.scrollTo({ left: stops[current].x, behavior: reduceMotion ? 'auto' : 'smooth' });
+      dots.forEach((b, k) => b.setAttribute('aria-current', String(k === current)));
+      if (announce) status.textContent = cardName(stops[current].card) + ', ' + (current + 1) + ' ' + t('dari') + ' ' + stops.length;
+      restart();
+    }
+    // geser otomatis: berhenti saat kursor/fokus di slider, dijeda pengguna, atau tidak terlihat
+    function running() { return !userPaused && !hovered && !focused && inView && !document.hidden && stops.length > 1; }
+    function restart() { clearInterval(timer); timer = running() ? setInterval(() => goTo(current + 1, false), INTERVAL) : 0; }
+    function renderPlay() {
+      playBtn.setAttribute('aria-pressed', String(userPaused));
+      playBtn.setAttribute('aria-label', t(userPaused ? 'Lanjutkan geser otomatis' : 'Jeda geser otomatis'));
+      playBtn.querySelector('.enx-icon-pause').hidden = userPaused;
+      playBtn.querySelector('.enx-icon-play').hidden = !userPaused;
+    }
+    playBtn.addEventListener('click', () => { userPaused = !userPaused; renderPlay(); restart(); });
+    enxSlider.querySelector('[data-enx-prev]').addEventListener('click', () => goTo(current - 1, true));
+    enxSlider.querySelector('[data-enx-next]').addEventListener('click', () => goTo(current + 1, true));
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); goTo(current + (e.key === 'ArrowRight' ? 1 : -1), true); }
+      else if (e.key === 'Home' || e.key === 'End') { e.preventDefault(); goTo(e.key === 'Home' ? 0 : stops.length - 1, true); }
+    });
+    enxSlider.addEventListener('mouseenter', () => { hovered = true; restart(); });
+    enxSlider.addEventListener('mouseleave', () => { hovered = false; restart(); });
+    enxSlider.addEventListener('focusin', () => { focused = true; restart(); });
+    enxSlider.addEventListener('focusout', (e) => { if (!enxSlider.contains(e.relatedTarget)) { focused = false; restart(); } });
+    document.addEventListener('visibilitychange', restart);
+    new IntersectionObserver((es) => { inView = es[0].isIntersecting; restart(); }, { threshold: 0.4 }).observe(enxSlider);
+    track.addEventListener('scroll', () => { if (!frame) frame = requestAnimationFrame(sync); }, { passive: true });
+    track.addEventListener('touchstart', () => { clearInterval(timer); }, { passive: true });
+    track.addEventListener('touchend', restart, { passive: true });
+
+    // drag dengan mouse (sentuh sudah bisa digeser bawaan browser)
+    let dragX = 0, dragLeft = 0, moved = false, dragging = false;
+    track.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      dragging = true; moved = false; dragX = e.clientX; dragLeft = track.scrollLeft;
+    });
+    window.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      const dx = e.clientX - dragX;
+      if (!moved && Math.abs(dx) > 5) { moved = true; track.classList.add('is-dragging'); }
+      if (moved) track.scrollLeft = dragLeft - dx;
+    });
+    window.addEventListener('pointerup', () => {
+      if (!dragging) return;
+      dragging = false;
+      if (!moved) return;
+      track.classList.remove('is-dragging');
+      sync(); goTo(current, false);
+    });
+    // klik setelah drag tidak membuka link
+    track.addEventListener('click', (e) => { if (moved) { e.preventDefault(); moved = false; } }, true);
+    track.addEventListener('dragstart', (e) => e.preventDefault());
+
+    document.addEventListener('hd:lang', () => { labelDots(); renderPlay(); });
+    window.addEventListener('resize', () => { clearTimeout(enxSlider._rt); enxSlider._rt = setTimeout(buildStops, 150); });
+    buildStops(); renderPlay(); restart();
+  }
+
   // ---------- Carousel struktur manajemen ----------
   const teamTrack = document.querySelector('[data-team-slider]');
   if (teamTrack) {
