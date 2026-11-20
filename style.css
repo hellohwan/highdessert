@@ -3751,3 +3751,82 @@ html:not(.play-intro) .page-hero .reveal, html:not(.play-intro) .hero .reveal { 
 @media (max-width: 960px) {
   .enx-controls { padding-right: 24px; margin-top: 22px; }
 }
+
+/* =========================================================
+   AKTIVITAS BISNIS 04 — R&D: panel lembut + foto melayang + catatan ✳ (slider otomatis)
+   ========================================================= */
+.rdx-stage { --rdx-int: 6s; position: relative; min-height: 720px; padding: 52px 56px; border-radius: 28px; overflow: hidden; isolation: isolate;
+  background: radial-gradient(120% 90% at 55% 45%, #fbfcfd 0%, #eef2f6 45%, #dde4ec 100%); }
+.rdx-head { position: relative; z-index: 3; max-width: 470px; }
+.rdx-eyebrow { display: flex; gap: 8px; margin-bottom: 22px; font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); }
+.rdx-eyebrow span { font-weight: 500; color: var(--muted); }
+.rdx-heading { font-weight: 500; line-height: 1.05; letter-spacing: -.035em; color: var(--ink); }
+.rdx-heading em { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 400; letter-spacing: -.02em; }
+.rdx-panels { position: absolute; inset: 0; }
+.rdx-panel { position: absolute; inset: 0; }
+.rdx-panel[hidden] { display: none; }
+.rdx-figure { position: absolute; z-index: 1; left: 43%; top: 12%; width: 31%; aspect-ratio: .72; margin: 0; border-radius: 30px; overflow: hidden;
+  box-shadow: 0 40px 80px -40px rgba(30, 44, 66, .55), 0 10px 30px -18px rgba(30, 44, 66, .35);
+  opacity: 0; transform: translateY(24px) rotate(-4deg) scale(.96); transition: opacity .8s var(--ease), transform 1.1s var(--ease-out); }
+.rdx-figure img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); transition: transform 6s linear; }
+.rdx-panel.is-active .rdx-figure { opacity: 1; transform: rotate(-3deg); animation: rdxFloat 7s ease-in-out 1.1s infinite alternate; }
+.rdx-panel.is-active .rdx-figure img { transform: scale(1); }
+@keyframes rdxFloat { from { transform: translateY(0) rotate(-3deg); } to { transform: translateY(-14px) rotate(-1.5deg); } }
+.rdx-notes { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.rdx-note { position: absolute; width: 250px; pointer-events: auto; opacity: 0; transform: translateY(16px); transition: opacity .6s var(--ease), transform .7s var(--ease-out); }
+.rdx-panel.is-active .rdx-note { opacity: 1; transform: none; transition-delay: calc(.35s + var(--n) * .14s); }
+.rdx-note { width: 220px; }
+.rdx-note-1 { left: 77%; top: 20%; }
+.rdx-note-2 { left: 20%; top: 41%; width: 210px; }
+.rdx-note-3 { left: 78%; top: 58%; }
+.rdx-note-title { display: flex; gap: 8px; align-items: baseline; font-size: 1.08rem; font-weight: 500; line-height: 1.3; letter-spacing: -.01em; color: var(--ink); }
+.rdx-note-title span { font-size: .95rem; }
+.rdx-note-text { margin-top: 8px; padding-left: 23px; font-size: .84rem; line-height: 1.55; color: var(--ink-soft); }
+.rdx-note-text a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.rdx-nav { position: absolute; z-index: 3; left: 44px; bottom: 44px; display: flex; align-items: flex-end; gap: 10px; }
+.rdx-tabs { display: flex; flex-direction: column; gap: 4px; width: 290px; }
+.rdx-tab { position: relative; display: grid; grid-template-columns: 48px 1fr; align-items: center; gap: 12px; width: 100%; padding: 8px 14px 8px 8px; border: 0; border-radius: 16px; background: transparent; font: inherit; text-align: left; color: var(--muted); cursor: pointer; transition: background-color .4s var(--ease), color .4s var(--ease); }
+.rdx-tab img { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; opacity: .6; filter: grayscale(.5); transition: opacity .4s var(--ease), filter .4s var(--ease); }
+.rdx-tab-text { display: flex; flex-direction: column; font-size: .92rem; font-weight: 500; line-height: 1.25; }
+.rdx-tab-text small { font-size: .68rem; font-weight: 500; letter-spacing: .06em; color: var(--muted); }
+.rdx-tab:hover { color: var(--ink); background: rgba(255,255,255,.4); }
+.rdx-tab.is-active { color: var(--ink); background: rgba(255,255,255,.82); box-shadow: 0 12px 30px -20px rgba(30,44,66,.45); }
+.rdx-tab.is-active img { opacity: 1; filter: none; }
+.rdx-tab:focus-visible, .rdx-play:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.rdx-tab-bar { position: absolute; left: 70px; right: 16px; bottom: 7px; height: 2px; border-radius: 2px; background: rgba(29,36,51,.1); overflow: hidden; opacity: 0; }
+.rdx-tab-bar span { position: absolute; inset: 0; background: var(--ink); transform: scaleX(0); transform-origin: left; }
+.rdx-stage.is-running .rdx-tab.is-active .rdx-tab-bar { opacity: 1; }
+.rdx-stage.is-running .rdx-tab.is-active .rdx-tab-bar span { animation: rdxBar var(--rdx-int) linear forwards; }
+@keyframes rdxBar { to { transform: scaleX(1); } }
+.rdx-play { display: grid; place-items: center; flex: 0 0 auto; width: 44px; height: 44px; margin-bottom: 10px; padding: 0; border: 1px solid rgba(29,36,51,.18); border-radius: 50%; background: rgba(255,255,255,.7); color: var(--ink); cursor: pointer; transition: background-color .3s var(--ease); }
+.rdx-play:hover { background: #fff; }
+.rdx-play svg[hidden] { display: none; }
+.rdx-foot { position: absolute; z-index: 3; right: 56px; bottom: 30px; font-size: .74rem; color: var(--muted); }
+
+@media (max-width: 1240px) {
+  .rdx-head { max-width: 400px; }
+  .rdx-figure { left: 42%; width: 30%; }
+  .rdx-note { width: 190px; }
+  .rdx-note-1 { left: 76%; } .rdx-note-3 { left: 77%; }
+  .rdx-note-2 { left: 18%; top: 44%; width: 180px; }
+}
+@media (max-width: 1080px) {
+  .rdx-stage { min-height: 0; padding: 36px 24px 28px; border-radius: 24px; }
+  .rdx-panels, .rdx-panel, .rdx-notes { position: static; }
+  .rdx-panels { position: relative; margin-top: 28px; }
+  .rdx-figure { position: relative; left: auto; top: auto; width: 100%; height: auto; aspect-ratio: 4 / 3.4; border-radius: 22px; transform: translateY(16px); }
+  .rdx-panel.is-active .rdx-figure { transform: none; animation: none; }
+  .rdx-notes { display: grid; gap: 20px; margin-top: 26px; }
+  .rdx-note, .rdx-note-2 { position: static; width: auto; }
+  .rdx-nav { position: static; margin-top: 28px; align-items: flex-end; }
+  .rdx-tabs { width: auto; min-width: 0; flex: 1; max-width: 420px; }
+  .rdx-tab { grid-template-columns: 40px 1fr; padding-right: 16px; }
+  .rdx-tab img { width: 40px; height: 40px; }
+  .rdx-tab-bar { left: 60px; }
+  .rdx-play { margin-bottom: 0; }
+  .rdx-foot { position: static; margin-top: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rdx-panel.is-active .rdx-figure { animation: none; }
+  .rdx-figure img { transition: none; }
+}

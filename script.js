@@ -541,6 +541,97 @@
     buildStops(); renderPlay(); restart();
   }
 
+  // ---------- R&D (Aktivitas Bisnis): tab slider otomatis ----------
+  const rdx = document.querySelector('[data-rdx]');
+  if (rdx) {
+    const tabs = [...rdx.querySelectorAll('.rdx-tab')];
+    const panels = [...rdx.querySelectorAll('.rdx-panel')];
+    const playBtn = rdx.querySelector('[data-rdx-play]');
+    const INTERVAL = 6000;
+    const narrow = window.matchMedia('(max-width: 1080px)');
+    let current = 0, timer = 0, hideTimers = [];
+    let userPaused = reduceMotion, hovered = false, focused = false, inView = false;
+    rdx.style.setProperty('--rdx-int', INTERVAL / 1000 + 's');
+
+    function show(i, moveFocus) {
+      i = (i + tabs.length) % tabs.length;
+      if (i === current) { if (moveFocus) tabs[i].focus(); return; }
+      const old = panels[current], next = panels[i];
+      hideTimers.forEach(clearTimeout); hideTimers = [];
+      panels.forEach((p, k) => { if (k !== current && k !== i) { p.classList.remove('is-active'); p.hidden = true; } });
+      tabs.forEach((t, k) => {
+        const on = k === i;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+      });
+      old.classList.remove('is-active');
+      if (narrow.matches || reduceMotion) old.hidden = true;
+      else hideTimers.push(setTimeout(() => { old.hidden = true; }, 800));
+      next.hidden = false;
+      void next.offsetWidth; // mulai transisi masuk
+      next.classList.add('is-active');
+      current = i;
+      if (moveFocus) tabs[i].focus();
+      // di HP, tab aktif digeser supaya terlihat
+      const strip = tabs[i].parentElement;
+      if (strip.scrollWidth > strip.clientWidth) strip.scrollTo({ left: tabs[i].offsetLeft - 8, behavior: reduceMotion ? 'auto' : 'smooth' });
+      restart();
+    }
+    function running() { return !userPaused && !hovered && !focused && inView && !document.hidden; }
+    function restart() {
+      clearInterval(timer); timer = 0;
+      rdx.classList.remove('is-running');
+      if (!running()) return;
+      void rdx.offsetWidth; // ulang animasi garis progres
+      rdx.classList.add('is-running');
+      timer = setInterval(() => show(current + 1, false), INTERVAL);
+    }
+    function renderPlay() {
+      playBtn.setAttribute('aria-pressed', String(userPaused));
+      playBtn.setAttribute('aria-label', t(userPaused ? 'Lanjutkan pergantian otomatis' : 'Jeda pergantian otomatis'));
+      playBtn.querySelector('.rdx-icon-pause').hidden = userPaused;
+      playBtn.querySelector('.rdx-icon-play').hidden = !userPaused;
+    }
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => show(i, false));
+      tab.addEventListener('keydown', (e) => {
+        const k = e.key;
+        if (k === 'ArrowRight' || k === 'ArrowDown') { e.preventDefault(); show(i + 1, true); }
+        else if (k === 'ArrowLeft' || k === 'ArrowUp') { e.preventDefault(); show(i - 1, true); }
+        else if (k === 'Home') { e.preventDefault(); show(0, true); }
+        else if (k === 'End') { e.preventDefault(); show(tabs.length - 1, true); }
+      });
+    });
+    playBtn.addEventListener('click', () => { userPaused = !userPaused; renderPlay(); restart(); });
+    rdx.addEventListener('mouseenter', () => { hovered = true; restart(); });
+    rdx.addEventListener('mouseleave', () => { hovered = false; restart(); });
+    rdx.addEventListener('focusin', (e) => { if (e.target === playBtn) return; focused = true; restart(); });
+    rdx.addEventListener('focusout', (e) => { if (!rdx.contains(e.relatedTarget) || e.relatedTarget === playBtn) { focused = false; restart(); } });
+    document.addEventListener('visibilitychange', restart);
+    new IntersectionObserver((es) => { inView = es[0].isIntersecting; restart(); }, { threshold: 0.35 }).observe(rdx);
+    // di HP tinggi slide berbeda-beda: kunci ke slide tertinggi supaya konten di bawahnya tidak loncat
+    const panelsWrap = rdx.querySelector('.rdx-panels');
+    function lockHeight() {
+      panelsWrap.style.minHeight = '';
+      if (!narrow.matches) return;
+      let max = 0;
+      panels.forEach((p) => {
+        const wasHidden = p.hidden;
+        p.hidden = false;
+        if (wasHidden) { p.style.cssText = 'position:absolute;inset:0 auto auto 0;visibility:hidden;width:' + panelsWrap.clientWidth + 'px'; }
+        max = Math.max(max, p.offsetHeight);
+        if (wasHidden) { p.hidden = true; p.style.cssText = ''; }
+      });
+      panelsWrap.style.minHeight = max + 'px';
+    }
+    window.addEventListener('resize', () => { clearTimeout(rdx._rt); rdx._rt = setTimeout(lockHeight, 150); });
+    document.addEventListener('hd:lang', () => { renderPlay(); lockHeight(); });
+    rdx.querySelectorAll('.rdx-figure img').forEach((img) => img.addEventListener('load', lockHeight));
+    lockHeight();
+    renderPlay();
+  }
+
   // ---------- Carousel struktur manajemen ----------
   const teamTrack = document.querySelector('[data-team-slider]');
   if (teamTrack) {
