@@ -3871,3 +3871,28 @@ body:has(#research) .site-footer { position: relative; z-index: 2; }
   #research { margin-top: -24px; }
   #research .rdx-stage { border-radius: 24px 24px 0 0; }
 }
+
+/* =========================================================
+   LAYAR PENDEK (mis. laptop Windows dengan scaling 125–150%: ±1280×560–720)
+   Hero mengikuti tinggi isinya, judul diskalakan dari tinggi layar.
+   ========================================================= */
+@media (min-width: 961px) and (max-height: 800px) {
+  /* Beranda */
+  .hero.hero-slider { height: auto; min-height: 80vh; min-height: 80svh; }
+  .hero-slider .hero-content { padding-top: calc(var(--header-h, 72px) + 28px); padding-bottom: 72px; }
+  .hero-slider .hero-title { font-size: clamp(2rem, 7.6vh, 5.2rem); margin: 4px 0 14px; }
+  .hero-slider .hero-lead { font-size: .95rem; max-width: 560px; }
+  .hero-slider .hero-actions { margin: 18px 0 16px; }
+  .hero-slider .hero-note { font-size: .76rem; }
+  /* Hero halaman dalam (Aktivitas Bisnis, Kualitas, Jaringan, Tentang Kami) */
+  body:has(.editorial-hero) .editorial-hero { height: auto; min-height: 70vh; min-height: 70svh; }
+  .editorial-hero .page-hero-content { padding-top: calc(var(--header-h, 72px) + 32px); padding-bottom: 20px; }
+  .editorial-hero .page-hero-title { font-size: clamp(2.2rem, 10vh, 5.8rem); margin: 16px 0 14px; }
+  .editorial-hero .page-hero-lead { font-size: 1rem; line-height: 1.55; }
+  .editorial-hero-actions { margin-top: 18px; }
+  .editorial-hero .hero-caption { padding-bottom: 14px; }
+  /* Hero standar (Kontak) */
+  .page-hero { min-height: 0; }
+  .page-hero-content { padding-top: calc(var(--header-h, 72px) + 40px); padding-bottom: 48px; }
+  .page-hero-title { font-size: clamp(2.2rem, 10vh, 5.8rem); margin: 18px 0 18px; }
+}

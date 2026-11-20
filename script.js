@@ -541,6 +541,28 @@
     buildStops(); renderPlay(); restart();
   }
 
+  // ---------- Section bertumpuk (sticky): kalau lebih tinggi dari layar, gulir dulu sampai
+  // bagian bawahnya terlihat, baru menempel — supaya isinya tidak tertutup di layar pendek ----------
+  (function stickyFit() {
+    const els = [...document.querySelectorAll('main > section, main > div')]
+      .filter((el) => !el.matches('.subnav, .about-subnav'));
+    function fit() {
+      els.forEach((el) => {
+        el.style.top = '';
+        if (getComputedStyle(el).position !== 'sticky') return;
+        el.style.top = Math.min(0, window.innerHeight - el.offsetHeight) + 'px';
+      });
+    }
+    fit();
+    window.addEventListener('resize', fit);
+    window.addEventListener('load', fit);
+    if ('ResizeObserver' in window) {
+      let raf = 0;
+      const ro = new ResizeObserver(() => { cancelAnimationFrame(raf); raf = requestAnimationFrame(fit); });
+      els.forEach((el) => ro.observe(el));
+    }
+  })();
+
   // ---------- R&D (Aktivitas Bisnis): tab slider otomatis ----------
   const rdx = document.querySelector('[data-rdx]');
   if (rdx) {
