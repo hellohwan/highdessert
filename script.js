@@ -129,7 +129,9 @@
     }, { threshold: 0, rootMargin: '0px' });
     revealTargets.forEach((el) => {
       const rect = el.getBoundingClientRect();
-      if (rect.bottom > 0 && rect.top < window.innerHeight - 40) el.classList.add('is-visible');
+      // yang sudah terlihat (walau sebagian) saat halaman dibuka langsung ditampilkan,
+      // supaya area di bawah hero 80vh tidak kosong putih
+      if (rect.bottom > 0 && rect.top < window.innerHeight) el.classList.add('is-visible');
       io.observe(el);
       outIO.observe(el);
     });

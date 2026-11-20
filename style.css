@@ -3990,3 +3990,6 @@ body:has(#research) .site-footer { position: relative; z-index: 2; }
 @media (max-width: 760px) {
   .page-hero-bg[style*="--img-m"] { background-image: var(--img-m), var(--fallback, linear-gradient(135deg, #dfe4ea, #c9d1db)); }
 }
+
+/* Beranda: judul section pertama mengintip di bawah hero 80vh (tidak kosong putih) */
+@media (min-width: 761px) { .hero.hero-slider + .section-foundation { padding-top: 64px; } }

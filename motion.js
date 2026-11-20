@@ -146,6 +146,8 @@
     };
     headings.forEach((el) => add(el, el));
     imgs.forEach((el) => add(el.parentElement || el, el));
+    // judul yang sudah terlihat di layar pertama (mis. di bawah hero 80vh) langsung dianimasikan
+    headings.forEach((el) => { if (el.getBoundingClientRect().top < window.innerHeight) show(el); });
   }
 
   // ---------- 5. Animasi terikat scroll (gaya Poch) ----------
