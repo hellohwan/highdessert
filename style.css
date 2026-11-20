@@ -1902,8 +1902,6 @@ html:has(.page-contact) { scroll-padding-top: 90px; }
 .topic-card strong { font-size: 1.05rem; font-weight: 500; }
 .topic-no { font-size: .72rem; color: var(--green); font-weight: 600; margin-bottom: 14px; }
 .topic-arrow { position: absolute; top: 20px; right: 20px; transition: transform .4s var(--ease); }
-.topic-card:hover, .topic-card.is-selected { background: var(--green); border-color: var(--green); color: #fff; }
-.topic-card:hover .muted, .topic-card.is-selected .muted, .topic-card:hover .topic-no, .topic-card.is-selected .topic-no { color: rgba(255, 255, 255, .85); }
 .topic-card:hover .topic-arrow { transform: translateX(4px) rotate(45deg); }
 .topic-card.reveal.is-visible:hover { transform: translateY(-4px); }
 
@@ -3666,7 +3664,7 @@ html:not(.play-intro) .page-hero .reveal, html:not(.play-intro) .hero .reveal { 
 .site-header.is-scrolled .lang-switch button { color: #4a5160; }
 .site-header.is-scrolled .lang-switch button[aria-pressed="true"] { color: #fff; }
 .topic-no { color: #2f6647; }
-.topic-card:hover .topic-no, .topic-card.is-selected .topic-no { color: #fff; }
+
 /* titik slider & paginasi: area sentuh minimal 24px tanpa mengubah tampilan */
 .hero-dot, .biz-pagination button { position: relative; }
 .hero-dot::after, .biz-pagination button::after { content: ""; position: absolute; left: 50%; top: 50%; width: 28px; height: 28px; transform: translate(-50%, -50%); }
@@ -3896,3 +3894,11 @@ body:has(#research) .site-footer { position: relative; z-index: 2; }
   .page-hero-content { padding-top: calc(var(--header-h, 72px) + 40px); padding-bottom: 48px; }
   .page-hero-title { font-size: clamp(2.2rem, 10vh, 5.8rem); margin: 18px 0 18px; }
 }
+
+/* Kontak: samakan warna aktif dengan tombol lain di situs (navy, bukan hijau) */
+.header-cta.is-current { background: #fff; color: var(--ink); }
+.site-header.is-scrolled .header-cta.is-current { background: var(--ink); color: #fff; }
+/* kartu terpilih & hover: hitam (sama dengan panel hitam di halaman lain) */
+.topic-card:hover, .topic-card.is-selected { background: #0d0d0d; border-color: #0d0d0d; color: #fff; box-shadow: 0 28px 50px -30px rgba(0, 0, 0, .5); }
+.topic-card:hover .muted, .topic-card.is-selected .muted { color: rgba(255, 255, 255, .72); }
+.topic-card:hover .topic-no, .topic-card.is-selected .topic-no { color: rgba(255, 255, 255, .85); }
