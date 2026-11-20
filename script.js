@@ -200,6 +200,14 @@
   // ---------- Video latar: autoplay (muted), putar hanya saat terlihat ----------
   document.querySelectorAll('video[autoplay]').forEach((v) => {
     v.muted = true; v.playsInline = true; // wajib untuk autoplay di Safari/iOS
+    // video baru diunduh saat hampir terlihat (hemat kuota & tidak memperlambat load awal)
+    if (v.dataset.src) {
+      const loadSrc = () => { if (!v.dataset.src) return; v.src = v.dataset.src; v.removeAttribute('data-src'); v.preload = 'auto'; v.load(); };
+      if ('IntersectionObserver' in window) {
+        const lo = new IntersectionObserver(([e]) => { if (e.isIntersecting) { loadSrc(); lo.disconnect(); if (visible) tryPlay(); } }, { rootMargin: '600px 0px' });
+        lo.observe(v);
+      } else loadSrc();
+    }
     let visible = true;
     const tryPlay = () => { if (!visible) return; const p = v.play(); if (p) p.catch(() => armGesture()); };
     // Fallback: kalau browser memblokir autoplay (mis. Low Power Mode), putar saat interaksi pertama

@@ -3985,3 +3985,8 @@ body:has(#research) .site-footer { position: relative; z-index: 2; }
     border-radius: 32px 32px 0 0; box-shadow: 0 -30px 60px -30px rgba(20, 24, 30, .28); }
   .net-stats-section .net-stats { border-top: 0; padding-top: 0; }
 }
+
+/* Hero halaman dalam: potongan tegak khusus HP (lebih ringan & lebih tajam di layar tegak) */
+@media (max-width: 760px) {
+  .page-hero-bg[style*="--img-m"] { background-image: var(--img-m), var(--fallback, linear-gradient(135deg, #dfe4ea, #c9d1db)); }
+}
