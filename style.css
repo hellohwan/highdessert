@@ -3966,3 +3966,14 @@ body:has(#research) .site-footer { position: relative; z-index: 2; }
 @media (prefers-reduced-motion: reduce) {
   .ecw-card.reveal.is-visible { animation: none; }
 }
+
+/* Peta Ekosistem: full width, menempel langsung di bawah subnav */
+#ekosistem { padding: 0; }
+#ekosistem > .container { max-width: none; padding: 0; }
+#ekosistem .ecw-stage { --ecw-x: max(48px, calc((100vw - var(--container)) / 2 + 32px));
+  border-radius: 0; min-height: max(900px, calc(100svh - 140px)); padding: 56px var(--ecw-x) 96px; }
+#ekosistem .ecw-cards { inset: 56px var(--ecw-x) 96px; }
+#ekosistem .ecw-head { left: var(--ecw-x); top: 56px; }
+@media (max-width: 1080px) {
+  #ekosistem .ecw-stage { min-height: 0; padding: 32px 22px 64px; }
+}
