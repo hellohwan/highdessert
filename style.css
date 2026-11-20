@@ -3977,3 +3977,11 @@ body:has(#research) .site-footer { position: relative; z-index: 2; }
 @media (max-width: 1080px) {
   #ekosistem .ecw-stage { min-height: 0; padding: 32px 22px 64px; }
 }
+
+/* Jaringan: efek tumpuk — Peta Ekosistem menempel, strip angka naik menutupinya, lalu panel Entitas */
+@media (min-width: 961px) {
+  #ekosistem { position: sticky; top: calc(var(--header-h, 64px) + 83px); z-index: 0; }
+  .net-stats-section { position: relative; z-index: 1; margin-top: -40px; padding-top: 64px; background: #fff;
+    border-radius: 32px 32px 0 0; box-shadow: 0 -30px 60px -30px rgba(20, 24, 30, .28); }
+  .net-stats-section .net-stats { border-top: 0; padding-top: 0; }
+}

@@ -549,8 +549,10 @@
     function fit() {
       els.forEach((el) => {
         el.style.top = '';
-        if (getComputedStyle(el).position !== 'sticky') return;
-        el.style.top = Math.min(0, window.innerHeight - el.offsetHeight) + 'px';
+        const cs = getComputedStyle(el);
+        if (cs.position !== 'sticky') return;
+        const base = parseFloat(cs.top) || 0; // posisi tempel dari CSS (mis. di bawah subnav)
+        el.style.top = Math.min(base, window.innerHeight - el.offsetHeight) + 'px';
       });
     }
     fit();
