@@ -1,5 +1,13 @@
 /* Kamus terjemahan ID → EN. Teks yang tidak ada di sini tetap seperti aslinya. */
 window.HD_I18N_EN = {
+"Kualitas": "Quality",
+"Keamanan": "Safety",
+"Koordinasi regulasi": "Regulatory coordination",
+"Standar yang dijaga.": "Standards upheld.",
+"Dikoordinasikan sesuai lingkup usaha, termasuk dengan BPOM dan BPJPH sesuai ketentuan yang berlaku.": "Coordinated according to our business scope, including with BPOM and BPJPH in line with applicable regulations.",
+"Komitmen kualitas dan koordinasi regulasi sesuai lingkup usaha PT High-Desert Indonesia.": "Quality commitment and regulatory coordination within the business scope of PT High-Desert Indonesia.",
+"Pelajari pendekatan kami terhadap kualitas & regulasi.": "Learn about our approach to quality & regulation.",
+"Fokus": "Focus",
 "Halaman tidak ditemukan": "Page not found",
 "Halaman yang Anda cari mungkin sudah dipindahkan atau alamatnya salah ketik.": "The page you're looking for may have moved, or the address was mistyped.",
 "Kembali ke Beranda": "Back to Home",
