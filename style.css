@@ -3993,3 +3993,31 @@ body:has(#research) .site-footer { position: relative; z-index: 2; }
 
 /* Beranda: judul section pertama mengintip di bawah hero 80vh (tidak kosong putih) */
 @media (min-width: 761px) { .hero.hero-slider + .section-foundation { padding-top: 64px; } }
+
+/* =========================================================
+   Banner riset Beranda — versi terang (foto lab botani)
+   ========================================================= */
+.research-banner--light { --ink: #1d2433; background: #f6f3ec; }
+.research-banner--light .research-img {
+  background-position: right center;
+  background-image: linear-gradient(90deg, rgba(246,243,236,.92) 0%, rgba(246,243,236,.6) 36%, rgba(246,243,236,0) 58%), var(--img, none);
+}
+.research-banner--light .research-content,
+.research-banner--light .h2.light { color: var(--ink); }
+.research-banner--light .research-text { color: rgba(29,36,51,.75); }
+.research-banner--light .gv-badge-light { color: var(--ink); border-color: rgba(29,36,51,.3); }
+.research-banner--light .gv-badge-light * { color: var(--ink); }
+.research-banner--light .btn-light { background: var(--ink); color: #fff; }
+.research-banner--light .btn-light .arrow-circle { background: #fff; color: var(--ink); }
+.research-banner--light .btn-light:hover { background: #2c3a52; }
+@media (min-width: 761px) and (max-width: 1200px) {
+  .research-banner--light .research-img { background-image: linear-gradient(90deg, rgba(246,243,236,.95) 0%, rgba(246,243,236,.78) 45%, rgba(246,243,236,0) 68%), var(--img, none); }
+}
+@media (max-width: 760px) {
+  .research-banner--light { min-height: 640px; align-items: flex-end; }
+  .research-banner--light .research-img {
+    background-repeat: no-repeat; background-size: 100% 100%, auto 60%; background-position: 0 0, 72% 0;
+    background-image: linear-gradient(180deg, rgba(246,243,236,0) 36%, rgba(246,243,236,.9) 52%, #f6f3ec 60%), var(--img, none);
+  }
+  .research-banner--light .research-content { padding: 0 24px 32px; }
+}
