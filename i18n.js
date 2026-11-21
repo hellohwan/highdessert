@@ -86,6 +86,7 @@ window.HD_I18N_EN = {
 "Pengalaman, Riset, dan Inovasi untuk Kualitas Hidup yang Lebih Baik.": "Experience, Research, and Innovation for a Better Quality of Life.",
 "Pilih slide": "Choose slide",
 "Tim HDI Group": "HDI Group team",
+"Tiga orang tersenyum di tengah alam hijau": "Three people smiling in green nature",
 "Peneliti bekerja di laboratorium": "Researcher working in a laboratory",
 "Madu dan sarang lebah alami": "Natural honey and honeycomb",
 "Importasi dan distribusi terintegrasi dalam jaringan HDI Group untuk menjangkau lebih banyak orang.": "Integrated importation and distribution within the HDI Group network to reach more people.",
